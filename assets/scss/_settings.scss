@@ -1,0 +1,59 @@
+// ------ #STYLE GUIDE
+
+$mobile: 					320px;
+$xsmall:					480px;
+$small:						740px;
+$lap: 						900px;
+$desk: 						1200px;
+$large:						1450px;
+
+// ------ #COLORS
+$accent:					#ffde00;
+$lightest:     				#e2e3e3;
+$light:		   				#b5b5b5;
+$gray:						#3e3f40;
+$dark:      				#171617;
+$black:						#000000;
+$borders:					$light;
+
+// ------ #SETTINGS
+
+$namespace:                 null;
+
+// High-level base settings.
+$base-font-size:            16px;
+$base-line-height:          24px;
+
+$gutter: 					24px; // archive
+$col: 						90px; // single
+$sidebar:					220px;
+
+$base-spacing-unit:         $gutter;
+$base-spacing-unit--small:  $gutter;
+$base-spacing-unit--large:  $gutter;
+
+$gallery-columns: 			true;
+$editor-style:				false;
+
+
+
+
+
+// ------ #OBJECTS
+
+$enable-grid: 				true;
+
+$enable-table--fixed: 		true;
+$enable-table--cosy: 		true;
+$enable-table--rows: 		true;
+
+$enable-nav--stacked: 		true;
+$enable-nav--block: 		true;
+
+$enable-flag--flush:		true;
+
+
+// CSS Variables
+body {
+	--box-shadow-color: 		white;
+}

@@ -1,0 +1,17 @@
+.tags-links {
+	display: block;
+	margin-bottom: 20px;
+
+	a {
+		font-size: 11px;
+		color: inherit;
+		text-transform: uppercase;
+		margin-right: 10px;
+		letter-spacing: 0.1em;
+		opacity: 0.7;
+
+		&:before {
+			content: "#";
+		}
+	}
+}

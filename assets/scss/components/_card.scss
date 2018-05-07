@@ -1,0 +1,903 @@
+
+///*-----------------------------------------*\
+//   #CARDS STYLING & SPACING
+//\*-----------------------------------------*/
+
+//**
+// * Table of Content
+// * --------------------------------------------------
+// *  1.0 - Spacing Mixin
+// *  2.0 - General Cards Styling
+// *  3.0 - Responsive Cards Spacing
+// *  4.0 - Title Sizes
+// */
+
+
+
+
+///*-----------------------------------------*\
+//   
+//   1.0 - Spacing Mixin
+//
+//	 Cards Columns:
+//
+//   |---|   |   |             |   |   |---|
+//   |---|   |   |             |   |   |---|
+//   |-0-| 1 | 2 |  Grid Item  | 2 | 1 |-0-|
+//   |---|   |   |             |   |   |---|
+//   |---|   |   |             |   |   |---|
+//   
+//\*-----------------------------------------*/
+
+$breakpoints: (
+	"xsmall"	: $xsmall,
+	"large"		: $large
+);
+
+$cards-gutter: $gutter;
+
+@mixin cards-spacing($col, $breakpoint) {
+
+	$cards-gutter: $col !global;
+
+	@include placeholder("col-left--2", $col) { margin-left: -2 * $col }
+	@include placeholder("col-left--1", $col) { margin-left: -1 * $col }
+	@include placeholder("col-left-0", $col) { margin-left: 0 }
+	@include placeholder("col-left-1", $col) { margin-left: $col }
+	@include placeholder("col-left-2", $col) { margin-left: 2*$col }
+	@include placeholder("col-left-3", $col) { margin-left: 2*$col }
+
+
+	@include placeholder("col-left-p0", $col) { padding-left: 0 }
+	@include placeholder("col-left-p05", $col) { padding-left: $col/2 }
+	@include placeholder("col-left-p1", $col) { padding-left: $col }
+	@include placeholder("col-left-p2", $col) { padding-left: 2*$col }
+	@include placeholder("col-left-p3", $col) { padding-left: 3*$col }
+
+
+	@include placeholder("col-right--2", $col) { margin-right: -2 * $col }
+	@include placeholder("col-right--1", $col) { margin-right: -1 * $col }
+	@include placeholder("col-right-0", $col) { margin-right: 0 }
+	@include placeholder("col-right-1", $col) { margin-right: $col }
+	@include placeholder("col-right-2", $col) { margin-right: 2*$col }
+	@include placeholder("col-right-3", $col) { margin-right: 3*$col }
+
+	@include placeholder("col-right-p0", $col) { padding-right: 0 }
+	@include placeholder("col-right-p05", $col) { padding-right: $col/2 }
+	@include placeholder("col-right-p1", $col) { padding-right: $col }
+	@include placeholder("col-right-p2", $col) { padding-right: 2*$col }
+
+	@include breakpoint($breakpoint) {
+
+        .grid {
+            border-left: $gutter solid transparent;
+        }
+
+        .site-branding,
+        .nav--main,
+        .nav--social {
+            margin: 0 4*$gutter $gutter $gutter;
+        }
+
+        .site-branding {
+            margin-right: 4*$gutter;
+        }
+
+		#infinite-handle, .infinite-loader {
+			margin-left: -$gutter / 2;
+		}
+
+		// Grid Alignment
+
+		.layout-grid .site-header {
+			padding-right: $gutter;
+		}
+
+		.site-branding,
+		.nav--main,
+		.nav--social {
+			@include _("col-left-1");
+			@include _("col-right-3");
+
+			.rtl & {
+				@include _("col-right-1");
+				@include _("col-left-3");
+			}
+		}
+
+		// GENERAL
+		.entry-card {
+			@include _("col-right-2");
+			@include _("col-left--1");
+
+			.entry-meta,
+			.entry-content {
+				@include _("col-left-2");
+			}
+		}
+
+
+		// TEXT
+		.entry-card--text {
+			.entry-meta {
+
+			}
+
+			.entry-header {
+				@include _("col-left-p2");
+			}
+
+			.entry-content {
+
+			}
+		}
+
+		.entry-card.format-quote {
+			.entry-content {
+				@include _("col-left-p2");
+			}
+		}
+
+		// LANDSCAPE
+		.entry-card--landscape {
+
+			.entry-meta {
+
+			}
+
+			.entry-image {
+			}
+
+			.entry-header {
+				@include _("col-left-2");
+			}
+
+			.entry-content {
+
+			}
+		}
+
+
+		// WIDE
+		.entry-card--wide {
+			.entry-meta {
+
+			}
+
+			.entry-image {
+				@include _("col-left-0");
+				@include _("col-right--2");
+			}
+
+			.entry-header {
+				@include _("col-left-2");
+			}
+
+			.entry-content {
+
+			}
+		}
+
+
+		// SQUARE
+		.entry-card--square {
+			@include _("col-right-3");
+
+			.entry-meta {
+				
+			}
+
+			.entry-image {
+				@include _("col-left-2");
+			}
+
+			.entry-header {
+				@include _("col-left-2");
+			}
+
+			.entry-content {
+
+			}
+		}
+
+
+		// PORTRAIT
+		// TALL
+		.entry-card.entry-card--portrait,
+		.entry-card.entry-card--tall {
+			@include _("col-right-0"); 
+			@include _("col-left-1"); 
+
+			.entry-image {
+				@include _("col-left--2");
+			}
+			
+			.entry-meta,
+			.entry-header,
+			.entry-content {
+				@include _("col-left-0");
+				@include _("col-right-p05");
+			}
+
+			.rtl & {
+				.entry-meta {
+					@include _("col-right-0");
+					@include _("col-left-p05");		
+				}				
+			}
+		}
+
+		// EVEN CASE
+		.entry--even {
+
+			// PORTRAIT
+			// TALL
+			.entry-card.entry-card--portrait,
+			.entry-card.entry-card--tall {
+				@include _("col-left--1");
+				@include _("col-right-2");
+
+				.entry-meta {
+				}
+
+				.entry-image {
+					@include _("col-right--2");
+				}
+
+				.entry-meta,
+				.entry-header,
+				.entry-content {
+					@include _("col-right-p0");
+					@include _("col-left-p1");
+				}
+			}
+		}
+	}
+}
+
+@include query-above($lap) {
+	.site-header.site-header {
+		padding-right: 0;
+	}
+}
+
+
+
+
+
+///*-----------------------------------------*\
+//   2.0 - General Cards Styling
+//\*-----------------------------------------*/
+
+// LAYOUT GRID
+.layout-grid {
+	.page-header {
+		margin-top: 50px;
+	}
+
+	.page-title {
+		margin-top: 0;
+	}
+}
+
+
+
+// GENERAL CARD
+.entry-card,
+.site-header {
+	transform: translateZ(0);
+	opacity: 0;
+	transition: opacity .3s ease-in-out;
+
+	&.is-visible {
+		opacity: 1;
+	}
+}
+
+.site-header {
+	
+	@include query-below($lap) {
+		margin-bottom: 20px; 
+		transform: none !important;
+		z-index: 100;
+	}
+}
+
+.entry-card {
+
+	@extend .clearfix;
+	position: relative;
+	padding-top: 1px; // hack to keep things inside
+	background: white;
+	// background: rgba(#bbd, 0.75);
+	
+	@include query-below($lap) {
+		&.entry-card {
+			margin-right: $gutter;
+		}
+	}
+
+    .jetpack-video-wrapper {
+        margin-bottom: 0;
+    }
+
+    .entry-media {
+        position: relative;
+        padding-top: 56.25%; /* 16:9 */
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+
+	// ELEMENTS
+	// Post Meta (categories, author and date)
+	.entry-meta {
+		@extend %clearfix;
+		position: absolute;
+		margin-bottom: 0;
+		margin-top: 4px;
+		z-index: -1;
+
+		@extend %alpha;
+		font-size: 11px;
+		font-weight: 400;
+		letter-spacing: 0;
+
+		opacity: 0;
+		padding-bottom: $gutter/2;
+		transform: translateZ(0);
+
+		.byline {
+			margin-bottom: -5px;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		.byline,
+		.posted-on {
+			margin-top: 5px;
+		}
+
+		> * {
+			float: left;
+		}
+
+		.touch & {
+			position: static;
+			opacity: 1;
+			overflow: hidden;
+		}
+	}
+		.entry-time {
+			display: none;
+		}
+
+
+	// Featured Image
+	.entry-image {
+		position: relative;
+		z-index: 32; //over .entry-meta
+		display: block;
+
+		background-color: black;
+
+		figure {
+			max-width: 100%;
+			height: auto;
+		}
+
+		> .entry-image-wrapper img {
+			display: block;
+//			width: 100%;
+			margin: 0 auto;
+
+			transition: filter .3s ease-in-out;
+			transition: -webkit-filter .3s ease-in-out;
+		}
+
+		// Read More
+		.hover {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateY(-50%) translateX(-50%);
+			z-index: 100;
+
+			@extend %beta;
+			@extend %fs-24;
+			text-transform: uppercase;
+			text-align: center;
+			// -webkit-font-smoothing: antialiased;
+
+			color: white;
+
+			opacity: 0;
+
+			transition: all 0.3s;
+		}
+	}
+
+
+	// Title
+	.entry-header {
+		position: relative;
+		padding: 0px;
+		margin-top: 10px;
+		margin-bottom: 0;
+		// border-bottom: 5px solid white;
+
+		a {
+			color: currentColor;
+			text-decoration: none;
+		}
+
+	}
+		.entry-title {
+			margin: 0;
+		}
+
+
+	// Excerpt
+	.entry-content {
+		margin-bottom: $gutter/3;
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+
+		p {
+			margin-bottom: 15px;
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Entry Card 
+	// HOVER
+	&:hover {
+		.entry-image {
+				.entry-image-wrapper {
+					backface-visiblity: hidden;
+					//-webkit-filter: saturate(0);
+					-webkit-filter: grayscale(1);
+				}
+
+				.hover {
+					opacity: 1;
+				}
+			}
+	}
+
+}
+
+
+
+///*-----------------------------------------*\
+//   CARD LAYOUT
+//\*-----------------------------------------*/
+
+
+// 	TEXT (no featured image)
+.entry-card--text {
+	.entry-header {
+		padding: 20px;
+		margin-top: 0;
+		margin-bottom: 15px;
+		background: $black;
+	}
+		.entry-title {
+			color: white;
+		}
+}
+
+
+
+// 	PORTRAIT
+// 	TALL
+.entry-card--tall .entry-image {
+	max-width: 45%;	
+	// max-width: calc(45% - #{$gutter});
+}
+
+.entry-card--tall,
+.entry-card--portrait {
+
+	margin-bottom: 10px;
+
+	.entry-image {
+		float: left;
+		margin-right: $gutter/2;
+		position: relative;
+		z-index: 40;
+		margin-bottom: $gutter/3;
+	}
+
+	.entry-content {
+		margin-top: 2px;
+
+		p:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+
+	.entry-header {
+		top: -$gutter/4;
+		margin-bottom: -$gutter/4;
+	}
+}
+
+// 	PORTRAIT
+.entry-card--portrait .entry-image {
+	max-width: 55%;
+
+	@include query-above($small) {
+	}
+}
+
+// 	TALL
+.entry-card--tall {
+	.entry-image {
+
+	}
+
+	.entry-content {
+		
+	}
+}
+
+//  GALLERy
+.entry-card.format-gallery {
+	.tiled-gallery {
+		margin-bottom: 0;
+	}
+
+	.gallery-group a img {
+		opacity: 1;
+		transition: opacity 0.2s;
+
+		&:hover {
+			opacity: 0.75;
+		}
+	}
+}
+
+
+// EVEN CASE
+.entry--even {
+	position: relative;
+	z-index: 20;
+
+	// PORTRAIT
+	// TALL
+	.entry-card.entry-card--tall,
+	.entry-card.entry-card--portrait {
+		.entry-meta {
+			right: 0;
+
+			> * {
+				float: right;
+				margin-left: 10px;
+				margin-right: 0;
+			}
+				
+			.posted-on:before {
+				display: none;
+			}
+
+			.posted-on:after {
+				content: "/";
+				margin-left: 4px;
+			}
+		}
+
+		.entry-image {
+			margin-left: $gutter/2;
+			margin-right: 0;
+			float: right;
+		}
+
+		.entry-header {
+			text-align: right;
+		}
+
+		.entry-content {
+			text-align: right;
+		}
+	}
+}
+
+
+
+
+
+///*-----------------------------------------*\
+//   3.0 - Responsive Cards Spacing
+//\*-----------------------------------------*/
+
+@include cards-spacing(24px, xsmall);
+@include cards-spacing(30px, large);
+	
+@include query-below($lap) {
+
+	.site-branding {
+		margin-left: 0;
+		margin-right: 0;
+
+		img {
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 5px;
+		}
+	}
+
+	.layout-grid {
+
+		.entry-card {
+			margin-right: 0;
+		}
+
+		.entry-header,
+		.entry-content {
+			margin-right: $gutter;
+		}
+
+		.entry-image + .entry-header {
+			padding: 0;
+			margin-right: $gutter;
+		}
+
+		.entry-image--landscape {
+			margin-right: 0;
+			margin-left: 0;
+		}
+
+		.entry-image--wide {
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		.entry-image--square,
+		.entry-image--square ~ .entry-content {
+			margin-right: $gutter;
+		}
+	}
+}
+
+
+@include query-below($xsmall) {
+	.layout-grid {
+		.entry-header {
+			padding-left: $gutter;
+			margin-right: 0;
+		}
+
+		.entry-image + .entry-header {
+			margin-left: $gutter;
+			margin-right: $gutter;
+		}
+
+		.entry-content {
+			margin-left: $gutter;
+			margin-right: $gutter;
+		}
+
+		.entry-image--square {
+			margin-left: $gutter;
+		}
+
+		.entry-image--tall,
+		.entry-image--portrait {
+			max-width: 40%;
+		}
+
+		.entry-meta {
+			margin-left: $gutter;
+			margin-right: $gutter;
+		}	
+	}
+}
+
+@include query-below($mobile) {
+	.layout-grid {
+		.entry-image--tall,
+		.entry-image--portrait {
+			max-width: 35%;
+		}
+	}
+}
+
+
+
+///*-----------------------------------------*\
+//   Sticky Post Ribbon
+//\*-----------------------------------------*/
+.sticky .sticky-post {
+	position: absolute;
+	top: 0;
+	right: 20px;
+	z-index: 1;
+	display: block;
+	width: 15px;
+	height: 15px;
+	background: $accent;
+
+	&:before, &:after {
+		content: "";
+		position: absolute;
+		bottom: -8px;
+		left:0;
+		width: 0;
+		height:0;
+		border-top: 8px solid $accent;
+		border-right: 8px solid transparent;
+	}
+
+	&:after {
+		left: auto;
+		right: 0;
+		border-left: 8px solid transparent;
+		border-right: none;
+	}
+}
+
+
+
+
+///*-----------------------------------------*\
+//   4.0 - Title Size
+//\*-----------------------------------------*/
+
+
+// EXCERPT
+.entry-card {
+
+	.entry-content {
+		position: relative;
+		@extend %fs-14;
+		@extend %hyphens;
+		-webkit-hyphens: manual;
+		-moz-hyphens: manual;
+		-ms-hyphens: manual;
+		hyphens: manual;
+
+		margin-top: 8px;
+	}
+
+	.entry-meta + .entry-content {
+		margin-top: 0;
+	}
+
+	.entry-content--short {
+		@extend %fs-16;
+	}
+}
+
+// TITLES
+// Default Styling
+.entry-card {
+	.entry-title {
+		@extend %lh-1-45;
+		@extend %ls-0-04;
+		font-size: 26px;
+		@extend %beta;
+		font-weight: normal;
+	}
+
+	.entry-header--long .entry-title {
+		@extend .light;
+	}
+}
+
+// TEXT
+.entry-card--text {
+	.entry-header--short .entry-title {
+		@extend %fs-42;
+	}
+
+	.entry-header--medium .entry-title {
+		@extend %fs-36;
+	}
+
+	.entry-header--long .entry-title {
+		@extend %fs-30;
+		font-weight: normal;
+	}
+}
+
+// PORTRAIT
+// TALL
+.entry-card--portrait,
+.entry-card--tall {
+	.entry-title {
+		@extend %ls-0-02;
+		font-weight: bold;
+	}
+
+	.entry-header--short .entry-title {
+		font-weight: bold;
+		@extend %lh-1-25;
+		@extend %ls-0;
+		font-size: 36px;
+	}
+
+	.entry-header--medium .entry-title {
+		@extend %lh-1-33;
+		font-size: 30px;
+	}
+
+	.entry-header--long .entry-title {
+		font-weight: bold;
+	}
+
+}
+
+// Blockquote
+.entry-card.format-quote {
+	.entry-content {
+		margin-left: 0;
+		margin-bottom: 20px;
+		padding-top: (20px + $gutter);
+		padding-bottom: (20px + $gutter);
+		padding-right: $gutter;
+
+		-webkit-font-smoothing: antialiased;
+
+		background-color: black;
+		background-size: cover;
+		background-position: center center;
+
+		@include query-below($xsmall) {
+			padding-left: 24px;
+		}
+
+		a {
+			box-shadow: inset 0 -3px 0 $accent;
+			color: white;
+
+			&:hover {
+				color: $accent;
+			}
+		}
+	}
+
+	blockquote {
+		font-size: 24px;
+		color: white;
+		margin-bottom: 0;
+
+		* {
+			color: currentColor;
+		}
+	}
+
+	.entry-quote--short blockquote {
+		font-size: 30px;
+	}
+
+	cite {
+		display: block;
+		margin-top: 18px;
+
+		color: white;
+		font-size: 15px;
+		text-transform: uppercase;
+	}
+}
+
+
+.entry-card.format-image .entry-image img {
+	display: block;
+}
+
+

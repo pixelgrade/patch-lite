@@ -1,0 +1,43 @@
+%grid {
+	@extend %clearfix;
+	list-style: none;
+}
+
+%grid__item {
+	float: left;
+    width: 100%;
+}
+
+
+.grid {
+	@extend %grid;
+    margin-left: rem(-1 * $gutter-small);
+    @include query-above($small)    { margin-left: rem(-1 * $gutter); }
+    @include query-above($lap)      { margin-left: rem(-1 * $gutter-lap); }
+    @include query-above($desk)     { margin-left: rem(-1 * $gutter-desk); }
+
+    > li,
+    > .grid__item {
+        padding-left: rem($gutter-small);
+        @include query-above($small)    { padding-left: rem($gutter); }
+        @include query-above($lap)      { padding-left: rem($gutter-lap); }
+        @include query-above($desk)     { padding-left: rem($gutter-desk); }
+    }
+}
+
+.grid,
+.rtl .grid--rev {
+    > li,
+    > .grid__item {
+        float: left;
+    }
+}
+
+.grid--rev,
+.rtl .grid {
+    > li,
+    > .grid__item {
+        direction: rtl;
+        float: right;
+    }
+}

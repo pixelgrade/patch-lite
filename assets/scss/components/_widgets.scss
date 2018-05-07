@@ -1,0 +1,258 @@
+.widget {
+	margin-bottom: 40px;
+	font-size: 13px;
+	line-height: 1.6;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	ul, ol {
+		line-height: 1.4;
+
+		li {
+			margin-bottom: 15px;
+		}
+	}
+
+	ul {
+		list-style-type: none;
+	}
+
+	select {
+		max-width: 100%;
+	}
+}
+
+.widget-title {
+	margin-top: 0;
+	margin-bottom: rem(25px);
+}
+
+.widget_categories,
+.widget_pages,
+.widget_meta,
+.widget_archive {
+
+	> ul {
+		@include rhythm(margin-bottom, -1);
+		font-size: 0;
+
+		> li {
+			display: inline-block;
+			width: 50%;
+			overflow: hidden;
+			padding-right: $gutter/2;
+
+			font-size: 13px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+
+			a {
+				display: inline;
+			}
+		}
+
+		// hide sub-categories
+		ul {
+			display: none;
+		}
+	}
+
+	li {
+		@include rhythm(margin-bottom, 1);
+	}
+}
+
+/* Widget - Calendar */
+
+.widget_calendar {
+
+	table {
+		width: 100%;
+		color: $borders;
+		text-align: center;
+		margin-bottom: 0;
+	}
+
+	th {
+		text-align: center;
+		@include rhythm(padding-bottom, 1);
+	}
+
+	td, th {
+		padding: 6px 0;
+	}
+
+	tr{
+		border: 0;
+	}
+
+	tfoot {
+		@include rhythm(padding, 1);
+	}
+
+	caption {
+		color: $gray;
+		@include rhythm(padding-bottom, 1);
+		@include rhythm(padding-top, 1);
+	}
+
+	a {
+		color: $black;
+
+		&:hover {
+			color: $black;
+		}
+	}
+
+	thead {
+		color: $black;
+	}
+
+	tfoot {
+
+		a {
+			color: $gray;
+		}
+
+		td {
+			border-bottom: 0;
+		}
+	}
+}
+
+/* Widget - Recent Comments */
+
+.recentcomments{
+	color: $light;
+
+	a {
+		color: $black;
+	}
+
+	.comment-author-link {
+	}
+}
+
+/* Widget - RSS */
+
+.widget_rss{
+	li{
+		margin-bottom: $u;
+	}
+
+	cite{
+		display: block;
+		margin-top: $u/4;
+	}
+}
+
+.rsswidget { //rss entry title
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.rss-date{
+	&:before{
+		content: '-';
+
+		display: inline-block;
+		margin: 0 3px;
+	}
+}
+
+.widget_rss_links a{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.jetpack_subscription_widget, .widget_blog_subscription {
+
+	&.widget {
+		margin: 30px 0 30px -60px;
+		padding: 30px 30px 30px 60px;
+
+		background-color: black;
+		color: white;
+
+		border-top: 0;
+	}
+
+	#subscribe-text p {
+		@include rhythm(margin-top, 3);
+	}
+
+	.widget-title{
+		color: white;
+		margin-bottom: 20px;
+	}
+
+	#subscribe-email input {
+		padding: 0 9px;
+		width: 100%;
+		height: 36px;
+
+		border: 2px solid #d7d7d7;
+		background: white;
+		color: $dark;
+	}
+
+	input[type='submit']{
+		@extend %beta;
+
+		height: 32px;
+		margin-right: 2px;
+		padding: 0 10px;
+		border: 1px solid white;
+
+		color: $dark;
+		background-color: $accent;
+
+		font-size: 14px;
+		text-transform: uppercase;
+		font-weight: 400;
+		letter-spacing: 0.1em;
+	}
+}
+
+.widget_recent_entries {
+	a {
+		font-weight: 500;
+		margin-bottom: 3px;
+	}
+
+	.post-date {
+		color: $light;
+		font-size: 12px;
+	}
+}
+
+.milestone-widget {
+	strong {
+		color: white;
+	}
+}
+
+.widget_top-posts {
+	.widget-grid-view-image {
+		width: 50%;
+	}
+
+	.widgets-list-layout {
+		.widgets-list-layout-blavatar {
+			width: 20%;
+		}
+
+		.widgets-list-layout-links {
+			width: 80%;
+		}
+	}
+}
+
+.widget_recent_comments {
+	td {
+		padding-top: 12px !important;
+		padding-bottom: 12px !important;
+	}
+}

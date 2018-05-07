@@ -1,0 +1,58 @@
+// display trumps
+
+.hide,
+.hidden,
+[hidden] 			{ display: none; }
+.assistive-text,
+.screen-reader-text { @extend .hidden; }
+.inline 			{ display: inline; }
+.block 				{ display: block; }
+.inline-block 		{ display: inline-block; }
+.table				{ display: table; }
+.table-cell			{ display: table-cell; }
+.table-row 			{ display: table-row; }
+.table-row-group	{ display: table-row-group; }
+.table-column		{ display: table-column; }
+.table-column-group { display: table-column-group; }
+
+.overflow-hidden 	{ overflow: hidden; }
+.overflow-scroll 	{ overflow: scroll; }
+
+.left 				{ float: left; }
+.right 				{ float: right; }
+
+.fit 				{ max-width: 100%; }
+
+
+
+// position trumps
+
+.relative 			{ position: relative; }
+.absolute 			{ position: absolute; }
+.fixed 				{ position: fixed; }
+.static				{ position: static; }
+
+
+
+// font trumps
+
+.light				{ font-weight: 300; }
+.bold		 		{ font-weight: bold; }
+.regular 			{ font-weight: normal; }
+.italic 			{ font-style: italic; }
+
+.caps 				{ text-transform: uppercase; }
+
+.align-left 		{ text-align: left; }
+.align-center 		{ text-align: center; }
+.align-right 		{ text-align: right; }
+.align-justify 		{ text-align: justify; }
+.align-top 			{ vertical-align: top; }
+.align-middle 		{ vertical-align: middle; }
+.align-bottom 		{ vertical-align: bottom; }
+
+.nowrap 			{ white-space: nowrap; }
+
+// pointer events
+.pointer-auto		{ pointer-events: auto; }
+.pointer-none		{ pointer-events: none; }

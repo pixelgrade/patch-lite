@@ -1,0 +1,571 @@
+/*
+Theme Name: patch
+
+Adding support for language written in a Right To Left (RTL) direction is easy -
+it's just a matter of overwriting all the horizontal positioning attributes
+of your CSS stylesheet in a separate stylesheet file named rtl.css.
+
+http://codex.wordpress.org/Right_to_Left_Language_Support
+*/
+
+
+
+
+
+// #SETTINGS
+
+@import "settings";
+
+
+
+
+
+// #TOOLS
+
+@import "tools/functions";
+@import "tools/mixins";
+@import "tools/queries";
+@import "tools/baseline";
+@import "tools/aliases";
+
+$first-padding-unit: 20px;
+$second-padding-unit: 40px;
+
+
+.rtl {
+
+	.grid__item {
+		float: right;
+	}
+
+	// header - nav - sidebar
+	
+	&.single,
+	&.page,
+	&.error404,
+	&.search-no-results,
+	&.no-posts {
+
+		@include query-above($lap) {
+
+			.content-area {
+				float: left;
+				margin-left: 0;
+				margin-right: -$sidebar;
+			}
+
+			.site-main {
+				margin-left: 0;
+				margin-right: $sidebar + 84px;
+			}
+
+			.sidebar,
+			.site-header {
+				float: right;
+				width: $sidebar;
+				padding-left: 0;
+			}
+
+			.sidebar {
+				clear: right;
+			}
+		}
+	}
+
+
+	.search-form .search-submit {
+		float: left;
+	}
+
+	.search-form {
+		left: auto;
+		right: 100%;
+		transition: right .3s ease-in-out;
+
+		&.is-visible {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	.overlay__close {
+		right: auto;
+		left: 48px;
+
+		@include query-below($lap) {
+			left: 24px;
+		}
+	}
+
+	.overlay--search {
+		left: auto;
+		right: 100%;
+	}
+
+	.navigation__trigger {
+		left: auto;
+		right: 0;
+	}
+
+	.search__trigger {
+		left: 0;
+		right: auto;
+	}
+
+	@include query-below($lap) {
+		.main-navigation {
+			left: 100%;
+			right: -100%;
+			margin-left: 0;
+			margin-right: 48px;
+		}
+	}
+
+	.nav--main {
+
+		.menu-item-has-children {
+			padding-left: .5em;
+			padding-right: 0;
+
+			> a {
+				&:after {
+					margin-left: 0;
+					margin-right: 0.25em;
+				}
+			}
+		}
+
+		> li {
+		    @include query-above($lap) {
+				float: right;
+				padding-right: 0;
+				padding-left: 10px;
+		    }
+		}
+
+		@include query-below($lap) {
+			.sub-menu {
+				padding-right: 12px;
+				padding-left: 0;
+			}
+		}
+
+		@include query-above($lap) {
+
+			/*.sub-menu*/ul {
+				margin-left: 0;
+				margin-right: .25em;
+
+				li {
+					float: right;
+					clear: right;
+
+					&.menu-item-has-children {
+						padding-left: .25em; 
+						padding-right: 0;
+					}
+				}
+
+				ul {
+					margin-right: 0;
+					left: auto;
+					right: 100%;
+				}
+			}
+		}
+	}
+
+	&.single,
+	&.page,
+	&.no-posts {
+		.nav--main > li {
+			float: right;
+		}
+	}
+
+	.nav--social {
+		left: auto;
+		right: -6px;
+	}
+
+	// single
+	
+	.cat-links,
+	.entry-format {
+		margin-right: 0;
+	 	margin-left: 10px;
+	}
+
+	.tags-links a {
+		margin-left: 10px;
+		margin-right: 0;
+
+		&:before {
+			content: "";
+		}
+
+		&:after {
+			content: "#";
+		}
+	}
+
+	.media__img {
+		float: right;
+		margin-right: 0;
+		margin-left: 24px;
+	}
+
+	.author-info__avatar {
+		margin-right: 0;
+		margin-left: 20px;
+	}
+
+	.author-info__title {
+		margin-right: 0;
+		margin-left: 0.5em;
+	}
+
+	.author__social-links li {
+		margin-right: 0;
+		margin-left: 10px;
+	}
+
+	// archive
+	
+	.entry-card.entry-card--portrait,
+	.entry-card.entry-card--tall {
+		text-align: left;
+	}
+
+	.entry--even {
+		.entry-card.entry-card--portrait,
+		.entry-card.entry-card--tall {
+			text-align: right;
+		}		
+	}
+
+	.entry-card .entry-meta > * {
+		float: right;
+	}
+
+	.posted-on {
+		margin-left: 0;
+		margin-right: 4px;
+
+		&:before {
+			margin-right: 0;
+			margin-left: 4px;
+		}
+	}
+
+	.page-numbers.prev {
+		right: 0;
+		left: auto;
+	}
+
+	.page-numbers.prev:before {
+		content: url("assets/svg/arrow-right.svg");
+		margin-left: 1.25rem;
+		margin-right: 0;
+	}
+
+	.page-numbers.next {
+		left: 0;
+		right: auto;
+	}
+
+	.page-numbers.next:after {
+		content: url("assets/svg/arrow-left.svg");
+		margin-right: 1.25rem;
+		margin-left: 0;
+	}
+
+	// comments
+	
+	.comments-area {
+
+		&:before {
+			left: auto;
+			right: 20px;
+			border-left: 0;
+			border-right: 1px solid $borders;
+		}
+
+		&:after {
+			@extend %comment-number--dark;
+			left: auto;
+			right: 0;
+		}
+	}
+
+	.comment-number--dark,
+	%comment-number--dark {
+		margin-left: $gutter;
+		margin-right: 0;
+	}
+
+	.comments-area-title, .comment-reply-title {
+
+		.comments-title {
+			margin-right: 0;
+			margin-left: $gutter/2;
+		}
+	}
+
+	.comments-area-title {
+		padding-right: 40px;
+		padding-left: 0;
+
+		.comment-number {
+			left: auto;
+			right: -40px;
+			margin-left: -20px;
+			margin-right: 0;
+		}
+	}
+
+	.commentlist > .comment, .commentlist > .pingback, .commentlist > .trackback {
+		padding-left: 0;
+		padding-right: 40px;
+	}
+
+	@include query-below($lap) {
+		.depth-1 > .comment-article > .comment-number {
+			left: auto;
+			right: 0;
+		}
+	}
+
+	.commentlist {
+		border-right: 0;
+		padding-right: 0;
+	}
+
+	li.comment, li.pingback, li.trackback {
+
+		.comment-number {
+			left: auto;
+			right: 0;
+
+			@include query-below($lap) {
+				left: auto;
+				right: -40px;
+			}
+		}
+
+		.children {
+
+			@include query-below($lap) {
+				margin-right: 0;
+			}
+
+			li {
+				@include query-above($lap) {
+					margin-right: 20px;
+					margin-left: 0;
+					padding-right: 40px;
+					padding-left: 0;
+				}
+			}
+		}
+
+	}
+
+	li.depth-2:before {
+		left: auto;
+		right: -2 * $first-padding-unit;
+	}
+
+	@include query-above($lap) {
+		@for $i from 3 through 5 {
+			li.depth-#{$i}:before {
+				left: auto;
+				right: - ( $i * $first-padding-unit + $second-padding-unit * ( $i - 2 ) );
+			}
+		}
+
+		@for $i from 6 through 10 {
+			li.comment.depth-#{$i} {
+				.children li {
+					margin-right: 0;
+					padding-right: 0;
+
+					.comment-number {
+						left: auto;
+						right: -40px;
+					}
+				}
+			}
+		}
+
+		li.comment.depth-6 {
+			&:before {
+				left: auto;
+				right: -280px;
+			}
+		}
+
+		@for $i from 7 through 10 {
+			li.comment.depth-#{$i} {
+				&:before {
+					left: auto;
+					right: -320px;
+				}
+			}
+		}
+	}
+
+	.comment__author-name {
+
+		.bypostauthor &:before {
+			margin-left: 10px;
+		}
+	}
+
+	.comment-article {
+		margin-left: 0;
+		margin-right: 20px;
+	}
+
+	.comment__avatar {
+		margin-right: 0;
+		@include rhythm(margin-left, 1);
+	}
+
+	// here
+
+	.comment__links {
+		margin-left: 0;
+		@include rhythm(margin-right, 2, 14px);
+	}
+
+	.comment-edit-link, .comment-reply-link {
+		margin-right: 0;
+		@include rhythm(margin-left, 1, 14px);
+	}
+
+	.comment-reply-title {
+		padding-left: 0;
+		padding-right: 60px;
+
+		&:before {
+			@extend %comment-number--dark;
+			right: 0;
+			left: auto;
+		}
+
+		.comment & {
+			padding-right: 0;
+
+			a {
+				margin-left: 0;
+				margin-right: 15px;
+			}
+		}
+	}
+
+	.comment-respond {
+
+		@include query-above($lap) {
+
+			.comment & {
+				padding-right: 0;
+				margin-left: 0;
+			}
+		}
+
+		.comment &{
+			margin-left: 0;
+			@include rhythm(margin-right, 2);
+		}
+	}
+
+	/* Comments Form */
+
+	.comment-form {
+
+		// for jetpack comments
+		iframe {
+			padding-left: 0;
+			padding-right: 1.5*$u;
+		}
+	}
+
+	:first-child:not(input) ~ .form-submit {
+		float: left;
+	}
+
+	.comment-subscription-form {
+		float: right;
+		clear: right;
+
+		input[type="checkbox"] {
+			margin-right: 0;
+			@include rhythm(margin-left, 1);
+		}
+	}
+
+	.add-comment {
+
+		.add-comment__button {
+			margin-right: 0;
+			@include rhythm(margin-left, 1, 24px);
+		}
+	}
+
+	.comment-navigation {
+		padding-left: 0;
+		@include rhythm(padding-right, 5);
+
+		.comment-number {
+			left: auto;
+			right: 0;
+		}
+
+		.assistive-text {
+			margin-left: 0;
+			margin-right: 8px;
+		}
+
+		.nav-previous {
+			float: right;
+
+			a:before {
+				content: "\2192 ";
+			}
+		}
+
+		.nav-next {
+			float: left;
+
+			a:after {
+				content: " \2190";
+			}
+		}
+	}
+
+	// footer 
+	
+	@include query-above($lap) {
+		.site-info {
+			text-align: right;
+		}
+	}
+
+	// attachment
+	
+	.attachment-navigation {
+
+		.navigation-item--previous {
+			margin-left: 0;
+			margin-right: -12px;
+		}
+
+		.navigation-item--next {
+			margin-right: 0;
+			margin-left: -12px;
+		}
+		
+	}
+
+}

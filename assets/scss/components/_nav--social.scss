@@ -1,0 +1,57 @@
+%nav--social a {
+	
+	&:before {
+		content: $fa-var-share-alt;
+		font-family: FontAwesome; 
+		-webkit-font-smoothing: antialiased;
+		text-align: center;
+		pointer-events: auto;
+	}
+
+	// default share icon used as a fallback
+	// now for the social services that are in FA
+	// we will match the href to them - left them looser so we don't have complaints
+	&[href*="mailto:"]:before,
+	&[href*="mail"]:before          {content: $fa-var-envelope;}
+	&[href*="feed"]:before,
+	&[href*="rss"]:before  			{content: $fa-var-rss;}
+	&[href*="behance"]:before       {content: $fa-var-behance;}
+	&[href*="delicious"]:before     {content: $fa-var-delicious;}
+	&[href*="deviantart"]:before    {content: $fa-var-deviantart;}
+	&[href*="digg"]:before          {content: $fa-var-digg;}
+	&[href*="dribbble"]:before      {content: $fa-var-dribbble;}
+	&[href*="facebook"]:before      {content: $fa-var-facebook-official;}
+	&[href*="flickr"]:before        {content: $fa-var-flickr;}
+	&[href*="foursquare"]:before    {content: $fa-var-foursquare;}
+	&[href*="github"]:before        {content: $fa-var-github;}
+	&[href*="plus.google"]:before   {content: $fa-var-google-plus;}
+	&[href*="instagram"]:before     {content: $fa-var-instagram;}
+	&[href*="linkedin"]:before      {content: $fa-var-linkedin;}
+	&[href*="pinterest"]:before     {content: $fa-var-pinterest;}
+	&[href*="reddit"]:before        {content: $fa-var-reddit;}
+	&[href*="skype"]:before         {content: $fa-var-skype;}
+	&[href*="soundcloud"]:before    {content: $fa-var-soundcloud;}
+	&[href*="spotify"]:before       {content: $fa-var-spotify;}
+	&[href*="stumbleupon"]:before   {content: $fa-var-stumbleupon;}
+	&[href*="tumblr"]:before        {content: $fa-var-tumblr;}
+	&[href*="twitter"]:before       {content: $fa-var-twitter;}
+	&[href*="vimeo"]:before         {content: $fa-var-vimeo-square;}
+	&[href*="vine"]:before          {content: $fa-var-vine;}
+	&[href*="vk.com"]:before        {content: $fa-var-vk;}
+	&[href*="weibo"]:before         {content: $fa-var-weibo;}
+	&[href*="xing"]:before          {content: $fa-var-xing;}
+	&[href*="yahoo"]:before         {content: $fa-var-yahoo;}
+	&[href*="youtube"]:before       {content: $fa-var-youtube;}
+	&[href*="angel.co"]:before      {content: $fa-var-angellist;}
+	&[href*="yelp"]:before       	{content: $fa-var-yelp;}
+	&[href*="last.fm"]:before       {content: $fa-var-lastfm;}
+	&[href*="slideshare"]:before    {content: $fa-var-slideshare;}
+	&[href*="twitch.tv"]:before     {content: $fa-var-twitch;}
+	&[href*="bloglovin"]:before     {content: $fa-var-heart;}
+	&[href*="#search"]:before     	{content: $fa-var-search;}
+	&[href*="medium.com"]:before    {content: $fa-var-medium;}
+	&[href*="whatsapp"]:before     	{content: $fa-var-whatsapp;}
+	&[href*="leanpub"]:before     	{content: $fa-var-leanpub;}
+	&[href*="renren"]:before     	{content: $fa-var-renren;}
+	&[href*="twitch.tv"]:before     {content: $fa-var-twitch;}
+}

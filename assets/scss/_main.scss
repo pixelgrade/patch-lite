@@ -1,0 +1,233 @@
+// Settings     -- Default, settings and variables.
+// Tools        -- Functions and mixins.
+// Generic      -- Generic, high-level styling, like resets, etc.
+// Object       -- Objects and abstractions.
+// Components   -- Your designed UI elements.
+// Trumps       -- Overrides and helper classes.
+// Pages        -- Global styles for specific pages
+// Vendor
+// Shame        -- the place for prototyping, quick fixes and overrides
+
+
+/**
+ *
+ * Table of Contents
+ * --------------------------------------------------
+ * 1.0 - Normalize
+ * 2.0 - Reset
+ * 3.0 - Base Styles
+ *   3.1 - Typography
+ *   3.2 - Images
+ * 4.0 - Helpers
+ *   4.1 - Theme specific classes
+ *   4.2 - Alignments
+ * 5.0 - Vendor
+ *   5.1 - Font Awesome
+ *   5.2 - Magnific Popup 
+ * 6.0 - Patterns
+ * 7.0 - Components
+ *   7.1 - Grid
+ *   7.2 - Navigation
+ *   7.3 - Author
+ *   7.4 - Footer
+ *   7.5 - Comments
+ *   7.6 - Tags
+ *   7.7 - Widgets
+ *   7.8 - Search form
+ *   7.9 - Pagination
+ *   7.10 - Related posts
+ * 8.0 - Pages
+ *   8.1 - Single
+ *   8.2 - General
+ * 9.0 - Layout
+ *   9.1 - Page
+ *   9.2 - Sidebar
+ * 10.0 - Overwrites
+ *
+ */
+
+
+
+// #SETTINGS
+
+@import "settings";
+
+
+
+
+
+// #TOOLS
+
+@import "tools/functions";
+@import "tools/mixins";
+@import "tools/queries";
+@import "tools/baseline";
+@import "tools/aliases";
+
+
+
+
+
+// #GENERIC
+
+/**
+ * 1.0 - Normalize
+ */
+@import "generic/normalize";
+
+/**
+ * 2.0 - Reset
+ */
+@import "generic/reset";
+
+
+
+
+
+// #BASE
+
+/**
+ * 3.0 - Base Styles
+ *   3.1 - Typography
+ */
+@import "base/type";
+/**
+ *   3.2 - Images
+ */
+@import "base/images"; 
+
+
+
+
+
+// #TRUMPS
+/**
+ * 4.0 - Helpers
+ */
+@import "trumps/clearfix";
+@import "trumps/bass";
+/**
+ *   4.1 - Theme specific classes
+*/
+@import "trumps/specific";
+/**
+ *   4.2 - Alignments
+*/
+@import "trumps/wp-align";
+
+
+
+
+
+// #VENDOR
+/**
+ * 5.0 - Vendor
+ *   5.1 - Font Awesome
+ */
+@import "vendor/font-awesome/variables";
+/**
+ *   5.2 - Magnific Popup
+ */
+@import "vendor/magnific-popup/mfp-settings";
+@import "vendor/magnific-popup/magnific-popup";
+
+
+
+
+
+// #OBJECTS
+
+/**
+ * 6.0 - Patterns
+ */
+@import "objects/nav";
+
+@import "objects/media";
+
+
+
+
+
+// #COMPONENTS
+/**
+ * 7.0 - Components
+ *   7.1 - Grid
+ */
+@import "components/grid";
+@import "components/card";
+/**
+ *   7.2 - Navigation
+ */
+@import "components/navigation";
+/**
+ *   7.3 - Author
+ */
+@import "components/author";
+/**
+ *   7.4 - Footer
+ */
+@import "components/footer";
+/**
+ *   7.5 - Comments
+ */
+@import "components/comments";
+/**
+ *   7.6 - Tags
+ */
+@import "components/tags";
+/**
+ *   7.7 - Widgets
+ */
+@import "components/widgets";
+/**
+ *   7.8 - Search form
+ */
+@import "components/search-form";
+/**
+ *   7.9 - Pagination
+ */
+@import "components/pagination";
+/**
+ *   7.10 - Related posts
+ */
+@import "components/related";
+
+
+
+
+
+// #PAGES
+/**
+ * 8.0 - Pages
+ *   8.1 - Single
+ */
+@import "pages/single";
+/**
+ *   8.2 - General
+ */
+@import "pages/general";
+
+
+
+
+
+// #LAYOUT
+/**
+ * 9.0 - Layout
+ *   9.1 - Page
+ */
+@import "layout/page";
+/**
+ *   9.2 - Sidebar
+ */
+@import "layout/sidebar";
+
+
+
+
+// #SHAME
+
+/**
+ * 10.0 - Overwrites
+ */
+@import "shame";

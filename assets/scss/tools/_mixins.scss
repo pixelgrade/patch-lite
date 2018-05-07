@@ -1,0 +1,199 @@
+///*------------------------------------*\
+//    #MIXINS
+//\*------------------------------------*/
+
+$typography-font-sizes: () !default;
+
+// #TYPOGRAPHY
+
+@mixin new-fs-class($font-size, $direction: null, $value: null, $force: false) {
+
+    @if not index($typography-font-sizes, $font-size) or $force {
+
+        $typography-font-sizes: append($typography-font-sizes, $font-size) !global;
+
+        @if not $direction {
+            .fs-#{$font-size} {
+                @include font-size($font-size);
+            }
+        }
+
+        @if ($direction) {
+            @include query($direction, $value) {
+                .fs-#{$font-size}-#{$direction}-#{$value} {
+                    @include font-size($font-size);
+                }
+            }
+        }
+
+    }
+}
+
+
+
+
+
+@mixin fs($font-size, $top: null, $bottom: null, $overwrite: true) {
+
+    @at-root {
+        @include new-fs-class($font-size);
+    }
+
+    @extend .fs-#{$font-size};
+
+    @if ($top != null) {
+        @include baseline-leader($top, $font-size);
+    }
+
+    @if ($bottom != null) {
+        @include baseline-trailer($bottom, $font-size);
+    }
+}
+
+@mixin fs-query($direction, $value, $font-size, $top, $bottom, $overwrite: true) {
+
+    @extend .fs-#{$font-size}-#{$direction}-#{$value};
+
+    @include query($direction, $value) {
+
+        @if ($top != null) {
+            @include baseline-leader($top, $font-size);
+        }
+
+        @if ($bottom != null) {
+            @include baseline-trailer($bottom, $font-size);
+        }
+    }
+}
+
+@mixin fs-below($value, $font-size, $top: null, $bottom: null, $overwrite: true) {
+    @include fs-query('below', $value, $font-size, $top, $bottom);
+}
+
+@mixin fs-above($value, $font-size, $top: null, $bottom: null, $overwrite: true) {
+    @include fs-query('above', $value, $font-size, $top, $bottom);
+}
+
+
+
+
+
+
+@mixin input-placeholder {
+	&::-webkit-input-placeholder {
+		@content
+	}
+	&:-moz-placeholder {
+		@content
+	}
+	&::-moz-placeholder {
+		@content
+	}
+	&:-ms-input-placeholder {
+		@content
+	}
+}
+
+@mixin admin-bar($prop: 'top') {
+
+    .admin-bar & {
+        @media screen and (min-width: 783px) {
+            #{$prop}: 32px;
+        }
+
+        @media screen and (max-width: 782px) {
+            #{$prop}: 46px;
+        }
+    }
+}
+
+@mixin admin-bar-value($prop, $value) {
+
+    .admin-bar & {
+        #{$prop}: $value;
+
+        @media screen and (min-width: 783px) {
+            #{$prop}: $value + 32px;
+        }
+
+        @media screen and (max-width: 782px) {
+            #{$prop}: $value + 46px;
+        }
+    }
+}
+
+
+// Used for Cards Spacing
+// http://www.sitepoint.com/cross-media-query-extend-sass/
+
+$default-breakpoint: root;
+$current-breakpoint: $default-breakpoint;
+$placeholders: ();
+
+@mixin breakpoint($breakpoint) {
+      // Get the width from the keyword `$breakpoint`
+      // Or `null` if the keyword doesn't exist in `$breakpoints` map
+      $value: map-get($breakpoints, $breakpoint);
+ 
+  // If `$breakpoint` exists as a key in `$breakpoints`
+  @if $value != null {
+        // Update `$current-breakpoint`
+        $current-breakpoint: $breakpoint !global;
+ 
+    // Open a media query block
+    @media (min-width: $value) {
+      // Let the user dump content
+      @content;
+    }
+ 
+    // Then reset `$current-breakpoint` to `$default-breakpoint` (root)
+    $current-breakpoint: $default-breakpoint !global;
+  }
+ 
+  // If `$breakpoint` doesn't exist in `$breakpoints`, 
+  // Warn the user and do nothing
+  @else {
+    @warn "Invalid breakpoint `#{$breakpoint}`.";
+  }
+}
+
+@mixin placeholder($name, $gutter) {
+      // If placeholder doesn't exist yet in `$placeholders` list
+      @if not index($placeholders, #{$name}-#{$gutter}) {
+        // Store its name
+        $placeholders: append($placeholders, #{$name}-#{$gutter}) !global;
+ 
+    // At root level
+    @at-root {
+      // Looping through `$breakpoints`
+      @each $breakpoint, $value in $breakpoints {
+            // Opening a media query block
+            @media (min-width: $value) {
+              // Generating a placeholder
+              // Called $name-$breakpoint 
+              %#{$name}-#{$gutter}-#{$breakpoint} {
+            @content;
+          }
+        }
+      }
+ 
+      // And dumping a placeholder out of any media query as well
+      // so basically at root level
+      %#{$name}-#{$gutter}-#{$default-breakpoint} {
+        @content;
+      }
+    }
+  }
+ 
+  // If placeholder already exists, just warn the user
+  @else {
+    // @warn "Placeholder `#{$name}` already exists.";
+    
+  }
+
+  // @debug (#{$name}-#{$default-breakpoint});
+}
+
+@mixin _($name) {
+      @extend %#{$name}-#{$cards-gutter}-#{$current-breakpoint} !optional;
+}

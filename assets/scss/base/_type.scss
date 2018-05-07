@@ -1,0 +1,415 @@
+// #TYPOGRAPHY
+
+%alpha {
+	font-family: Roboto, sans-serif;
+}
+
+%beta {
+	font-family: Oswald, sans-serif;
+}
+
+%lh-1-45 	{ line-height: 1.45; }
+%lh-1-5 	{ line-height: 1.5; }
+%lh-1-33 	{ line-height: 1.33; }
+%lh-1-25 	{ line-height: 1.25; }
+%lh-1 		{ line-height: 1; }
+
+%ls-0		{ letter-spacing: 0; }
+%ls-0-04	{ letter-spacing: 0.04em; }
+%ls-0-02	{ letter-spacing: 0.02em; }
+
+%fs-14 {
+	@extend %lh-1-5;
+	font-size: 14px;
+}
+
+%fs-16 {
+	@extend %lh-1-5;
+	font-size: 16px;
+}
+
+%fs-24 {
+	@extend %lh-1-45;
+	@extend %ls-0-04;
+	font-size: 26px;
+}
+
+%fs-30 {
+	@extend %lh-1-33;
+	@extend %ls-0-04;
+	font-size: 30px;
+}
+
+%fs-36 {
+	@extend %lh-1-25;
+	@extend %ls-0;
+	font-size: 36px;
+}
+
+%fs-42 {
+	@extend %lh-1-25;
+	@extend %ls-0;
+	font-size: 42px;
+}
+
+
+html {
+	font-size: percentage($base-font-size / 16px);
+	line-height: $base-line-height / $base-font-size;
+	background-color: white;
+}
+
+body {
+	@extend %alpha;
+
+	font-weight: 300;
+	line-height: 1.625;
+	color: $gray;
+}
+
+.screen-reader-text, .infinite-scroll .posts-navigation {
+	display: none;
+}
+
+.hyphening {
+	-ms-word-break: break-all;
+	word-break: break-all;
+	word-break: break-word;
+
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+
+
+/* Headings */
+
+h1, %h1, h2, %h2, h3, %h3, h4, %h4, h5, %h5 {
+	color: $dark;
+	font-weight: normal;
+}
+
+h1, %h1 {
+    @extend %beta;
+	@extend .caps;
+
+	margin-top: rhythm(2);
+	margin-bottom: rhythm(1);
+
+    font-size: rem(30px);
+    line-height: 1.25;
+	@extend %ls-0-04;
+
+	.single &.entry-title, .page &.entry-title {
+		font-size: rem(56px);
+		margin-bottom: 0;
+
+		@include query-below($lap) {
+			font-size: rem(42px);
+		}
+	}
+}
+
+.site-title {
+	@extend %h1;
+}
+
+h2, %h2 {
+    @extend %beta;
+	@extend .caps;
+
+	margin-top: rhythm(1.25);
+	margin-bottom: rhythm(1);
+
+    font-size: rem(24px);
+	@extend %ls-0-04;
+    line-height: 1.25;
+}
+
+h3, %h3 {
+    @extend %beta;
+
+    font-size: rem(24px);
+	font-weight: 200;
+    margin-top: rhythm(2);
+    margin-bottom: rhythm(1);
+}
+
+h4, %h4 {
+	@extend %beta;
+	@extend .caps;
+
+	margin-top: rhythm(2);
+	margin-bottom: rhythm(1);
+
+	color: $dark;
+	font-size: rem(14px);
+	letter-spacing: 0.1em;
+}
+
+h5, %h5 {
+	@extend %alpha;
+	@extend .caps;
+
+	margin-top: rhythm(2);
+	margin-bottom: rhythm(1);
+
+
+	font-size: rem(11px);
+	letter-spacing: 0.02em;
+}
+
+
+
+
+/* Paragraphs */
+
+p {
+	margin-top: 0;
+	margin-bottom: rhythm(1.5);
+}
+
+b,
+strong {
+	font-weight: 500;
+}
+
+
+
+/* Links */
+
+%link--underline--menu {
+	position: relative;
+	background-color: $accent;
+	box-shadow: white 0 1.1em inset;
+
+	box-shadow: var(--box-shadow-color) 0 1.1em inset;
+}
+
+%link--underline--hover {
+	box-shadow: white 0 0 inset;
+	box-shadow: var(--box-shadow-color) 0 0 inset;
+}
+
+%link--underline {
+	@extend %link--underline--menu;
+	transition: box-shadow .15s ease-out, color .15s;
+
+	&:hover {
+		@extend %link--underline--hover;
+	}
+}
+
+a {
+	text-decoration: none;
+	color: $black;
+	font-weight: 500;
+
+	// transition: all 0.15s;
+
+	h1 &, .site-title &, h2 &, h3 & {
+		color: $accent;
+
+		// @Todo
+		// word-break: break-all;
+	}
+
+	 @if $editor-style {
+	 	.mce-content-body & {
+			@extend %link--underline;
+
+			&[href$=".jpg"], &[href$=".jpeg"], &[href$=".png"], &[href$=".gif"], &[href$=".bmp"], &[href*="attachment"], &.img-link {
+				padding-left: 0;
+				padding-right: 0;
+
+				box-shadow: none;
+				background: none;
+			}
+		}
+	 }
+    	@else {
+			.single .entry-content &, .page .entry-content & {
+				@extend %link--underline--menu;
+				transition: box-shadow .15s ease-out, color .15s;
+
+				 &[href$=".jpg"], &[href$=".jpeg"], &[href$=".png"], &[href$=".gif"], &[href$=".bmp"], &[href*="attachment"], &[rel*="attachment"] {
+					 padding-left: 0;
+					 padding-right: 0;
+
+					 box-shadow: none;
+					 background: none;
+					 transition: background 0.15s;
+
+				 }
+			}
+				.single .entry-content &:hover, .page:not(.entry-card) .entry-content &:hover {
+					@extend %link--underline--hover;
+				}
+
+
+		 	.single .entry-content .gallery &, .page .entry-content .gallery & {
+				padding-left: 0;
+				padding-right: 0;
+
+				box-shadow: none;
+				background: none;
+			}
+
+			.nav--main & {
+				margin-left: -2px;
+				margin-right: -2px;
+				padding-left: 2px;
+				padding-right: 2px;
+			}
+    	}
+
+	.edit-link & {
+		@extend %link--underline;
+		@extend %beta;
+		display: inline-block;
+		position: relative;
+		margin: 20px 0;
+		letter-spacing: 0.05em;
+		font-size: 13px;
+		text-transform: uppercase;
+	}
+}
+
+@if $editor-style == false {
+	.grid__item .entry-content a {
+		@extend %link--underline;
+	}
+}
+
+::selection {
+	background: $accent;
+	color: $black;
+}
+
+
+
+/* Lists */
+
+acronym {
+	border-bottom: 1px dotted $gray;
+}
+
+
+
+
+
+/* Blockquotes */
+
+blockquote {
+	@extend %beta;
+
+	margin-bottom: rhythm(1.5);
+
+	font-size: rem(22px);
+	line-height: 1.55;
+	font-weight: 500;
+	text-transform: uppercase;
+	color: $dark;
+
+	cite {
+		text-transform: none;
+		font-size: rem(18px);
+		font-style: normal;
+		color: $light;
+	}
+
+	em cite {
+		font-style: italic;
+	}
+}
+
+
+
+/* Tables */
+
+table {
+	position: relative;
+	z-index: 1;
+	@include rhythm(margin-bottom, 2);
+	width: 100%;
+	border-top: 0;
+
+	table-layout: fixed;
+
+	th {
+		text-align: left;
+	}
+
+	tr {
+		border-bottom: 1px solid $light;
+	}
+
+	th, td {
+		padding: $u/2;
+		vertical-align: middle;
+
+		font: {
+			family: inherit;
+			size: inherit;
+		}
+	}
+}
+
+
+
+
+
+/* Code */
+
+pre {
+	position: relative;
+
+	@include rhythm(padding-left, 3);
+	@include rhythm(padding-right, 3);
+	@include rhythm(padding-top, 2);
+	@include rhythm(padding-bottom, 2);
+	@include rhythm(margin-bottom, 2);
+
+	border: 1px solid $light;
+
+	@if $editor-style {
+		font-size: inherit;
+		line-height: inherit;
+	}
+
+	@if $editor-style == false{
+		&:before {
+			content: "\f121";
+
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			display: block;
+			padding: 3px;
+
+			font-family: FontAwesome;
+			font-size: 14px;
+
+			color: white;
+			background: $light;
+		}
+	}
+}
+
+.entry-content {
+	ol {
+		padding-left: 22px;
+	}
+
+	ul {
+		padding-left: 17px;
+	}
+
+	ol, ul {
+		li {
+			@include rhythm(padding-bottom, 0.5);
+		}
+	}
+}

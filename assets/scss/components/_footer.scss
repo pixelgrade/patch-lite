@@ -1,0 +1,140 @@
+.site-footer {
+	color: $light;
+	background: black;
+	font-size: 13px;
+	padding: $gutter/2;
+
+	@include query-above($lap) {
+		padding-left: $gutter;
+		padding-right: $gutter;
+	}
+
+	@include query-above(1260px) {
+		padding-left: $gutter*2;
+		padding-right: $gutter*2;
+	}
+
+	> * {
+		display: block;
+		text-align: center;
+
+		@include query-below($lap) {
+			padding: $gutter/2 0;
+		}
+
+		@include query-above($lap) {
+			display: inline-block;
+			vertical-align: middle;
+			width: 33.33333%;
+		}
+	}
+
+	a {
+		color: $light;
+		font-weight: 300;
+		text-decoration: none;
+		opacity: 0.7;
+
+		transition: all 0.2s;
+
+		&[rel="designer"] {
+			color: white;
+			opacity: 1;
+		}
+
+		&:hover {
+			color: $accent;
+			opacity: 1;
+		}
+
+		&.back-to-top-button {
+			opacity: 1;
+		}
+	}
+}
+
+.infinite-scroll.neverending .site-footer {
+	display: none;
+}
+
+.infinity-end.neverending, .neverending.no-posts {
+	.site-footer{
+		display: block;
+	}
+}
+
+@include query-above($lap) {
+	.site-info {
+		text-align: left;
+	}
+
+	.back-to-top-wrapper {
+		text-align: center;
+	}
+
+	.footer-menu {
+		text-align: right;
+	}
+}
+
+.theme-name {
+	// text-decoration: underline;
+}
+
+.nav--footer {
+	list-style-type: none;
+
+	li {
+		display: inline-block;
+
+		&:after {
+			//color: $light;
+			content: "/";
+			margin: 0 5px;
+		}
+
+		&:last-child:after {
+			content: none;
+		}
+	}
+}
+
+.back-to-top-button {
+	padding: rem(6px);
+}
+
+div#infinite-footer {
+	color: white;
+	height: 50px;
+	background: black;
+	z-index: 50;
+
+	.container {
+		display: table;
+		height: 100%;
+
+		background: transparent;
+	}
+
+	.blog-credits, .blog-info {
+		float: none;
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.blog-credits {
+		color: white;
+
+		a{
+			color: $light;
+		}
+	}
+
+	.blog-info {
+		color: white;
+
+		a{
+			color: $light;
+		}
+	}
+}

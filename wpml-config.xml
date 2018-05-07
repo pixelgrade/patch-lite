@@ -1,0 +1,7 @@
+<wpml-config>
+    <admin-texts>
+        <key name="patch_options">
+            <key name="patch_footer_copyright_text"/>
+        </key>
+    </admin-texts>
+</wpml-config>

@@ -1,0 +1,465 @@
+@import "nav--social";
+
+.site-header {
+	text-transform: uppercase;
+	opacity: 0;
+
+	@include query-below($lap) {
+		display: block;
+		margin-top: $gutter/2;
+		// margin-bottom: $gutter*3/2;
+		margin-left: 2*$gutter;
+		margin-right: 2*$gutter;
+		border-left: 0;
+	}
+
+	a {
+		color: black;
+		text-decoration: none;
+	}
+}
+
+.site-title {
+	margin: 0 0 0 -3px;
+	font-size: 30px;
+	line-height: 1.25;
+	color: $dark;
+
+	text-align: center;
+
+	@include query-above($lap) {
+		font-size: 36px;
+		text-align: inherit;
+	}
+
+	.sidebar & a {
+		font-weight: 500;
+	}
+}
+
+.site-description {
+	text-transform: none;
+	font-size: rem(13px);
+	text-align: center;
+
+	@include query-above($lap) {
+		text-align: inherit;
+	}
+}
+
+.site-logo-link,
+.custom-logo-link {
+	display: block;
+}
+
+.site-logo,
+.custom-logo-link {
+	img {
+		width: auto;
+	}
+}
+
+
+
+.nav--main {
+	@extend .clearfix;
+	@extend %beta;
+	font-size: 24px;
+	line-height: 1.5;
+	margin-bottom: $gutter;
+
+	.single &, .page:not(.entry-card) & {
+		margin-bottom: 8px;
+	}
+
+	li {
+		display: block;
+		position: relative;
+		margin-bottom: 10px;
+
+		> a {
+			line-height: 34px;
+			margin-left: -7px;
+			padding-left: 7px;
+			margin-right: -6px;
+			padding-right: 6px;
+		}
+
+		&[class*="current-menu"] > a,
+		&:hover > a {
+			@extend %link--underline--menu;
+
+			box-shadow: white 0 24px inset;
+			box-shadow: var(--box-shadow-color) 0 24px inset;
+		}
+
+	}
+
+	> li {
+
+		@include query-above($lap) {
+			float: left;
+			width: 50%;
+			padding-right: 10px;
+		}
+
+	}
+
+	a {
+		@extend .light;
+		position: relative;
+		display: block;
+		letter-spacing: 0.06em;
+		padding-left: 2px;
+		padding-right: 2px;
+
+		@include query-above($lap) {
+			display: inline !important;
+		}
+	}
+
+	.menu-item-has-children {
+		padding-right: .5em;
+
+		> a {
+
+			&:after {
+				content: "+";
+				// this caused the + icon to
+				// be misplaced on two-line
+				// menu items
+				// position: absolute;
+				// top: -0.1em;
+				// left: 100%;
+				margin-left: 0.25em;
+			}
+		}
+
+	}
+
+	// Sub menus
+	//
+	/*.sub-menu*/
+	ul {
+		@extend .nav;
+		display: block;
+		min-width: 10em;
+
+		@include query-below($lap) {
+			margin-top: 10px;
+
+			li {
+				display: block;
+			}
+		}
+
+		li:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	@include query-below($lap) {
+		overflow: hidden;
+
+		.sub-menu {
+			padding-left: 12px;
+		}
+	}
+
+	ul {
+		background: white;
+	}
+
+	@include query-above($lap) {
+
+		/*.sub-menu*/
+		ul {
+			position: absolute;
+			top: 0;
+			margin-top: 4px;
+			margin-left: .25em;
+
+			display: inline-block;
+			pointer-events: none;
+			opacity: 0;
+			transform-origin: 0 0;
+			transform: scale(0.95);
+			transition: transform 0.15s, opacity 0.15s;
+
+			z-index: 100;
+			padding: $gutter/2;
+			border-radius: 3px;
+			box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15);
+			font-size: 18px;
+
+			li {
+				float: left;
+				clear: left;
+
+				&.menu-item-has-children {
+					padding-right: .25em;
+				}
+
+				&[class*="current-menu"] > a,
+				&:hover > a {
+					box-shadow: white 0 16px inset;
+					box-shadow: var(--box-shadow-color) 0 16px inset;
+				}
+			}
+
+			ul {
+				margin-left: 0;
+				top: -$gutter/2;
+				left: 100%;
+			}
+		}
+
+		li:hover {
+
+			> ul {
+				pointer-events: auto;
+				// display: inline-block;
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
+	}
+
+	@include query-below($lap) {
+		ul {
+			background: transparent !important;
+		}
+	}
+}
+
+.main-navigation {
+	@include query-below($lap) {
+		position: fixed;
+		top: 0;
+		left: -100%;
+		right: 100%;
+		z-index: 150;
+
+		margin: 0;
+		margin-left: $gutter * 2;
+		padding: $gutter;
+		height: 100%;
+		overflow-y: scroll;
+
+		background: white;
+		-webkit-overflow-scrolling: touch;
+		transition: box-shadow .3s ease-in-out;
+
+		&.shadow {
+			box-shadow: rgba(0,0,0,0.25) 0 0 $gutter, rgba(0,0,0,0.5) 0 0 $gutter/2;
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.grid.grid { position: static; }
+}
+
+@include query-below($lap) {
+	.admin-bar .main-navigation {
+		padding-top: 56px;
+	}
+}
+@media screen and (max-width: 782px) {
+	.admin-bar .main-navigation {
+		padding-top: 70px;
+	}
+}
+
+.mobile-header {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	display: none;
+	overflow: hidden;
+
+	.admin-bar & {
+		top: 32px;
+
+		@media screen and (max-width: 600px) {
+			position: absolute;
+
+			img {
+				display: none;
+			}
+		}
+	}
+
+	#demosite-activate-wrap ~ & {
+		top: 80px;
+	}
+
+	.admin-bar #demosite-activate-wrap ~ & {
+		top: 112px;
+	}
+
+	@media screen and (max-width: 782px) {
+		.admin-bar & {
+			top: 46px;
+		}
+
+		.admin-bar #demosite-activate-wrap ~ & {
+			top: 126px;
+		}
+	}
+
+	.site-logo-link,
+    .custom-logo-link {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		margin-top: 10px;
+		will-change: transform;
+
+		&, img {
+			height: 30px;
+			width: auto;
+		}
+	}
+}
+
+.mobile-header-wrapper {
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%;
+	height: 100%;
+	background: white;
+
+	&:after {
+		content: "";
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 1px;
+		background: currentColor;
+		opacity: 0.1;
+	}
+}
+
+
+@include query-below($lap) {
+	.mobile-header {
+		display: block;
+	}
+}
+
+.navigation__trigger,
+.search__trigger {
+	position: absolute;
+	top: 0; left: 0;
+	padding: $gutter/2;
+	border: 0;
+
+	outline: 0;
+	font-size: 24px;
+	line-height: 1;
+
+	background: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent; /* For some Androids */
+}
+
+.search__trigger {
+	left: auto;
+	right: 0;
+}
+
+
+// let's just make sure everything is fine on desktop
+@include query-above($lap) {
+	.main-navigation {
+		transform: none !important;
+		box-shadow: none !important;
+		transition: none !important;
+		background: none !important;
+	}
+}
+
+.nav--social {
+	@extend %nav--social;
+	position: relative;
+	left: -6px;
+	font-size: 18px;
+
+	a {
+		width: 1.75em;
+		white-space: nowrap;
+		overflow: hidden;
+		color: transparent;
+
+		&:before {
+			display: inline-block;
+			padding-right: .4em;
+			padding-left: .4em;
+
+			border-radius: 3px;
+
+			text-align: center;
+
+			color: $dark;
+			background: transparent;
+			transition: background 0.2s;
+		}
+
+		&:hover {
+			&:before {
+				background: $accent;
+			}
+		}
+
+		&[href*="#search"] {
+			@include query-below($lap) {
+				display: none;
+			}
+		}
+	}
+}
+
+.single, .page, .no-posts {
+
+	.site-header {
+		z-index: 1;
+		opacity: 1;
+		border-left: 0;
+	}
+
+	@include query-above($lap) {
+		.site-header {
+			position: relative;
+		}
+
+		.site-branding,
+		.nav--main,
+		.nav--social,
+		.site-title {
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		.nav--main > li {
+			float: left;
+			width: 100%;
+			margin-bottom: 20px;
+		}
+	}
+}
+
+
+.layout-grid {
+	.main-navigation {
+		@include query-above($lap) {
+			&>ul:last-child {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}

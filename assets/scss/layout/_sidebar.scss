@@ -1,0 +1,87 @@
+.single,
+.page,
+.error404,
+.search-no-results,
+.no-posts {
+	.site-content .container {
+		@extend %clearfix;
+	}
+
+	.content-area {
+		width: 100%;
+	}
+
+	@include query-above($lap) {
+		.site-content .container {
+			position: relative;
+		}
+
+		.content-area {
+			float: right;
+			margin-left: -$sidebar;
+		}
+
+		.site-main {
+			margin-left: $sidebar + 84px;
+		}
+
+		.sidebar,
+		.site-header {
+			z-index: 5;
+			float: left;
+			width: $sidebar;
+			padding-right: 0;
+		}
+
+		.site-header {
+			// Above sidebar
+			z-index: 10;
+		}
+	}
+}
+
+.sidebar {
+	position: relative; 
+	clear: left;
+
+	// @include rhythm(padding-top, 2);
+
+	@include query-below($lap) {
+		border-top: 1px solid $gray;
+		@include rhythm(padding-top, 2);
+	}
+
+	@include query-above($lap) {
+		z-index: 5;
+		float: left;
+		width: $sidebar;
+		padding-right: 0;
+	}
+}
+
+.sidebar {
+	a {
+		position: relative;
+		font-weight: 300;
+
+		&:before {
+			background: transparent;
+		}
+	}
+
+	.widget a:hover { 
+		@extend %link--underline--menu;
+		box-shadow: white 0 0.8em inset;
+		box-shadow: var(--box-shadow-color) 0 0.8em inset;
+	}
+}
+
+
+@include query-above($lap) {
+	.has--fixed-sidebar {
+		.site-header,
+		.sidebar {
+			position: fixed;
+		}
+	}
+}

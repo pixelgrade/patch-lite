@@ -1,0 +1,115 @@
+// .layout-grid .site-content {
+// 	// padding: $gutter/2;
+// 	padding-bottom: 2*$gutter;
+
+// 	@include query-above($lap) {
+// 		padding: 1*$gutter + 30px;
+// 	}
+
+// 	@include query-above(1360px) {
+// 		padding: 2.5*$gutter;
+// 	}
+// }
+
+.site {
+    padding-top: 2.5*$gutter;
+
+    .admin-bar {
+        padding-top: 2.5*$gutter + 32px;
+
+        @media screen and (max-width: 782px) {
+            padding-top: 2.5*$gutter + 46px;
+        }
+    }
+}
+
+.site-main {
+    padding-bottom: 2.5*$gutter;
+}
+
+.layout-grid .site-content {
+
+    @include query-above($lap) {
+        padding-left: 1*$gutter;
+        padding-right: 1*$gutter;
+    }
+
+    @include query-above(1360px) {
+        padding-left: 2.5*$gutter;
+        padding-right: 2.5*$gutter;
+    }
+}
+
+.grid {
+    @extend .clearfix;
+    position: relative;
+    transition: height .3s ease-in-out;
+    border-right: 0 solid transparent;
+}
+
+.grid__item {
+    width: 100%;
+    border-left: 0 solid transparent;
+    margin-bottom: 30px;
+
+    @include query-above($lap) {
+        float: left;
+
+        &:nth-child(1) {
+            margin-top: 50px;
+        }
+    }
+
+    @include query-above(1260px) {
+        &:nth-child(3) {
+            margin-top: 50px;
+        }
+    }
+
+    @include query-above(1700px) {
+        &:nth-child(4) {
+            // margin-top: 50px;
+        }
+    }
+}
+
+.grid,
+.pagination {
+    margin: 0 auto;
+    max-width: 400px;
+
+    @include query-above($lap) {
+        margin-top: 0; // ??
+    }
+}
+
+$grid-breakpoints: (
+    lap:    $lap,
+    desk:   1260px,
+    huge:   1700px,
+);
+
+@for $i from 1 through 9 {
+    .grid--#{$i}-col > * {
+        width: percentage(1/$i);
+    }
+}
+
+@each $breakpoint, $value in $grid-breakpoints {
+    @media only screen and (min-width: $value) {
+        @for $i from 1 through 9 {
+            .grid--#{$i}col-\@#{$breakpoint} {
+                max-width: $i * 450px;
+            }
+
+            .grid--#{$i}col-\@#{$breakpoint} > * {
+                width: percentage(1/$i);
+            }
+        }
+    }
+}
+
+.grid,
+.grid__item {
+    border-color: rgba(yellow, 0.25);
+}

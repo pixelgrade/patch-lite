@@ -1,0 +1,17 @@
+.btn, %btn {
+	@extend %delta;
+
+	padding-top: rem(10px);
+	padding-bottom: rem(10px);
+
+	@include fs(11px);
+	letter-spacing: 0.2em;
+
+	color: white;
+	background-color: $accent;
+	transition: all 0.2s;
+
+	&:hover {
+		background-color: $dark;
+	}
+}

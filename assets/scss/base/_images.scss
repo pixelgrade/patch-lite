@@ -1,0 +1,95 @@
+// 1. Fluid images for responsive purposes.
+// 2. Offset `alt` text from surrounding copy.
+ 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Figures and Captions */
+.wp-caption {
+	width: auto;
+	margin-left: 0;
+	margin-right: 0;
+	text-align: center;
+	opacity: 0.8;
+
+	img {
+		display: inline-block;
+	}
+}
+
+@if $editor-style { 
+	.wp-caption-dd {
+		text-align: center;
+		font-size: 14px;
+		padding: 8px 0 0;
+
+		border-bottom: 2px solid #f2f2f2;
+
+	}
+} @else { 
+	.wp-caption-text {
+		text-align: center;
+		font-size: 14px;
+		padding: 10px 0 0;
+
+		.archive__grid & {
+			border-bottom: 0;
+		}
+	}	
+}
+
+/* Galleries */
+.gallery {
+	margin-top: -20px;
+	margin-left: -20px;
+
+	.gallery-item {
+		margin: 0;
+		display: inline-block;
+		vertical-align: top;
+
+		text-align: center;
+		border: 0 solid transparent;
+		margin-top: 20px;
+		padding-left: 20px;
+	}
+
+	.gallery-caption {
+		border: 0;
+	}
+
+	.entry-content & {
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
+}
+
+.entry-card .gallery {
+	margin-top: -2px;
+	margin-left: -2px;
+}
+
+.entry-card .gallery-item {
+	margin-top: 2px;
+	padding-left: 2px;
+}
+
+.entry-card figcaption {
+	display: none;
+}
+
+.gallery-item img {
+	margin: 0 auto;
+}
+
+// Generate gallery columns only in frontend
+// They are already present in backend for editor
+@if $editor-style == false {
+	@for $i from 1 to 10 {
+		.gallery-columns-#{$i} .gallery-item {
+			width: percentage(1/$i);
+		}
+	}
+}

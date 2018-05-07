@@ -1,0 +1,133 @@
+@include query-above($lap) {
+	body {
+		border: 18px solid black;
+		border-bottom: 0;
+
+		&:before {
+			content: "";
+			position: fixed;
+			top: 0; left: 0;
+			height: 18px;
+			width: 100%;
+			background: black;
+			z-index: 9999;
+		}
+
+		&.admin-bar:before {
+			height: 50px;
+		}
+	}
+}
+
+
+// Posts Meta (categories, author and date)
+.entry-meta {
+	@extend %beta;
+	z-index: 31;
+	position: relative;
+
+	margin-bottom: 10px;
+
+	font-size: 13px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+// Categories
+.cat-links, .entry-format {
+	margin-right: 10px;
+	padding: 6px 14px;
+	background-color: $accent;
+}
+
+// Author
+.byline {
+	color: $dark;
+	text-transform: capitalize;
+
+	.author {
+		text-transform: uppercase;
+	}
+}
+
+// Date
+.posted-on {
+	display: inline-block;
+	
+	margin-left: 4px;
+	color: $light;
+
+	a {
+		font-weight: 300;
+		color: currentColor;
+		opacity: 0.7;
+	}
+
+	&:before {
+		content: "/";
+		margin-right: 4px;
+	}
+}
+
+.entry-time {
+	&:before {
+		content: "@";
+		margin: 0 5px;
+	}
+}
+
+@include query-above($small) {
+	.nav-links div {
+		width: 50%;
+		display: inline-block;
+	}
+
+	.nav-next {
+		text-align: right;
+	}
+
+	.nav-next:nth-child(1) {
+		margin-left: 50%;
+	}
+}
+
+.no-posts {
+	.site-header {
+		float: none;
+		display: inline-block;
+		vertical-align: top;
+		opacity: 1;
+
+		@include query-below($lap) {
+			width: 100%;
+			padding: 0 $gutter;
+		}
+	}
+
+	.site-branding {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.page-header {
+		margin-top: 0
+	}
+	.page-title {
+		margin-top: 0;
+	}
+
+	.site-main {
+		padding-top: 0;
+		max-width: 720px;
+	}
+
+	.site-content {
+		padding: 30px;
+	}
+
+	@include query-above($lap) {
+		.site-content {
+			padding: 60px;
+		} 
+	}
+}
