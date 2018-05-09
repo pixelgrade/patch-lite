@@ -215,3 +215,8 @@ require get_template_directory() . '/inc/hybrid-media-grabber.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Theme About page.
+ */
+require get_template_directory() . '/inc/admin/about-page.php'; ?>
