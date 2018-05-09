@@ -333,11 +333,6 @@ if ( ! function_exists( 'patch_single_entry_footer' ) ) :
 				/* translators: There is a space at the end */
 				echo '<span class="screen-reader-text">' . __( 'Tagged with: ', 'patch' ) . '</span><span class="tags-links">' . $tags_list . '</span>';
 			}
-
-			// Author bio.
-			if ( ! get_theme_mod( 'patch_hide_author_bio', false ) ) {
-				get_template_part( 'author-bio' );
-			}
 		}
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
