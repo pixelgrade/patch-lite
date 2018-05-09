@@ -462,52 +462,7 @@ if ( ! function_exists( 'patch_get_post_thumbnail_aspect_ratio_class' ) ) :
 	 * @return string Aspect ratio specific class.
 	 */
 	function patch_get_post_thumbnail_aspect_ratio_class( $post_id = null ) {
-
-		$post = get_post( $post_id );
-
-		$class = '';
-
-		if ( empty( $post ) ) {
-			return $class;
-		}
-
-		// [tall|portrait|square|landscape|wide] class depending on the aspect ratio
-		// 16:9 = 1.78
-		// 3:2 = 1.500
-		// 4:3 = 1.34
-		// 1:1 = 1.000
-		// 3:4 = 0.750
-		// 2:3 = 0.67
-		// 9:16 = 0.5625
-
-		//$image_data["width"] is width
-		//$image_data["height"] is height
-		//get directly the raw metadata
-		$image_data = wp_get_attachment_metadata( get_post_thumbnail_id( $post->ID ) );
-
-		if ( ! empty( $image_data["width"] ) && ! empty( $image_data["height"] ) ) {
-			$image_aspect_ratio = $image_data["width"] / $image_data["height"];
-
-			//now let's begin to see what kind of featured image we have
-			//first TALL ones; lower than 9:16
-			if ( $image_aspect_ratio < 0.5625 ) {
-				$class = 'tall';
-			} elseif ( $image_aspect_ratio < 0.75 ) {
-				//now PORTRAIT ones; lower than 3:4
-				$class = 'portrait';
-			} elseif ( $image_aspect_ratio > 1.78 ) {
-				//now WIDE ones; higher than 16:9
-				$class = 'wide';
-			} elseif ( $image_aspect_ratio > 1.34 ) {
-				//now LANDSCAPE ones; higher than 4:3
-				$class = 'landscape';
-			} else {
-				//it's definitely a SQUARE-ish one; between 3:4 and 4:3
-				$class = 'square';
-			}
-		}
-
-		return $class;
+		return '';
 	} #function
 
 endif;
