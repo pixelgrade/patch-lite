@@ -1008,17 +1008,12 @@ if ( ! function_exists( 'pixelgrade_footer_the_copyright' ) ) {
 	 * Display the footer copyright.
 	 */
 	function pixelgrade_footer_the_copyright() {
-		$copyright_text = pixelgrade_footer_get_copyright_content();
 		$output         = '';
-		if ( ! empty( $copyright_text ) ) {
-			$output       .= '<div class="site-info c-footer__copyright-text">' . PHP_EOL;
-			$output       .= $copyright_text . PHP_EOL;
-			$hide_credits = pixelgrade_option( 'footer_hide_credits', false );
-			if ( empty( $hide_credits ) ) {
-				$output .= '<span class="c-footer__credits">' . sprintf( esc_html__( 'Made with love by %s', 'patch' ), '<a href="https://pixelgrade.com/" target="_blank">Pixelgrade</a>' ) . '</span>' . PHP_EOL;
-			}
-			$output .= '</div>';
-		}
+		$output       .= '<div class="site-info c-footer__copyright-text">' . PHP_EOL;
+		$output       .= '<a href="' . esc_url( __( 'http://wordpress.org/', 'patch-lite' ) ) . '">' . sprintf( __( 'Proudly powered by WordPress', 'patch-lite' ) ) . '</a>' . PHP_EOL;
+		$output .= '<span class="sep"> | </span>';
+		$output .= '<span class="c-footer__credits">' . sprintf( esc_html__( 'Theme: %1$s by %2$s.', 'patch-lite' ), 'Patch Lite', '<a href="https://pixelgrade.com/" target="_blank">Pixelgrade</a>' ) . '</span>' . PHP_EOL;
+		$output .= '</div>';
 		echo apply_filters( 'pixelgrade_footer_the_copyright', $output );
 	}
 }
