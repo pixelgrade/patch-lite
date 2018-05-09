@@ -51,8 +51,8 @@ if ( ! function_exists( 'patch_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary' 	=> __( 'Primary Menu', 'patch' ),
-			'footer'    => __( 'Footer Menu', 'patch' ),
+			'primary' 	=> __( 'Primary Menu', 'patch-lite' ),
+			'footer'    => __( 'Footer Menu', 'patch-lite' ),
 		) );
 
 		/*

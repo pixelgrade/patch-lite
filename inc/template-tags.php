@@ -51,7 +51,7 @@ if ( ! function_exists( 'patch_get_posted_on' ) ) :
         $author_name = get_the_author();
 
         $byline = sprintf(
-                _x( 'by %s', 'post author', 'patch' ),
+                _x( 'by %s', 'post author', 'patch-lite' ),
                 '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( $author_name ) . '</a></span>'
         );
 
@@ -108,7 +108,7 @@ if ( ! function_exists( 'patch_get_cats_list' ) ) :
 
 		$cats = '';
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'patch' ), '', $post_ID );
+		$categories_list = get_the_category_list( __( ', ', 'patch-lite' ), '', $post_ID );
 		if ( $categories_list && patch_categorized_blog() ) {
 			$cats = '<span class="cat-links">' . $categories_list . '</span>';
 		}
@@ -157,7 +157,7 @@ if ( ! function_exists( 'patch_get_post_format_link' ) ) :
 		}
 
 		return '<span class="entry-format">
-				<a href="' . esc_url( get_post_format_link( $post_format ) ) .'" title="' . esc_attr( sprintf( __( 'All %s Posts', 'patch' ), get_post_format_string( $post_format ) ) ) . '">' .
+				<a href="' . esc_url( get_post_format_link( $post_format ) ) .'" title="' . esc_attr( sprintf( __( 'All %s Posts', 'patch-lite' ), get_post_format_string( $post_format ) ) ) . '">' .
 					get_post_format_string( $post_format ) .
 				'</a>
 			</span>';
@@ -270,9 +270,9 @@ function patch_card_meta ( $post_id = NULL ) {
 
 	if ( comments_open() ) {
 		if ( $comments_number == 0 ) {
-			$comments = esc_html__( 'No Comments', 'osteria' );
+			$comments = esc_html__( 'No Comments', 'patch-lite' );
 		} else {
-			$comments = sprintf( _n( '%d Comment', '%d Comments', $comments_number, 'osteria' ), $comments_number );
+			$comments = sprintf( _n( '%d Comment', '%d Comments', $comments_number, 'patch-lite' ), $comments_number );
 		}
 		$meta['comments'] = '<a href="' . esc_url( get_comments_link() ) .'">' . esc_html( $comments ) . '</a>';
 	} else {
@@ -314,7 +314,7 @@ if ( ! function_exists( 'patch_entry_footer' ) ) :
 	 * Prints HTML with meta information for posts on archives.
 	 */
 	function patch_entry_footer() {
-		edit_post_link( __( 'Edit', 'patch' ), '<span class="edit-link">', '</span>' );
+		edit_post_link( __( 'Edit', 'patch-lite' ), '<span class="edit-link">', '</span>' );
 	}
 
 endif;
@@ -331,17 +331,17 @@ if ( ! function_exists( 'patch_single_entry_footer' ) ) :
 			$tags_list = get_the_tag_list( '', ' ' );
 			if ( $tags_list ) {
 				/* translators: There is a space at the end */
-				echo '<span class="screen-reader-text">' . __( 'Tagged with: ', 'patch' ) . '</span><span class="tags-links">' . $tags_list . '</span>';
+				echo '<span class="screen-reader-text">' . __( 'Tagged with: ', 'patch-lite' ) . '</span><span class="tags-links">' . $tags_list . '</span>';
 			}
 		}
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			echo '<span class="comments-link">';
-			comments_popup_link( __( 'Leave a comment', 'patch' ), __( '1 Comment', 'patch' ), __( '% Comments', 'patch' ) );
+			comments_popup_link( __( 'Leave a comment', 'patch-lite' ), __( '1 Comment', 'patch-lite' ), __( '% Comments', 'patch-lite' ) );
 			echo '</span>';
 		}
 
-		edit_post_link( __( 'Edit', 'patch' ), '<span class="edit-link">', '</span>' );
+		edit_post_link( __( 'Edit', 'patch-lite' ), '<span class="edit-link">', '</span>' );
 	} #function
 
 endif;
@@ -655,7 +655,7 @@ if ( ! function_exists( 'patch_post_excerpt' ) ) :
 		if ( $has_more ) {
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Continue reading %s', 'patch' ),
+				__( 'Continue reading %s', 'patch-lite' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );
 		} elseif ( has_excerpt( $post ) ) {
@@ -689,7 +689,7 @@ function patch_get_post_excerpt( $post_id = null ) {
 	if ( $has_more ) {
 		/* translators: %s: Name of current post */
 		$excerpt = get_the_content( sprintf(
-			__( 'Continue reading %s', 'patch' ),
+			__( 'Continue reading %s', 'patch-lite' ),
 			the_title( '<span class="screen-reader-text">', '</span>', false )
 		) );
 	} else {
@@ -774,7 +774,7 @@ if ( ! function_exists( 'patch_secondary_page_title' ) ) :
 				<?php elseif ( is_search() ) : ?>
 
 					<header class="page-header entry-card">
-						<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'patch' ), get_search_query() ); ?></h1>
+						<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'patch-lite' ), get_search_query() ); ?></h1>
 					</header><!-- .page-header -->
 
 				<?php endif; ?>
@@ -801,7 +801,7 @@ if ( ! function_exists( 'patch_the_image_navigation' ) ) :
 		} ?>
 
 		<nav class="navigation post-navigation" role="navigation">
-			<h5 class="screen-reader-text"><?php _e( 'Image navigation', 'patch' ); ?></h5>
+			<h5 class="screen-reader-text"><?php _e( 'Image navigation', 'patch-lite' ); ?></h5>
 			<div class="attachment-navigation">
 				<?php
 				if ( $prev_image ) {
@@ -811,7 +811,7 @@ if ( ! function_exists( 'patch_the_image_navigation' ) ) :
 						<a href="<?php echo get_attachment_link( $prev_image->ID ); ?>" rel="prev">
 		                    <span class="navigation-item__content">
                                 <span class="post-thumb"><?php echo $prev_thumbnail; ?></span>
-                                <span class="navigation-item__name"><?php _e( 'Previous image', 'patch' ); ?></span>
+                                <span class="navigation-item__name"><?php _e( 'Previous image', 'patch-lite' ); ?></span>
                                 <h3 class="post-title"><?php echo get_the_title( $prev_image->ID ); ?></h3>
 		                    </span>
 						</a>
@@ -826,7 +826,7 @@ if ( ! function_exists( 'patch_the_image_navigation' ) ) :
 						<a href="<?php echo get_attachment_link( $next_image->ID ); ?>" rel="prev">
 		                    <span class="navigation-item__content">
 	                                <span class="post-thumb"><?php echo $next_thumbnail; ?></span>
-	                                <span class="navigation-item__name"><?php _e( 'Next image', 'patch' ); ?></span>
+	                                <span class="navigation-item__name"><?php _e( 'Next image', 'patch-lite' ); ?></span>
 	                                <h3 class="post-title"><?php echo get_the_title( $next_image->ID ); ?></h3>
 	                        </span>
 						</a>
@@ -951,14 +951,14 @@ if ( ! function_exists( 'patch_paging_nav' ) ) :
 		$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%'; ?>
 
 		<nav class="pagination" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'patch' ); ?></h1>
+			<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'patch-lite' ); ?></h1>
 
 			<div class="nav-links">
 
 				<?php
 				//output a disabled previous "link" if on the fist page
 				if ( 1 == $paged ) {
-					echo '<span class="prev page-numbers disabled">' . __( 'Previous', 'patch' ) . '</span>';
+					echo '<span class="prev page-numbers disabled">' . __( 'Previous', 'patch-lite' ) . '</span>';
 				}
 
 				//output the numbered page links
@@ -968,14 +968,14 @@ if ( ! function_exists( 'patch_paging_nav' ) ) :
 					'total'     => $wp_query->max_num_pages,
 					'current'   => $paged,
 					'prev_next' => true,
-					'prev_text' => __( 'Previous', 'patch' ),
-					'next_text' => __( 'Next', 'patch' ),
+					'prev_text' => __( 'Previous', 'patch-lite' ),
+					'next_text' => __( 'Next', 'patch-lite' ),
 					'add_args'  => array_map( 'urlencode', $query_args ),
 				) );
 
 				//output a disabled next "link" if on the last page
 				if ( $paged == $wp_query->max_num_pages ) {
-					echo '<span class="next page-numbers disabled">' . __( 'Next', 'patch' ) . '</span>';
+					echo '<span class="next page-numbers disabled">' . __( 'Next', 'patch-lite' ) . '</span>';
 				} ?>
 
 			</div><!-- .nav-links -->
@@ -1026,7 +1026,7 @@ if ( ! function_exists( 'pixelgrade_footer_get_copyright_content' ) ) {
 	 * @return bool|string
 	 */
 	function pixelgrade_footer_get_copyright_content() {
-		$copyright_text = pixelgrade_option( 'patch_footer_copyright_text', esc_html__( '&copy; %year% %site-title%.', 'patch' ) );
+		$copyright_text = pixelgrade_option( 'patch_footer_copyright_text', esc_html__( '&copy; %year% %site-title%.', 'patch-lite' ) );
 		if ( ! empty( $copyright_text ) ) {
 			// We need to parse some tags
 			$copyright_text = pixelgrade_parse_content_tags( $copyright_text );

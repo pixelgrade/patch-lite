@@ -112,7 +112,7 @@ if ( ! function_exists( 'patch_fonts_url' ) ) :
 		* supported by Roboto, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Roboto font: on or off', 'patch' ) ) {
+		if ( 'off' !== _x( 'on', 'Roboto font: on or off', 'patch-lite' ) ) {
 			$fonts[] = 'Roboto:500,400,300,500italic,400italic,300italic';
 		}
 
@@ -120,12 +120,12 @@ if ( ! function_exists( 'patch_fonts_url' ) ) :
 		* supported by Oswald, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Oswald font: on or off', 'patch' ) ) {
+		if ( 'off' !== _x( 'on', 'Oswald font: on or off', 'patch-lite' ) ) {
 			$fonts[] = 'Oswald:300,400,700';
 		}
 
 		/* translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language. */
-		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'patch' );
+		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'patch-lite' );
 
 		if ( 'cyrillic' == $subset ) {
 			$subsets .= ',cyrillic,cyrillic-ext';
@@ -174,12 +174,12 @@ if ( ! function_exists( 'patch_comment' ) ) :
 				<header class="comment__meta comment-author">
 					<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
 					<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
-						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'patch' ), get_comment_date(), get_comment_time() ); ?> </a>
+						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'patch-lite' ), get_comment_date(), get_comment_time() ); ?> </a>
 					</time>
 					<div class="comment__links">
 						<?php
 						//we need some space before Edit
-						edit_comment_link( __( 'Edit', 'patch' ) );
+						edit_comment_link( __( 'Edit', 'patch-lite' ) );
 
 						comment_reply_link( array_merge( $args, array(
 							'depth'     => $depth,
@@ -191,7 +191,7 @@ if ( ! function_exists( 'patch_comment' ) ) :
 				<!-- .comment-meta -->
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<div class="alert info">
-						<p><?php _e( 'Your comment is awaiting moderation.', 'patch' ) ?></p>
+						<p><?php _e( 'Your comment is awaiting moderation.', 'patch-lite' ) ?></p>
 					</div>
 				<?php endif; ?>
 				<section class="comment__content comment">
@@ -259,8 +259,8 @@ add_filter( 'excerpt_length', 'patch_excerpt_length', 999 );
 function patch_search_form( $form ) {
 	$form = '<form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
 				<label>
-					<span class="screen-reader-text">' . _x( 'Search for:', 'label' , 'patch' ) . '</span>
-					<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' , 'patch' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label' , 'patch' ) . '" />
+					<span class="screen-reader-text">' . _x( 'Search for:', 'label' , 'patch-lite' ) . '</span>
+					<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' , 'patch-lite' ) . '" value="' . get_search_query() . '" name="s" title="' . esc_attr_x( 'Search for:', 'label' , 'patch-lite' ) . '" />
 				</label>
 				<button class="search-submit"><i class="fa fa-search"></i></button>
 			</form>';
@@ -296,12 +296,12 @@ add_filter( 'mce_buttons_2', 'patch_mce_editor_buttons' );
  */
 function patch_mce_before_init( $settings ) {
 	$style_formats = array(
-		array( 'title' => __( 'Intro Text', 'patch' ), 'selector' => 'p', 'classes' => 'intro' ),
-		array( 'title' => __( 'Dropcap', 'patch' ), 'inline' => 'span', 'classes' => 'dropcap' ),
-		array( 'title' => __( 'Highlight', 'patch' ), 'inline' => 'span', 'classes' => 'highlight' ),
-		array( 'title' => __( 'Pull Left', 'patch' ), 'selector' => 'p', 'classes' => 'pull-left', 'wrapper' => true ),
-		array( 'title' => __( 'Pull Right', 'patch' ), 'selector' => 'p', 'classes' => 'pull-right', 'wrapper' => true ),
-		array( 'title' => __( 'Two Columns', 'patch' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
+		array( 'title' => __( 'Intro Text', 'patch-lite' ), 'selector' => 'p', 'classes' => 'intro' ),
+		array( 'title' => __( 'Dropcap', 'patch-lite' ), 'inline' => 'span', 'classes' => 'dropcap' ),
+		array( 'title' => __( 'Highlight', 'patch-lite' ), 'inline' => 'span', 'classes' => 'highlight' ),
+		array( 'title' => __( 'Pull Left', 'patch-lite' ), 'selector' => 'p', 'classes' => 'pull-left', 'wrapper' => true ),
+		array( 'title' => __( 'Pull Right', 'patch-lite' ), 'selector' => 'p', 'classes' => 'pull-right', 'wrapper' => true ),
+		array( 'title' => __( 'Two Columns', 'patch-lite' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
 	);
 
 	$settings['style_formats'] = json_encode( $style_formats );

@@ -891,7 +891,7 @@ if ( ! class_exists( 'TI_About_Page' ) ) {
 					'nr_actions_required'      => count( $required_actions ),
 					'ajaxurl'                  => admin_url( 'admin-ajax.php' ),
 					'template_directory'       => get_template_directory_uri(),
-					'activating_string'        => __( 'Activating', 'hive-lite' )
+					'activating_string'        => __( 'Activating', 'patch-lite' )
 				) );
 
 			}

@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'patch' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'patch-lite' ),
 				'after'  => '</div>',
 			) );
 		?>
@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<footer class="entry-footer">
 
-		<?php edit_post_link( __( 'Edit', 'patch' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', 'patch-lite' ), '<span class="edit-link">', '</span>' ); ?>
 
 	</footer><!-- .entry-footer -->
 

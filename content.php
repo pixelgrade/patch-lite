@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<span class="sticky-post"></span>
 				<?php endif; ?>
 
-				<span class="hover" role="presentation"><?php _e( 'Read More', 'patch' ); ?></span>
+				<span class="hover" role="presentation"><?php _e( 'Read More', 'patch-lite' ); ?></span>
 				<div class="entry-image-wrapper">
 				<?php the_post_thumbnail( 'patch-masonry-image' ); ?>
 				</div>
@@ -57,11 +57,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php patch_post_excerpt();
 
 			wp_link_pages( array(
-				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'patch' ),
+				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'patch-lite' ),
 				'after'  => '</span></div>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'patch' ) . ' </span>%',
+				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'patch-lite' ) . ' </span>%',
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) ); ?>
 

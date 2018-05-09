@@ -25,11 +25,11 @@ if ( post_password_required() ) {
 		<div class="comments-area-title">
 			<h2 class="comments-title"><?php
 			if ( have_comments() ) {
-				echo '<span class="comment-number  comment-number--dark  total">' . number_format_i18n( get_comments_number() ) . '</span>' . _n( 'Comment', 'Comments', get_comments_number(), 'patch' );
+				echo '<span class="comment-number  comment-number--dark  total">' . number_format_i18n( get_comments_number() ) . '</span>' . _n( 'Comment', 'Comments', get_comments_number(), 'patch-lite' );
 			} else {
-				echo '<span class="comment-number  comment-number--dark  no-comments">i</span>' . __( 'There are no comments', 'patch' );
+				echo '<span class="comment-number  comment-number--dark  no-comments">i</span>' . __( 'There are no comments', 'patch-lite' );
 			} ?></h2>
-			<?php echo '<a class="comments_add-comment" href="#reply-title">' . __( 'Add yours', 'patch' ) . '</a>'; ?>
+			<?php echo '<a class="comments_add-comment" href="#reply-title">' . __( 'Add yours', 'patch-lite' ) . '</a>'; ?>
 		</div>
 		<?php
 		// You can start editing here -- including this comment!
@@ -40,10 +40,10 @@ if ( post_password_required() ) {
 				<nav role="navigation" id="comment-nav-above" class="site-navigation comment-navigation">
 					<span class="comment-number comment-number--dark">&hellip;</span>
 
-					<h3 class="assistive-text"><?php _e( 'Comment navigation', 'patch' ); ?></h3>
+					<h3 class="assistive-text"><?php _e( 'Comment navigation', 'patch-lite' ); ?></h3>
 
-					<div class="nav-previous"><?php previous_comments_link( __( 'Older Comments', 'patch' ) ); ?></div>
-					<div class="nav-next"><?php next_comments_link( __( 'Newer Comments', 'patch' ) ); ?></div>
+					<div class="nav-previous"><?php previous_comments_link( __( 'Older Comments', 'patch-lite' ) ); ?></div>
+					<div class="nav-next"><?php next_comments_link( __( 'Newer Comments', 'patch-lite' ) ); ?></div>
 				</nav><!-- #comment-nav-before .site-navigation .comment-navigation -->
 			<?php } // check for comment navigation ?>
 
@@ -61,10 +61,10 @@ if ( post_password_required() ) {
 			<nav role="navigation" id="comment-nav-below" class="site-navigation comment-navigation">
 				<span class="comment-number comment-number--dark">&hellip;</span>
 
-				<h3 class="assistive-text"><?php _e( 'Comment navigation', 'patch' ); ?></h3>
+				<h3 class="assistive-text"><?php _e( 'Comment navigation', 'patch-lite' ); ?></h3>
 
-				<div class="nav-previous"><?php previous_comments_link( __( 'Older Comments', 'patch' ) ); ?></div>
-				<div class="nav-next"><?php next_comments_link( __( 'Newer Comments', 'patch' ) ); ?></div>
+				<div class="nav-previous"><?php previous_comments_link( __( 'Older Comments', 'patch-lite' ) ); ?></div>
+				<div class="nav-next"><?php next_comments_link( __( 'Newer Comments', 'patch-lite' ) ); ?></div>
 			</nav><!-- #comment-nav-below .site-navigation .comment-navigation -->
 
 			<?php endif; // check for comment navigation
@@ -76,7 +76,7 @@ if ( post_password_required() ) {
 	// If comments are closed and there are comments, let's leave a little note, shall we?
 	if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 		<p class="nocomments">
-			<span class="comment-number comment-number--dark  no-comments-box">&middot;</span><span><?php _e( 'Comments are closed.', 'patch' ); ?></span>
+			<span class="comment-number comment-number--dark  no-comments-box">&middot;</span><span><?php _e( 'Comments are closed.', 'patch-lite' ); ?></span>
 		</p>
 	<?php endif; ?>
 

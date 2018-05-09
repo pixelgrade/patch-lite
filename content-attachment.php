@@ -44,11 +44,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		the_content();
 
 		wp_link_pages( array(
-			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'patch' ),
+			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'patch-lite' ),
 			'after'  => '</span></div>',
 			'link_before' => '<span>',
 			'link_after'  => '</span>',
-			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'patch' ) . ' </span>%',
+			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'patch-lite' ) . ' </span>%',
 			'separator'   => '<span class="screen-reader-text">, </span>',
 		) );
 		?>
@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<footer class="entry-footer">
 
-		<?php edit_post_link( __( 'Edit', 'patch' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', 'patch-lite' ), '<span class="edit-link">', '</span>' ); ?>
 
 	</footer><!-- .entry-footer -->
 
