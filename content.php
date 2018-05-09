@@ -54,9 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div <?php patch_post_excerpt_class(); ?>>
 
-			<?php if ( true === pixelgrade_option( 'blog_items_excerpt_visibility' ) ) {
-				patch_post_excerpt();
-			}
+			<?php patch_post_excerpt();
 
 			wp_link_pages( array(
 				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'patch' ),

@@ -66,21 +66,6 @@ if ( ! function_exists( 'patch_setup' ) ) :
 			'caption',
 		) );
 
-		/*
-		 * Enable support for custom logo.
-		 *
-		 *  @since Patch 1.2.2
-		 */
-		add_theme_support( 'custom-logo', array(
-			'width'       => 1000,
-			'height'      => 500,
-			'flex-height' => true,
-			'header-text' => array(
-				'site-title',
-				'site-description-text',
-			)
-		) );
-
 		if ( ! function_exists( 'the_custom_logo' ) ) {
 			//in case we are on a WP version older than 4.5, try to use Jetpack's Site Logo feature
 			/**
@@ -101,29 +86,10 @@ if ( ! function_exists( 'patch_setup' ) ) :
 		add_image_size( 'patch-site-logo', 1000, 500, false );
 
 		/*
-		 * Enable support for Post Formats.
-		 * See http://codex.wordpress.org/Post_Formats
-		 */
-		add_theme_support( 'post-formats', array(
-			'aside',
-			'gallery',
-			'image',
-			'audio',
-			'video',
-			'quote',
-			'link',
-		) );
-
-		/*
 		 * Add editor custom style to make it look more like the frontend
 		 * Also enqueue the custom Google Fonts also
 		 */
 		add_editor_style( array( 'editor-style.css', patch_fonts_url() ) );
-
-		/**
-		 * Enable support for the Style Manager Customizer section (via Customify).
-		 */
-		add_theme_support( 'customizer_style_manager' );
 	}
 endif;
 add_action( 'after_setup_theme', 'patch_setup' );
@@ -245,97 +211,6 @@ function patch_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'patch_scripts' );
 
-/* Automagical updates */
-function wupdates_check_JlplJ( $transient ) {
-	// First get the theme directory name (the theme slug - unique)
-	$slug = basename( get_template_directory() );
-
-	// Nothing to do here if the checked transient entry is empty or if we have already checked
-	if ( empty( $transient->checked ) || empty( $transient->checked[ $slug ] ) || ! empty( $transient->response[ $slug ] ) ) {
-		return $transient;
-	}
-
-	// Let's start gathering data about the theme
-	// Then WordPress version
-	include( ABSPATH . WPINC . '/version.php' );
-	$http_args = array (
-		'body' => array(
-			'slug' => $slug,
-			'url' => home_url( '/' ), //the site's home URL
-			'version' => 0,
-			'locale' => get_locale(),
-			'phpv' => phpversion(),
-			'child_theme' => is_child_theme(),
-			'data' => null, //no optional data is sent by default
-		),
-		'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url( '/' )
-	);
-
-	// If the theme has been checked for updates before, get the checked version
-	if ( isset( $transient->checked[ $slug ] ) && $transient->checked[ $slug ] ) {
-		$http_args['body']['version'] = $transient->checked[ $slug ];
-	}
-
-	// Use this filter to add optional data to send
-	// Make sure you return an associative array - do not encode it in any way
-	$optional_data = apply_filters( 'wupdates_call_data_request', $http_args['body']['data'], $slug, $http_args['body']['version'] );
-
-	// Encrypting optional data with private key, just to keep your data a little safer
-	// You should not edit the code bellow
-	$optional_data = json_encode( $optional_data );
-	$w=array();$re="";$s=array();$sa=md5('3ca8964b58c60542370569087c3eafde747c9e29');
-	$l=strlen($sa);$d=$optional_data;$ii=-1;
-	while(++$ii<256){$w[$ii]=ord(substr($sa,(($ii%$l)+1),1));$s[$ii]=$ii;} $ii=-1;$j=0;
-	while(++$ii<256){$j=($j+$w[$ii]+$s[$ii])%255;$t=$s[$j];$s[$ii]=$s[$j];$s[$j]=$t;}
-	$l=strlen($d);$ii=-1;$j=0;$k=0;
-	while(++$ii<$l){$j=($j+1)%256;$k=($k+$s[$j])%255;$t=$w[$j];$s[$j]=$s[$k];$s[$k]=$t;
-	$x=$s[(($s[$j]+$s[$k])%255)];$re.=chr(ord($d[$ii])^$x);}
-	$optional_data=bin2hex($re);
-
-	// Save the encrypted optional data so it can be sent to the updates server
-	$http_args['body']['data'] = $optional_data;
-
-	// Check for an available update
-	$url = $http_url = set_url_scheme( 'https://wupdates.com/wp-json/wup/v1/themes/check_version/JlplJ', 'http' );
-	if ( $ssl = wp_http_supports( array( 'ssl' ) ) ) {
-		$url = set_url_scheme( $url, 'https' );
-	}
-
-	$raw_response = wp_remote_post( $url, $http_args );
-	if ( $ssl && is_wp_error( $raw_response ) ) {
-		$raw_response = wp_remote_post( $http_url, $http_args );
-	}
-	// We stop in case we haven't received a proper response
-	if ( is_wp_error( $raw_response ) || 200 != wp_remote_retrieve_response_code( $raw_response ) ) {
-		return $transient;
-	}
-
-	$response = (array) json_decode($raw_response['body']);
-	if ( ! empty( $response ) ) {
-		// You can use this action to show notifications or take other action
-		do_action( 'wupdates_before_response', $response, $transient );
-		if ( isset( $response['allow_update'] ) && $response['allow_update'] && isset( $response['transient'] ) ) {
-			$transient->response[ $slug ] = (array) $response['transient'];
-		}
-		do_action( 'wupdates_after_response', $response, $transient );
-	}
-
-	return $transient;
-}
-add_filter( 'pre_set_site_transient_update_themes', 'wupdates_check_JlplJ' );
-
-function wupdates_add_id_JlplJ( $ids = array() ) {
-	// First get the theme directory name (unique)
-	$slug = basename( get_template_directory() );
-
-	// Now add the predefined details about this product
-	// Do not tamper with these please!!!
-	$ids[ $slug ] = array( 'name' => 'Patch', 'slug' => 'patch', 'id' => 'JlplJ', 'type' => 'theme', 'digest' => '65d70b6547e622ea429312993454fe3d', );
-
-    return $ids;
-}
-add_filter( 'wupdates_gather_ids', 'wupdates_add_id_JlplJ', 10, 1 );
-
 /**
  * MB string functions for when the MB library is not available
  */
@@ -360,18 +235,3 @@ require get_template_directory() . '/inc/hybrid-media-grabber.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
-
-/**
- * Load Customify plugin configuration
- */
-require get_template_directory() . '/inc/customify_config.php';
-
-/**
- * Load Recommended/Required plugins notification
- */
-require get_template_directory() . '/inc/required-plugins.php';
