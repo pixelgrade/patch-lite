@@ -24,10 +24,6 @@ function patch_body_classes( $classes ) {
 		$classes[] = 'group-blog';
 	}
 
-	if ( ( is_single() || is_page() ) && is_active_sidebar( 'sidebar-1' ) ) {
-		$classes[] = 'has_sidebar';
-	}
-
 	//add this class where we have the masonry layout
 	if ( ! is_singular() ) {
 		$classes[] = 'layout-grid';

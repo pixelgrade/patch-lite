@@ -152,25 +152,6 @@ function patch_post_thumbnail_sizes_attr( $attr, $attachment, $size ) {
 add_filter( 'wp_get_attachment_image_attributes', 'patch_post_thumbnail_sizes_attr', 10 , 3 );
 
 /**
- * Register widget area.
- *
- * @link http://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function patch_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'patch' ),
-		'id'            => 'sidebar-1',
-		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title">',
-		'after_title'   => '</h4>',
-	) );
-}
-
-add_action( 'widgets_init', 'patch_widgets_init' );
-
-/**
  * Enqueue scripts and styles.
  */
 function patch_scripts() {
