@@ -361,22 +361,6 @@ class PatchWrapImagesInFigureCallback {
 	}
 }
 
-/**
- * Add a search link to the Social Menu
- *
- * @param string $items The HTML list content for the menu items.
- * @param object $args  An object containing wp_nav_menu() arguments.
- *
- * @return string
- */
-function patch_add_search_to_nav( $items, $args ) {
-	if( $args->theme_location == 'social' && ( ! pixelgrade_option( 'patch_disable_search_in_social_menu', false ) ) ) {
-		$items .= '<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#search">' . __( 'Search', 'patch' ) . '</a></li>';
-	}
-	return $items;
-}
-add_filter( 'wp_nav_menu_items', 'patch_add_search_to_nav', 10, 2 );
-
 function patch_allow_skype_protocol( $protocols ) {
 	$protocols[] = 'skype';
 	return $protocols;

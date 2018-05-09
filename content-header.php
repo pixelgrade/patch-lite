@@ -56,17 +56,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'fallback_cb' => false,
 		) ); ?>
 
-		<?php
-		//the social menu
-		wp_nav_menu( array(
-			'theme_location' => 'social',
-			'container'      => '',
-			'menu_class'     => 'nav nav--social',
-			'link_before'     => '<span class="screen-reader-text">',
-			'link_after'      => '</span>',
-			'fallback_cb' => false,
-		) ); ?>
-
 	</nav><!-- #site-navigation -->
 
 </header><!-- #masthead -->
