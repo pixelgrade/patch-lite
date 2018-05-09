@@ -116,9 +116,3 @@ if ( ! function_exists( 'mb_strtoupper' ) ) {
 		return strtoupper( $str );
 	}
 }
-
-if ( ! function_exists( 'mb_encode_mimeheader' ) ) {
-	function mb_encode_mimeheader( $str, $charset = 'utf-8', $transfer_encoding = '', $linefeed = '', $indent = '' ) {
-		return '=?' . $charset . '?B?' . base64_encode( $str ) . '?=';
-	}
-}
