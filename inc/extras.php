@@ -61,7 +61,7 @@ function patch_lite_post_classes( $classes ) {
 		//no need for the featured image aspect ratio class for quotes because we are not using it in a regular fashion
 		if ( 'quote' != get_post_format() ) {
 			if ( is_singular() ) {
-				$classes[] = 'entry-image--' . patch_get_post_thumbnail_aspect_ratio_class();
+				$classes[] = 'entry-image--landscape';
 			} else {
 				$classes[] = 'entry-card--' . patch_get_post_thumbnail_aspect_ratio_class();
 			}

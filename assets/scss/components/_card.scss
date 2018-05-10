@@ -112,7 +112,28 @@ $cards-gutter: $gutter;
 
 			.entry-meta,
 			.entry-content {
-				@include _("col-left-2");
+				@include _("col-left-1");
+			}
+		}
+
+		// SQUARE
+		.entry-card--square {
+			// @include _("col-right-3");
+
+			.entry-meta {
+				
+			}
+
+			.entry-image {
+				@include _("col-left-1");
+			}
+
+			.entry-header {
+				@include _("col-left-1");
+			}
+
+			.entry-content {
+
 			}
 		}
 
@@ -124,7 +145,7 @@ $cards-gutter: $gutter;
 			}
 
 			.entry-header {
-				@include _("col-left-p2");
+				@include _("col-left-1");
 			}
 
 			.entry-content {
@@ -167,28 +188,6 @@ $cards-gutter: $gutter;
 			.entry-image {
 				@include _("col-left-0");
 				@include _("col-right--2");
-			}
-
-			.entry-header {
-				@include _("col-left-2");
-			}
-
-			.entry-content {
-
-			}
-		}
-
-
-		// SQUARE
-		.entry-card--square {
-			@include _("col-right-3");
-
-			.entry-meta {
-				
-			}
-
-			.entry-image {
-				@include _("col-left-2");
 			}
 
 			.entry-header {
