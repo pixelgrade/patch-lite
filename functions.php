@@ -157,7 +157,7 @@ add_filter( 'wp_get_attachment_image_attributes', 'patch_lite_post_thumbnail_siz
  */
 function patch_lite_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'patch' ),
+		'name'          => __( 'Sidebar', 'patch-lite' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
