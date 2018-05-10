@@ -163,9 +163,7 @@ if ( ! function_exists( 'patch_lite_comment' ) ) :
 			$comment_number = $args['per_page'] * ( $args['page'] - 1 ) + 1;
 		} else {
 			$comment_number ++;
-		}
-
-		$GLOBALS['comment'] = $comment; ?>
+		} ?>
 	<li <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
 		<article id="comment-<?php comment_ID() ?>" class="comment-article  media">
 			<span class="comment-number"><?php echo $comment_number ?></span>
@@ -174,7 +172,7 @@ if ( ! function_exists( 'patch_lite_comment' ) ) :
 				<header class="comment__meta comment-author">
 					<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
 					<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
-						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'patch-lite' ), get_comment_date(), get_comment_time() ); ?> </a>
+						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %1$s at %1$s', 'patch-lite' ), get_comment_date(), get_comment_time() ); ?> </a>
 					</time>
 					<div class="comment__links">
 						<?php
