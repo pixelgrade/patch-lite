@@ -45,3 +45,5 @@ get_template_part( 'content', 'header' ); ?>
 
 	</main><!-- #main -->
 </div><!-- #primary -->
+
+<?php get_sidebar();
