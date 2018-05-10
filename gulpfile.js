@@ -155,7 +155,7 @@ gulp.task('zip', ['build'], function(){
 	versionString = '-' + versionString.replace(/\./g,'-');
 
 	return gulp.src('./')
-		.pipe(exec('cd ./../; rm -rf' + theme[0].toUpperCase() + theme.slice(1) + '*.zip; cd ./build/; zip -r -X ./../' + theme[0].toUpperCase() + theme.slice(1) + '-Installer' + versionString +'.zip ./; cd ./../; rm -rf build'));
+		.pipe(exec('cd ./../; rm -rf' + theme[0].toUpperCase() + theme.slice(1) + '*.zip; cd ./build/; zip -r -X ./../' + theme[0] + theme.slice(1) + '.zip ./; cd ./../; rm -rf build'));
 
 });
 
