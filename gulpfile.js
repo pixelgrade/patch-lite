@@ -1,4 +1,4 @@
-var theme = 'patch',
+var theme = 'patch-lite',
 	gulp 		= require('gulp'),
 	sass 		= require('gulp-sass'),
 	prefix 		= require('gulp-autoprefixer'),
@@ -27,7 +27,7 @@ jsFiles = [
 
 
 
-var theme_name = 'patch',
+var theme_name = 'patch-lite',
 	main_branch = 'self-hosted',
 	options = {
 		silent: true,
