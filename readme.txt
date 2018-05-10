@@ -33,4 +33,8 @@ Unless otherwise specified, all the theme files, scripts and images are licensed
 
 * Magnific Popup: script by Dmitry Semenov (http://dimsemenov.com/plugins/magnific-popup/), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
 
-* Images: images by Stefan Stefancik (https://www.pexels.com/@stefanstefancik) - [Source](https://www.pexels.com/photo/man-young-happy-smiling-91227/), Bruce Mars (https://www.pexels.com/@olly) - [Source](https://www.pexels.com/photo/women-s-white-and-black-button-up-collared-shirt-774909/), Pixabay (https://www.pexels.com/@pixabay) - [Source](https://www.pexels.com/photo/gray-scale-photography-of-woman-157886/), Docks (https://www.pexels.com/@docks-326745) - [Source](https://www.pexels.com/photo/person-holding-guitar-in-grayscale-photography-938975/), licensed under CC0 Public Domain.
+* Images: images by Nappy (https://www.pexels.com/@nappy) – [Source](https://www.pexels.com/photo/woman-wearing-pink-framed-aviator-sunglasses-935973/),
+Stefan Stefancik (https://www.pexels.com/@stefanstefancik) – [Source](https://www.pexels.com/photo/man-young-happy-smiling-91227/),
+Chris Peeters (https://www.pexels.com/@krizz59) – [Source](https://www.pexels.com/photo/speed-racing-speedway-racing-car-12801/),
+Chris Peeters (https://www.pexels.com/@krizz59) – [Source](https://www.pexels.com/photo/racing-car-racing-speedway-race-track-12789/),
+Tookapic (https://www.pexels.com/@tookapic) – [Source](https://www.pexels.com/photo/traffic-car-vehicle-speed-8775/)
