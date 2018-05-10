@@ -53,7 +53,7 @@ if ( post_password_required() ) {
 				 * to use patch_comment() to format the comments.
 				 * See patch_comment() in inc/extras.php for more.
 				 */
-				wp_list_comments( array( 'callback' => 'patch_comment', 'short_ping' => true ) ); ?>
+				wp_list_comments( array( 'callback' => 'patch_lite_comment', 'short_ping' => true ) ); ?>
 			</ol><!-- .commentlist -->
 
 			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>

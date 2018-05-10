@@ -6,7 +6,7 @@
  * @since Patch 1.0
  */
 
-if ( ! function_exists( 'patch_setup' ) ) :
+if ( ! function_exists( 'patch_lite_setup' ) ) :
 
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -15,7 +15,7 @@ if ( ! function_exists( 'patch_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function patch_setup() {
+	function patch_lite_setup() {
 
 		/*
 		 * Make theme available for translation.
@@ -23,7 +23,7 @@ if ( ! function_exists( 'patch_setup' ) ) :
 		 * If you're building a theme based on Patch, use a find and replace
 		 * to change 'patch' to the name of your theme in all the template files
 		 */
-		load_theme_textdomain( 'patch', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'patch-lite', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -87,10 +87,10 @@ if ( ! function_exists( 'patch_setup' ) ) :
 		 * Add editor custom style to make it look more like the frontend
 		 * Also enqueue the custom Google Fonts also
 		 */
-		add_editor_style( array( 'editor-style.css', patch_fonts_url() ) );
+		add_editor_style( array( 'editor-style.css', patch_lite_fonts_url() ) );
 	}
 endif;
-add_action( 'after_setup_theme', 'patch_setup' );
+add_action( 'after_setup_theme', 'patch_lite_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -99,10 +99,10 @@ add_action( 'after_setup_theme', 'patch_setup' );
  *
  * @global int $content_width
  */
-function patch_content_width() {
+function patch_lite_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'patch_content_width', 980, 0 );
 }
-add_action( 'after_setup_theme', 'patch_content_width', 0 );
+add_action( 'after_setup_theme', 'patch_lite_content_width', 0 );
 
 /**
  * Add custom image sizes attribute to enhance responsive image functionality
@@ -115,7 +115,7 @@ add_action( 'after_setup_theme', 'patch_content_width', 0 );
  *                      values in pixels (in that order).
  * @return string A source size value for use in a content image 'sizes' attribute.
  */
-function patch_content_image_sizes_attr( $sizes, $size ) {
+function patch_lite_content_image_sizes_attr( $sizes, $size ) {
 	$width = $size[0];
 
 	//only do this for single posts, not the archives
@@ -127,7 +127,7 @@ function patch_content_image_sizes_attr( $sizes, $size ) {
 
 	return $sizes;
 }
-add_filter( 'wp_calculate_image_sizes', 'patch_content_image_sizes_attr', 10 , 2 );
+add_filter( 'wp_calculate_image_sizes', 'patch_lite_content_image_sizes_attr', 10 , 2 );
 
 /**
  * Add custom image sizes attribute to enhance responsive image functionality
@@ -140,7 +140,7 @@ add_filter( 'wp_calculate_image_sizes', 'patch_content_image_sizes_attr', 10 , 2
  * @param array $size Registered image size or flat array of height and width dimensions.
  * @return array
  */
-function patch_post_thumbnail_sizes_attr( $attr, $attachment, $size ) {
+function patch_lite_post_thumbnail_sizes_attr( $attr, $attachment, $size ) {
 	//only do this for featured images, not all images
 	if ( 'post-thumbnail' === $size || 'patch-single-image' === $size ) {
 		$attr['sizes'] = '(max-width: 679px) 100vw, (max-width: 899px) 668px, (max-width: 1079px) 50vw, (max-width: 1259px) 620px, (max-width: 1449px) 66vw, 980px';
@@ -148,37 +148,37 @@ function patch_post_thumbnail_sizes_attr( $attr, $attachment, $size ) {
 
 	return $attr;
 }
-add_filter( 'wp_get_attachment_image_attributes', 'patch_post_thumbnail_sizes_attr', 10 , 3 );
+add_filter( 'wp_get_attachment_image_attributes', 'patch_lite_post_thumbnail_sizes_attr', 10 , 3 );
 
 /**
  * Enqueue scripts and styles.
  */
-function patch_scripts() {
+function patch_lite_scripts() {
 	//FontAwesome Stylesheet
-	wp_enqueue_style( 'patch-font-awesome-style', get_template_directory_uri() . '/assets/css/font-awesome.css', array(), '4.3.0' );
+	wp_enqueue_style( 'patch-lite-font-awesome-style', get_template_directory_uri() . '/assets/css/font-awesome.css', array(), '4.3.0' );
 
 	//Main Stylesheet
-	wp_enqueue_style( 'patch-style', get_template_directory_uri() . '/style.css', array( 'patch-font-awesome-style' ) );
+	wp_enqueue_style( 'patch-style', get_template_directory_uri() . '/style.css', array( 'patch-lite-font-awesome-style' ) );
 
 	//Default Fonts
-	wp_enqueue_style( 'patch-fonts', patch_fonts_url(), array(), null );
+	wp_enqueue_style( 'patch-fonts', patch_lite_fonts_url(), array(), null );
 
 	//Register ImagesLoaded plugin
-	wp_register_script( 'patch-imagesloaded', get_template_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
+	wp_register_script( 'patch-lite-imagesloaded', get_template_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
 
 	//Register Velocity.js plugin
-	wp_register_script( 'patch-velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.2.2', true );
+	wp_register_script( 'patch-lite-velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.2.2', true );
 
 	//Register Magnific Popup plugin
-	wp_register_script( 'patch-magnificpopup', get_template_directory_uri() . '/assets/js/magnificpopup.js', array(), '1.0.0', true );
+	wp_register_script( 'patch-lite-magnificpopup', get_template_directory_uri() . '/assets/js/magnificpopup.js', array(), '1.0.0', true );
 
 	//Enqueue Patch Custom Scripts
 	wp_enqueue_script( 'patch-scripts', get_template_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'masonry',
-		'patch-imagesloaded',
-		'patch-velocity',
-		'patch-magnificpopup',
+		'patch-lite-imagesloaded',
+		'patch-lite-velocity',
+		'patch-lite-magnificpopup',
 	), '1.3.4', true );
 
 	$js_url = ( is_ssl() ) ? 'https://v0.wordpress.com/js/videopress.js' : 'http://s0.videopress.com/js/videopress.js';
@@ -188,7 +188,7 @@ function patch_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'patch_scripts' );
+add_action( 'wp_enqueue_scripts', 'patch_lite_scripts' );
 
 /**
  * MB string functions for when the MB library is not available

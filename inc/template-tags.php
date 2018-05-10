@@ -622,7 +622,7 @@ if ( ! function_exists( 'patch_get_custom_excerpt' ) ) :
 		//the excerpt returned by WordPress
 		$excerpt = get_the_excerpt();
 		//now we try to truncate the default excerpt with the length = number of words * 6 - the average word length in English
-		$mb_excerpt = patch_truncate( $excerpt, ( apply_filters( 'excerpt_length', 55 ) * 6 ) );
+		$mb_excerpt = patch_lite_truncate( $excerpt, ( apply_filters( 'excerpt_length', 55 ) * 6 ) );
 
 		//if the multibyte excerpt's length is smaller then the regular excerpt's length divided by 1.8 (this is a conservative number)
 		//then it's quite clear that the default one is no good

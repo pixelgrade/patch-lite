@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<div id="posts" <?php patch_blog_class( '' ); ?>>
+<div id="posts" <?php patch_lite_blog_class( '' ); ?>>
 
 	<?php get_template_part( 'content', 'header' ); ?>
 

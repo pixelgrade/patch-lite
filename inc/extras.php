@@ -16,7 +16,7 @@
  * @param array $classes Classes for the body element.
  * @return array
  */
-function patch_body_classes( $classes ) {
+function patch_lite_body_classes( $classes ) {
 	global $wp_query;
 
 	// Adds a class of group-blog to blogs with more than 1 published author.
@@ -37,7 +37,7 @@ function patch_body_classes( $classes ) {
 	return $classes;
 }
 
-add_filter( 'body_class', 'patch_body_classes' );
+add_filter( 'body_class', 'patch_lite_body_classes' );
 
 /**
  * Extend the default WordPress post classes.
@@ -47,7 +47,7 @@ add_filter( 'body_class', 'patch_body_classes' );
  * @param array $classes A list of existing post class values.
  * @return array The filtered post class list.
  */
-function patch_post_classes( $classes ) {
+function patch_lite_post_classes( $classes ) {
 
 	if ( is_archive() || is_home() || is_search() ) {
 		$classes[] = 'entry-card  js-masonry-item';
@@ -88,9 +88,9 @@ function patch_post_classes( $classes ) {
 
 	return $classes;
 }
-add_filter( 'post_class', 'patch_post_classes', 10, 1 );
+add_filter( 'post_class', 'patch_lite_post_classes', 10, 1 );
 
-if ( ! function_exists( 'patch_fonts_url' ) ) :
+if ( ! function_exists( 'patch_lite_fonts_url' ) ) :
 
 	/**
 	 * Register Google fonts for Patch.
@@ -99,7 +99,7 @@ if ( ! function_exists( 'patch_fonts_url' ) ) :
 	 *
 	 * @return string Google fonts URL for the theme.
 	 */
-	function patch_fonts_url() {
+	function patch_lite_fonts_url() {
 		$fonts_url = '';
 		$fonts     = array();
 		$subsets   = 'latin,latin-ext';
@@ -145,14 +145,14 @@ if ( ! function_exists( 'patch_fonts_url' ) ) :
 
 endif;
 
-if ( ! function_exists( 'patch_comment' ) ) :
+if ( ! function_exists( 'patch_lite_comment' ) ) :
 
 	/**
 	 * Display individual comment layout
 	 *
 	 * @since Patch 1.0
 	 */
-	function patch_comment( $comment, $args, $depth ) {
+	function patch_lite_comment( $comment, $args, $depth ) {
 		static $comment_number;
 
 		if ( ! isset( $comment_number ) ) {
@@ -209,12 +209,12 @@ endif;
  * @param array $defaults
  * @return array
  */
-function patch_comment_form_remove_notes_after( $defaults ) {
+function patch_lite_comment_form_remove_notes_after( $defaults ) {
 	$defaults['comment_notes_after'] = '';
 
 	return $defaults;
 }
-add_filter( 'comment_form_defaults', 'patch_comment_form_remove_notes_after' );
+add_filter( 'comment_form_defaults', 'patch_lite_comment_form_remove_notes_after' );
 
 /**
  * Filter wp_link_pages to wrap current page in span.
@@ -224,35 +224,35 @@ add_filter( 'comment_form_defaults', 'patch_comment_form_remove_notes_after' );
  * @param string $link
  * @return string
  */
-function patch_link_pages( $link ) {
+function patch_lite_link_pages( $link ) {
 	if ( is_numeric( $link ) ) {
 		return '<span class="current">' . $link . '</span>';
 	}
 
 	return $link;
 }
-add_filter( 'wp_link_pages_link', 'patch_link_pages' );
+add_filter( 'wp_link_pages_link', 'patch_lite_link_pages' );
 
 /**
  * Wrap more link
  */
-function patch_read_more_link( $link ) {
+function patch_lite_read_more_link( $link ) {
 	return '<div class="more-link-wrapper">' . $link . '</div>';
 }
-add_filter( 'the_content_more_link', 'patch_read_more_link' );
+add_filter( 'the_content_more_link', 'patch_lite_read_more_link' );
 
 /**
  * Constrain the excerpt length to 35 words - about a medium sized excerpt
  */
-function patch_excerpt_length( $length ) {
+function patch_lite_excerpt_length( $length ) {
 	return 35;
 }
-add_filter( 'excerpt_length', 'patch_excerpt_length', 999 );
+add_filter( 'excerpt_length', 'patch_lite_excerpt_length', 999 );
 
 /**
  * Replace the submit input with button because the <input> tag doesn't allow CSS styling with ::before or ::after
  */
-function patch_search_form( $form ) {
+function patch_lite_search_form( $form ) {
 	$form = '<form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
 				<label>
 					<span class="screen-reader-text">' . _x( 'Search for:', 'label' , 'patch-lite' ) . '</span>
@@ -263,12 +263,12 @@ function patch_search_form( $form ) {
 
 	return $form;
 }
-add_filter( 'get_search_form', 'patch_search_form' );
+add_filter( 'get_search_form', 'patch_lite_search_form' );
 
 /**
  * When dealing with gallery post format, we need to strip the first gallery in the content since we show it at the top
  */
-function patch_strip_first_content_gallery( $content ) {
+function patch_lite_strip_first_content_gallery( $content ) {
 	if ( 'gallery' == get_post_format() ) {
 		$regex   = '/\[gallery.*]/';
 		$content = preg_replace( $regex, '', $content, 1 );
@@ -276,21 +276,21 @@ function patch_strip_first_content_gallery( $content ) {
 
 	return $content;
 }
-add_filter( 'the_content', 'patch_strip_first_content_gallery' );
+add_filter( 'the_content', 'patch_lite_strip_first_content_gallery' );
 
 /**
  * Add "Styles" drop-down
  */
-function patch_mce_editor_buttons( $buttons ) {
+function patch_lite_mce_editor_buttons( $buttons ) {
 	array_unshift( $buttons, 'styleselect' );
 	return $buttons;
 }
-add_filter( 'mce_buttons_2', 'patch_mce_editor_buttons' );
+add_filter( 'mce_buttons_2', 'patch_lite_mce_editor_buttons' );
 
 /**
  * Add styles/classes to the "Styles" drop-down
  */
-function patch_mce_before_init( $settings ) {
+function patch_lite_mce_before_init( $settings ) {
 	$style_formats = array(
 		array( 'title' => __( 'Intro Text', 'patch-lite' ), 'selector' => 'p', 'classes' => 'intro' ),
 		array( 'title' => __( 'Dropcap', 'patch-lite' ), 'inline' => 'span', 'classes' => 'dropcap' ),
@@ -304,13 +304,13 @@ function patch_mce_before_init( $settings ) {
 
 	return $settings;
 } #function
-add_filter( 'tiny_mce_before_init', 'patch_mce_before_init' );
+add_filter( 'tiny_mce_before_init', 'patch_lite_mce_before_init' );
 
 /*
  * Due to the fact that we need a wrapper for center aligned images and for the ones with alignnone, we need to wrap the images without a caption
  * The images with captions already are wrapped by the figure tag
  */
-function patch_wrap_images_in_figure( $content ) {
+function patch_lite_wrap_images_in_figure( $content ) {
 	$classes = array( 'aligncenter', 'alignnone' );
 
 	foreach ( $classes as $class ) {
@@ -334,7 +334,7 @@ function patch_wrap_images_in_figure( $content ) {
 
 	return $content;
 }
-add_filter( 'the_content', 'patch_wrap_images_in_figure' );
+add_filter( 'the_content', 'patch_lite_wrap_images_in_figure' );
 
 //We need to use a class so we can pass the $class variable to the callback function
 class PatchWrapImagesInFigureCallback {
@@ -353,11 +353,11 @@ class PatchWrapImagesInFigureCallback {
 	}
 }
 
-function patch_allow_skype_protocol( $protocols ) {
+function patch_lite_allow_skype_protocol( $protocols ) {
 	$protocols[] = 'skype';
 	return $protocols;
 }
-add_filter( 'kses_allowed_protocols' , 'patch_allow_skype_protocol' );
+add_filter( 'kses_allowed_protocols' , 'patch_lite_allow_skype_protocol' );
 
 /**
  * This function was borrowed from CakePHP and adapted.
@@ -391,7 +391,7 @@ add_filter( 'kses_allowed_protocols' , 'patch_allow_skype_protocol' );
  * @return string Trimmed string.
  * @link http://book.cakephp.org/3.0/en/core-libraries/string.html#truncating-text
  */
-function patch_truncate($text, $length = 100, $options = array() ) {
+function patch_lite_truncate($text, $length = 100, $options = array() ) {
 	$default = array(
 		'ellipsis' => apply_filters('excerpt_more', '[…]' ),
 		'exact' => false,
@@ -496,7 +496,7 @@ function patch_truncate($text, $length = 100, $options = array() ) {
 	return $truncate;
 }
 
-function patch_add_classes_to_linked_images( $content ) {
+function patch_lite_add_classes_to_linked_images( $content ) {
 	$classes = 'img-link'; // can do multiple classes, separate with space
 
 	$patterns = array();
@@ -522,7 +522,7 @@ function patch_add_classes_to_linked_images( $content ) {
 
 	return $content;
 }
-add_filter('the_content', 'patch_add_classes_to_linked_images', 99, 1);
+add_filter('the_content', 'patch_lite_add_classes_to_linked_images', 99, 1);
 
 // This function should come from Customify, but we need to do our best to make things happen
 if ( ! function_exists( 'pixelgrade_option' ) ) {
@@ -630,7 +630,7 @@ if ( ! function_exists( 'pixelgrade_option' ) ) {
  *
  * @return array Array of classes.
  */
-function patch_get_blog_class( $class = '' ) {
+function patch_lite_get_blog_class( $class = '' ) {
 
 	$classes = array();
 
@@ -665,7 +665,7 @@ function patch_get_blog_class( $class = '' ) {
  * @param string|array $class Optional. One or more classes to add to the class list.
  * @param string|array $location Optional. The place (template) where the classes are displayed. This is a hint for filters.
  */
-function patch_blog_class( $class = '' ) {
+function patch_lite_blog_class( $class = '' ) {
 	// Separates classes with a single space, collates classes
-	echo 'class="' . join( ' ', patch_get_blog_class( $class ) ) . '"';
+	echo 'class="' . join( ' ', patch_lite_get_blog_class( $class ) ) . '"';
 }
