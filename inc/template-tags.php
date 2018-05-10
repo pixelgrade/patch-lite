@@ -457,7 +457,7 @@ if ( ! function_exists( 'patch_get_post_thumbnail_aspect_ratio_class' ) ) :
 	 * @return string Aspect ratio specific class.
 	 */
 	function patch_get_post_thumbnail_aspect_ratio_class( $post_id = null ) {
-		return '';
+		return 'square';
 	} #function
 
 endif;
