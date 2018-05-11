@@ -20,6 +20,11 @@ Patch Lite is a magazine-style theme with clean type, smart layouts and a design
 
 == Changelog ==
 
+= 1.0.1 =
+* Fixed Text Card spacing on archive
+* Smaller cards spacing on archive
+* Force Landscape layout on Single
+
 = 1.0.0 =
 * Initial release
 

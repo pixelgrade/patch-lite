@@ -6,7 +6,7 @@ Theme URI: https://demos.pixelgrade.com/patch-lite/
 Author: Pixelgrade
 Author URI: https://pixelgrade.com/
 Description: Patch Lite is a free magazine-style WordPress theme for writers who are keen to present their ideas with attitude.
-Version: 1.0.0
+Version: 1.0.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: patch-lite
@@ -2913,8 +2913,7 @@ button.mfp-arrow-right
 @media (min-width: 480px)
 {
     .rtl .entry-card.entry-card--portrait .entry-meta,
-    .rtl
-    .entry-card.entry-card--tall .entry-meta
+    .rtl .entry-card.entry-card--tall .entry-meta
     {
         padding-left: 12px;
     }
@@ -2956,8 +2955,7 @@ button.mfp-arrow-right
     .entry-card.entry-card--portrait,
     .entry-card.entry-card--tall,
     .rtl .entry-card.entry-card--portrait .entry-meta,
-    .rtl
-    .entry-card.entry-card--tall .entry-meta
+    .rtl .entry-card.entry-card--tall .entry-meta
     {
         margin-right: 0;
     }
@@ -3118,8 +3116,7 @@ button.mfp-arrow-right
 @media (min-width: 1450px)
 {
     .rtl .entry-card.entry-card--portrait .entry-meta,
-    .rtl
-    .entry-card.entry-card--tall .entry-meta
+    .rtl .entry-card.entry-card--tall .entry-meta
     {
         padding-left: 15px;
     }
@@ -3161,8 +3158,7 @@ button.mfp-arrow-right
     .entry-card.entry-card--portrait,
     .entry-card.entry-card--tall,
     .rtl .entry-card.entry-card--portrait .entry-meta,
-    .rtl
-    .entry-card.entry-card--tall .entry-meta
+    .rtl .entry-card.entry-card--tall .entry-meta
     {
         margin-right: 0;
     }
@@ -4191,7 +4187,7 @@ button.mfp-arrow-right
     outline: 0;
     background: none;
 
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
     /* For some Androids */
 }
