@@ -6,7 +6,10 @@ Description: An algorithmic design experiment that cleverly imagines the best la
 Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 4.9.6
 Tags: blog, custom-menu, editor-style, featured-images, one-column, rtl-language-support, sticky-post, threaded-comments, three-columns, translation-ready, two-columns
+Patch Lite WordPress Theme, Copyright 2018 by Pixelgrade
+Patch Lite is distributed under the terms of the GNU General Public License v2
 
 == Description ==
 
@@ -19,6 +22,12 @@ Patch Lite is a magazine-style theme with clean type, smart layouts and a design
 3. Click Activate to use your new theme right away.
 
 == Changelog ==
+
+= 1.0.2 =
+* Tested the theme with WordPress 4.9.6
+* Defined the theme license in a different format
+* Refactored the function names
+* Added script licenses
 
 = 1.0.1 =
 * Fixed Text Card spacing on archive
@@ -37,6 +46,16 @@ Unless otherwise specified, all the theme files, scripts and images are licensed
 * imagesLoaded.js: script by David DeSandro (http://masonry.desandro.com), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
 
 * Magnific Popup: script by Dmitry Semenov (http://dimsemenov.com/plugins/magnific-popup/), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
+
+* Hybrid Media Grabber: script by Justin Tadlock (http://themehybrid.com/hybrid-core), licensed under [GPLv2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+
+* Font Awesome: font by Dave Gandy (http://fontawesome.io/), licensed under [SIL OFL 1.1](http://fontawesome.io/), CSS released under the [MIT License](http://opensource.org/licenses/mit-license.html).
+
+* debouncedresize: script by Louis-Rémi Babé (https://github.com/louisremi/jquery-smartresize), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
+
+* FitText.js: script by Dave Rupert (https://github.com/davatron5000/FitText.js), licensed under the [WTFPL license](http://www.wtfpl.net/txt/copying/).
+
+* requestAnimationFrame polyfill: script by Erik Möller (https://gist.github.com/paulirish/1579671), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
 
 * Images: images by Nappy (https://www.pexels.com/@nappy) – [Source](https://www.pexels.com/photo/woman-wearing-pink-framed-aviator-sunglasses-935973/),
 Stefan Stefancik (https://www.pexels.com/@stefanstefancik) – [Source](https://www.pexels.com/photo/man-young-happy-smiling-91227/),

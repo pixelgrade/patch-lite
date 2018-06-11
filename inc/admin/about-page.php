@@ -5,7 +5,7 @@
  * @package Patch Lite
  */
 
-function patchlite_admin_setup() {
+function patch_lite_admin_setup() {
 	/**
 	 * Load the About page class
 	 */
@@ -201,4 +201,4 @@ function patchlite_admin_setup() {
 	);
 	TI_About_Page::init( $config );
 }
-add_action('after_setup_theme', 'patchlite_admin_setup');
+add_action('after_setup_theme', 'patch_lite_admin_setup' );
