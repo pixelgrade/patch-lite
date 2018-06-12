@@ -23,6 +23,9 @@ Patch Lite is a magazine-style theme with clean type, smart layouts and a design
 
 == Changelog ==
 
+= 1.0.3 =
+* Refactored sections and controls ids
+
 = 1.0.2 =
 * Tested the theme with WordPress 4.9.6
 * Defined the theme license in a different format
