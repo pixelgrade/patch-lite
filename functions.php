@@ -209,6 +209,47 @@ function patch_lite_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'patch_lite_scripts' );
 
+
+/**
+ * Freemius Integration
+ */
+// Create a helper function for easy SDK access.
+function patchlitefreemius() {
+    global $patchlitefreemius;
+
+    if ( ! isset( $patchlitefreemius ) ) {
+        // Include Freemius SDK.
+        require_once dirname(__FILE__) . '/freemius/start.php';
+
+        $patchlitefreemius = fs_dynamic_init( array(
+            'id'                  => '2216',
+            'slug'                => 'patch-lite',
+            'type'                => 'theme',
+            'public_key'          => 'pk_1689bcde9c6dbd09683191af23796',
+            'is_premium'          => false,
+            'has_addons'          => false,
+            'has_paid_plans'      => false,
+            'menu'                => array(
+                'slug'           => 'patch-lite-welcome',
+                'account'        => false,
+                'contact'        => false,
+                'support'        => false,
+                'parent'         => array(
+                    'slug' => 'themes.php',
+                ),
+            ),
+        ) );
+    }
+
+    return $patchlitefreemius;
+}
+
+// Init Freemius.
+patchlitefreemius();
+// Signal that SDK was initiated.
+do_action( 'patchlitefreemius_loaded' );
+
+
 /**
  * MB string functions for when the MB library is not available
  */
