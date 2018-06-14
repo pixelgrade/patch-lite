@@ -794,9 +794,12 @@ img
     }
 }
 .archive__grid .aligncenter,
-.archive__grid .alignnone,
-.archive__grid .alignleft,
-.archive__grid .alignright
+.archive__grid
+  .alignnone,
+.archive__grid
+  .alignleft,
+.archive__grid
+  .alignright
 {
     margin-bottom: 0;
 }
@@ -804,18 +807,30 @@ img
 .blog .aligncenter,
 .archive .aligncenter,
 .search .aligncenter,
-.widget .alignnone,
-.blog .alignnone,
-.archive .alignnone,
-.search .alignnone,
-.widget .alignleft,
-.blog .alignleft,
-.archive .alignleft,
-.search .alignleft,
-.widget .alignright,
-.blog .alignright,
-.archive .alignright,
-.search .alignright
+.widget
+  .alignnone,
+.blog
+  .alignnone,
+.archive
+  .alignnone,
+.search
+  .alignnone,
+.widget
+  .alignleft,
+.blog
+  .alignleft,
+.archive
+  .alignleft,
+.search
+  .alignleft,
+.widget
+  .alignright,
+.blog
+  .alignright,
+.archive
+  .alignright,
+.search
+  .alignright
 {
     margin: 0;
 }
@@ -864,7 +879,6 @@ img
     margin: 0 auto;
 }
 
-
 .alignleft,
 .wp-caption.alignleft,
 .alignright,
@@ -897,7 +911,6 @@ p > :first-child > .alignright:first-child
     margin-top: 0;
 }
 
-
 .alignleft,
 .wp-caption.alignleft
 {
@@ -913,7 +926,6 @@ p > :first-child > .alignright:first-child
         margin-left: -72px;
     }
 }
-
 
 .alignright,
 .wp-caption.alignright
@@ -938,7 +950,6 @@ p > :first-child > .alignright:first-child
     {
         margin-right: 1.05rem;
     }
-
     .alignright,
     .wp-caption.alignright
     {

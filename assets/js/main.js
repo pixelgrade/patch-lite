@@ -267,6 +267,7 @@ if (!Date.now)
 
             init = function() {
 
+                // For mobile devices we will not use masonry
                 if (windowWidth < 900) {
                     evenClasses();
                     $container.imagesLoaded(function() {
@@ -318,8 +319,13 @@ if (!Date.now)
                     return;
                 }
 
+                // For mobile devices we will not use masonry
                 if (windowWidth < 900) {
-                    $container.masonry('destroy');
+                    // Only attempt to destroy if masonry was initialized first
+                    if ($container.data('masonry')) {
+                        $container.masonry('destroy');
+                    }
+
                     initialized = false;
                     evenClasses();
                     return;
