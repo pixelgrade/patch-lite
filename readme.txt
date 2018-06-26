@@ -3,7 +3,7 @@ Theme URI: https://pixelgrade.com/themes/patch-lite/
 Author: Pixelgrade
 Author URI: https://pixelgrade.com
 Description: An algorithmic design experiment that cleverly imagines the best layout for your content. Patch brings unity and balance to your beautiful crafted diversity.
-Version: 1.0.0
+Version: 1.0.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 4.9.6
@@ -13,7 +13,7 @@ Patch Lite is distributed under the terms of the GNU General Public License v2
 
 == Description ==
 
-Patch Lite is a magazine-style theme with clean type, smart layouts and a design flexibility that makes it perfect for publishers of all kinds. Whether you’re looking to share your own thoughts, write about your latest findings, or create a scrapbook of other content, Hive fits the bill.
+Patch Lite is a free magazine WordPress theme for publishers who are keen to present their ideas in style. The adaptive layout adjusts to a wide range of content types to highlight the attitude of the creator and bring out the best in the spotlight. An easy-to-use WordPress theme for anyone who loves writing stories and to drive engagement around them.
 
 == Installation ==
 
@@ -22,6 +22,9 @@ Patch Lite is a magazine-style theme with clean type, smart layouts and a design
 3. Click Activate to use your new theme right away.
 
 == Changelog ==
+
+= 1.0.5 =
+* Updated the theme description
 
 = 1.0.4 =
 * Added Freemius
