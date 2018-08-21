@@ -3,7 +3,7 @@ Theme URI: https://pixelgrade.com/themes/patch-lite/
 Author: Pixelgrade
 Author URI: https://pixelgrade.com
 Description: An algorithmic design experiment that cleverly imagines the best layout for your content. Patch brings unity and balance to your beautiful crafted diversity.
-Version: 1.0.5
+Version: 1.0.7
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 4.9.6
@@ -22,6 +22,9 @@ Patch Lite is a free magazine WordPress theme for publishers who are keen to pre
 3. Click Activate to use your new theme right away.
 
 == Changelog ==
+
+= 1.0.7 =
+* Added WPForms recommended plugin
 
 = 1.0.6 =
 * Fixed the header on mobile devices
