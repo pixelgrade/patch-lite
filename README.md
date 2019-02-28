@@ -13,6 +13,9 @@ Patch Lite is a free magazine WordPress theme for publishers who are keen to pre
 
 ## Changelog
 
+= 1.0.8 =
+* Fixed a security issue
+
 = 1.0.7 =
 * Added WPForms recommended plugin
 
