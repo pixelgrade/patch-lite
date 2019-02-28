@@ -40,6 +40,7 @@ gulp.task('styles', function () {
 			.pipe(prefix("last 1 version", "> 1%"))
 			//.pipe(cmq())
 			.pipe(csscomb())
+      .pipe( replace(/^@charset \'UTF-8\';\n/gm, '' ) )
 			.pipe(gulp.dest('./', {"mode": "0644"}));
 });
 
