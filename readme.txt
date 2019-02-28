@@ -6,7 +6,7 @@ Description: An algorithmic design experiment that cleverly imagines the best la
 Version: 1.0.8
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tested up to: 4.9.6
+Tested up to: 5.1
 Tags: blog, custom-menu, editor-style, featured-images, one-column, rtl-language-support, sticky-post, threaded-comments, three-columns, translation-ready, two-columns
 Patch Lite WordPress Theme, Copyright 2018 by Pixelgrade
 Patch Lite is distributed under the terms of the GNU General Public License v2
