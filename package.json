@@ -1,21 +1,21 @@
 {
     "name": "patch-lite",
     "devDependencies": {
-        "gulp": "*",
-        "gulp-sass": "*",
-        "gulp-ruby-sass": "*",
+        "del": "*",
+        "gulp": "^3.9.1",
         "gulp-autoprefixer": "*",
-        "gulp-minify-css": "*",
+        "gulp-beautify": "*",
+        "gulp-combine-media-queries": "*",
+        "gulp-concat": "*",
+        "gulp-csscomb": "*",
+        "gulp-exec": "*",
         "gulp-ignore": "*",
         "gulp-livereload": "*",
+        "gulp-minify-css": "*",
         "gulp-notify": "*",
-        "gulp-concat": "*",
-        "gulp-exec": "*",
+        "gulp-prompt": "^0.2.0",
         "gulp-replace": "*",
-        "gulp-beautify": "*",
-        "gulp-csscomb": "*",
-        "gulp-combine-media-queries": "*",
-        "del": "*",
-        "gulp-prompt": "^0.2.0"
+        "gulp-ruby-sass": "*",
+        "gulp-sass": "*"
     }
 }
