@@ -671,3 +671,24 @@ function patch_lite_blog_class( $class = '' ) {
 	// Separates classes with a single space, collates classes
 	echo 'class="' . join( ' ', patch_lite_get_blog_class( $class ) ) . '"';
 }
+
+/**
+ * Handle the WUpdates theme identification.
+ *
+ * @param array $ids
+ *
+ * @return array
+ */
+function patch_wupdates_add_id_wporg( $ids = array() ) {
+
+	// First get the theme directory name (unique)
+	$slug = basename( get_template_directory() );
+
+	// Now add the predefined details about this product
+	// Do not tamper with these please!!!
+	$ids[ $slug ] = array( 'name' => 'Patch Lite', 'slug' => 'patch-lite', 'id' => 'JlplJ', 'type' => 'theme_wporg', 'digest' => '0a2fa70d299fe681be62598895762f4e', );
+
+	return $ids;
+}
+// The 5 priority is intentional to allow for pro to overwrite.
+add_filter( 'wupdates_gather_ids', 'patch_wupdates_add_id_wporg', 5, 1 );
