@@ -209,47 +209,6 @@ function patch_lite_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'patch_lite_scripts' );
 
-
-/**
- * Freemius Integration
- */
-// Create a helper function for easy SDK access.
-function patchlitefreemius() {
-    global $patchlitefreemius;
-
-    if ( ! isset( $patchlitefreemius ) ) {
-        // Include Freemius SDK.
-        require_once dirname(__FILE__) . '/freemius/start.php';
-
-        $patchlitefreemius = fs_dynamic_init( array(
-            'id'                  => '2216',
-            'slug'                => 'patch-lite',
-            'type'                => 'theme',
-            'public_key'          => 'pk_1689bcde9c6dbd09683191af23796',
-            'is_premium'          => false,
-            'has_addons'          => false,
-            'has_paid_plans'      => false,
-            'menu'                => array(
-                'slug'           => 'patch-lite-welcome',
-                'account'        => false,
-                'contact'        => false,
-                'support'        => false,
-                'parent'         => array(
-                    'slug' => 'themes.php',
-                ),
-            ),
-        ) );
-    }
-
-    return $patchlitefreemius;
-}
-
-// Init Freemius.
-patchlitefreemius();
-// Signal that SDK was initiated.
-do_action( 'patchlitefreemius_loaded' );
-
-
 /**
  * MB string functions for when the MB library is not available
  */
@@ -276,74 +235,6 @@ require get_template_directory() . '/inc/hybrid-media-grabber.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
- * Theme About page.
+ * Admin dashboard logic.
  */
-require get_template_directory() . '/inc/admin/about-page.php';
-
-require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
-
-add_action( 'tgmpa_register', 'patch_lite_register_required_plugins' );
-
-/**
- * Register the required plugins for this theme.
- *
- * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
- */
-function patch_lite_register_required_plugins() {
-	/*
-	 * Array of plugin arrays. Required keys are name and slug.
-	 * If the source is NOT from the .org repo, then source is also required.
-	 */
-	$plugins = array(
-		array(
-			'name'      => 'WPForms Lite',
-			'slug'      => 'wpforms-lite',
-			'required'  => false,
-		),
-	);
-
-	/*
-	 * Array of configuration settings. Amend each line as needed.
-	 */
-	$config = array(
-		'id'           => 'patch-lite',                 // Unique ID for hashing notices for multiple instances of TGMPA.
-		'default_path' => '',                      // Default absolute path to bundled plugins.
-		'menu'         => 'tgmpa-install-plugins', // Menu slug.
-		'has_notices'  => true,                    // Show admin notices or not.
-		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
-		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
-		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
-		'message'      => '',                      // Message to output right before the plugins table.
-	);
-
-	tgmpa( $plugins, $config );
-}
-
-/**
- * Set the WPForms ShareASale ID.
- *
- * @param string $shareasale_id The the default ShareASale ID.
- *
- * @return string $shareasale_id
- */
-function patch_lite_wpforms_shareasale_id( $shareasale_id ) {
-
-	// If this WordPress installation already has an WPForms ShareASale ID
-	// specified, use that.
-	if ( ! empty( $shareasale_id ) ) {
-		return $shareasale_id;
-	}
-
-	// Define the ShareASale ID to use.
-	$shareasale_id = '1843354';
-
-	// This WordPress installation doesn't have an ShareASale ID specified, so
-	// set the default ID in the WordPress options and use that.
-	update_option( 'wpforms_shareasale_id', $shareasale_id );
-
-	// Return the ShareASale ID.
-	return $shareasale_id;
-}
-add_filter( 'wpforms_shareasale_id', 'patch_lite_wpforms_shareasale_id' );
-
-?>
+require get_template_directory() . '/inc/admin/admin.php';

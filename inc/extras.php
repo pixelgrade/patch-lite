@@ -680,13 +680,12 @@ function patch_lite_blog_class( $class = '' ) {
  * @return array
  */
 function patch_wupdates_add_id_wporg( $ids = array() ) {
-
 	// First get the theme directory name (unique)
 	$slug = basename( get_template_directory() );
 
 	// Now add the predefined details about this product
 	// Do not tamper with these please!!!
-	$ids[ $slug ] = array( 'name' => 'Patch Lite', 'slug' => 'patch-lite', 'id' => 'JlplJ', 'type' => 'theme_wporg', 'digest' => '0a2fa70d299fe681be62598895762f4e', );
+	$ids[ $slug ] = array( 'name' => 'Patch', 'slug' => 'patch', 'id' => 'JlplJ', 'type' => 'theme_wporg', 'digest' => '2cca7558817fabd57b2f24f853366b5a', );
 
 	return $ids;
 }
