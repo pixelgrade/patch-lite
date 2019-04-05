@@ -1,9 +1,16 @@
 (function ($) {
 	$(document).ready(function () {
 		var temp_url = wp.ajax.settings.url,
-			$noticeContainer = $('.pixcare-notice__container'),
-			$button = $noticeContainer.find('.js-handle-pixcare'),
-			$status = $noticeContainer.find('.js-plugin-message');
+			$noticeContainer = $( '.pixcare-notice__container' ),
+			$button = $noticeContainer.find( '.js-handle-pixcare' ),
+			$text = $noticeContainer.find( '.pixcare-notice-button__text' ),
+			$status = $noticeContainer.find( '.js-plugin-message' ),
+			buttonBox;
+
+		if ( $button.length ) {
+			buttonBox = $button[0].getBoundingClientRect();
+			$button.css( 'width', buttonBox.right - buttonBox.left );
+		}
 
 		$button.on('click', function() {
 			let installedSuccessfully = -1,
@@ -13,20 +20,21 @@
 				folderAlreadyExists = -1
 
 			// Put the button in a loading state
+			$button.css( 'width', $button.parent().width() );
 			$button.addClass('state--plugin-installing').prop('disabled', true);
 
 			/*
 			 * We need to determine what to do first, install or activate.
 			 */
 			if ( pixcareNotice.status === 'missing' ) {
-				$button.html(pixcareNotice.i18n.btnInstalling);
+				$text.html(pixcareNotice.i18n.btnInstalling);
 				wp.ajax.settings.url = pixcareNotice.installUrl;
 			} else if ( pixcareNotice.status === 'installed' ) {
-				$button.html(pixcareNotice.i18n.btnActivating);
+				$text.html(pixcareNotice.i18n.btnActivating);
 				wp.ajax.settings.url = pixcareNotice.activateUrl;
 			}
 
-			wp.a11y.speak($button.html());
+			wp.a11y.speak($text.html());
 
 			wp.ajax.send({type: 'GET'}).always(function (response) {
 				installedSuccessfully = -1
@@ -49,10 +57,12 @@
 					 * We need to activate the plugin
 					 */
 
-					$button.html(pixcareNotice.i18n.btnActivating);
+					$text.html(pixcareNotice.i18n.btnActivating);
 					wp.a11y.speak(pixcareNotice.i18n.btnActivating);
 
 					wp.ajax.settings.url = pixcareNotice.activateUrl;
+
+					$button.removeClass( 'state--plugin-installing' ).addClass( 'state--plugin-activating' );
 
 					wp.ajax.send({type: 'GET'}).always(function (response) {
 						activatedSuccessfully = -1
@@ -66,14 +76,17 @@
 						if (activatedSuccessfully !== -1 || noActionTaken !== -1) {
 							wp.a11y.speak(pixcareNotice.i18n.activatedSuccessfully);
 
-							$button.html(pixcareNotice.i18n.btnRedirectingToSetup);
+							$text.html(pixcareNotice.i18n.btnRedirectingToSetup);
 							wp.a11y.speak(pixcareNotice.i18n.redirectingToSetup);
+
+							$button.removeClass( 'state--plugin-activating' ).addClass( 'state--plugin-redirecting' );
+
 							setTimeout(function () {
 								window.location.href = pixcareNotice.pixcareSetupUrl;
 							}, 2000);
 						} else {
-							$button.removeClass('state--plugin-installing state--neutral').addClass('state--plugin-invalidated state--error');
-							$button.html(pixcareNotice.i18n.btnError);
+							$button.removeClass( 'state--plugin-activating' ).addClass( 'state--plugin-invalidated' );
+							$text.html(pixcareNotice.i18n.btnError);
 
 							$status.html(pixcareNotice.i18n.error);
 
@@ -86,14 +99,14 @@
 				} else if (folderAlreadyExists !== -1 || activatedSuccessfully !== -1 || noActionTaken !== -1) {
 					wp.a11y.speak(pixcareNotice.i18n.activatedSuccessfully);
 
-					$button.html(pixcareNotice.i18n.btnRedirectingToSetup);
+					$text.html(pixcareNotice.i18n.btnRedirectingToSetup);
 					wp.a11y.speak(pixcareNotice.i18n.redirectingToSetup);
 					setTimeout(function () {
 						window.location.href = pixcareNotice.pixcareSetupUrl;
 					}, 2000);
 				} else {
-					$button.removeClass('state--plugin-installing state--neutral').addClass('state--plugin-invalidated state--error');
-					$button.html(pixcareNotice.i18n.btnError);
+					$button.removeClass( 'state--plugin-activating' ).addClass( 'state--plugin-invalidated' );
+					$text.html(pixcareNotice.i18n.btnError);
 
 					$status.html(pixcareNotice.i18n.error);
 

@@ -28,11 +28,6 @@ function patch_lite_register_required_plugins() {
 			'is_automatic'       => false,
 		),
 		array(
-			'name'      => 'Contact Form Builder for WordPress – Conversion Tools by HubSpot',
-			'slug'      => 'leadin',
-			'required'  => false,
-		),
-		array(
 			'name'      => 'WPForms Lite',
 			'slug'      => 'wpforms-lite',
 			'required'  => false,

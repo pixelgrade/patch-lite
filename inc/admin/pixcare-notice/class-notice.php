@@ -1,6 +1,6 @@
 <?php
 /**
- * Pixelgrade Care notice logic.
+ * Pixelgrade Care install/activate notice class.
  *
  * @package Felt
  */
@@ -96,16 +96,18 @@ class PixelgradeCare_Install_Notice {
 
 				<div class="pixcare-notice__wrap">
 					<div class="pixcare-notice__media">
-						<?php
-						$theme = wp_get_theme();
-						$parent = $theme->parent();
-						if ( $parent ) {
-							$theme = $parent;
-						}
-						$screenshot = $theme->get_screenshot();
-						if ( $screenshot ) { ?>
-							<img src="<?php echo $screenshot; ?>" alt="Theme screenshot">
-						<?php } ?>
+                        <div class="pixcare-notice__screenshot">
+                            <?php
+                            $theme = wp_get_theme();
+                            $parent = $theme->parent();
+                            if ( $parent ) {
+                                $theme = $parent;
+                            }
+                            $screenshot = $theme->get_screenshot();
+                            if ( $screenshot ) { ?>
+                                <img src="<?php echo $screenshot; ?>" alt="Theme screenshot">
+                            <?php } ?>
+                        </div>
 					</div>
 					<div class="pixcare-notice__body">
 						<h1><?php echo wp_kses( sprintf( __( 'Thanks for installing %s, you\'re awesome!<br>Let\'s make an experience out of it.', '__theme_txtd' ),  $theme->get( 'Name' ) ), wp_kses_allowed_html('post') ); ?></h1>
@@ -122,7 +124,12 @@ class PixelgradeCare_Install_Notice {
 							</li>
 						</ul>
 						<div class="message js-plugin-message"></div>
-						<button class="pixcare-notice-button js-handle-pixcare"><?php echo $button_text ?></button>
+						<button class="pixcare-notice-button js-handle-pixcare">
+                            <span class="pixcare-notice-button__text"><?php echo $button_text ?></span>
+                            <span class="pixcare-notice-button__overlay">
+                                <span class="pixcare-notice-button__text"><?php echo $button_text ?></span>
+                            </span>
+                        </button>
 
 						<noscript>
 							<button type="submit" class="notice-dismiss"><span class="screen-reader-text"><?php esc_html_e( 'Dismiss this notice.', '__theme_txtd' ); ?></span></button>
@@ -136,12 +143,12 @@ class PixelgradeCare_Install_Notice {
 	}
 
 	public function outputCSS() {
-		wp_register_style( 'pixcare_notice_css', pixelgrade_get_parent_theme_file_uri( pixelgrade_get_theme_relative_path( __DIR__ ) . 'notice.css' ), false );
+		wp_register_style( 'pixcare_notice_css', $this->get_parent_theme_file_uri( $this->get_theme_relative_path( __DIR__ ) . 'notice.css' ), false );
 		wp_enqueue_style( 'pixcare_notice_css' );
 	}
 
 	public function outputJS() {
-		wp_register_script( 'pixcare_notice_js', pixelgrade_get_parent_theme_file_uri( pixelgrade_get_theme_relative_path( __DIR__ ) . 'notice.js' ), array( 'jquery') );
+		wp_register_script( 'pixcare_notice_js', $this->get_parent_theme_file_uri( $this->get_theme_relative_path( __DIR__ ) . 'notice.js' ), array( 'jquery') );
 		wp_enqueue_script( 'pixcare_notice_js' );
 
 		$install_url = wp_nonce_url(
@@ -193,12 +200,12 @@ class PixelgradeCare_Install_Notice {
 				'btnActivate' => esc_html__( 'Activate the Pixelgrade Care&reg; plugin', '__theme_txtd' ),
 				'btnActivating' => esc_html__( 'Activating Pixelgrade Care&reg;...', '__theme_txtd' ),
 				'btnRedirectingToSetup' => esc_html__( 'Opening the Pixelgrade Care&reg; setup...', '__theme_txtd' ),
-				'btnError' => esc_html__( 'Please refresh...', '__theme_txtd' ),
+				'btnError' => esc_html__( 'Please refresh the page 🙏 and try again...', '__theme_txtd' ),
 				'installedSuccessfully' => esc_html__( 'Plugin installed successfully.', '__theme_txtd' ),
 				'activatedSuccessfully' => esc_html__( 'Plugin activated successfully.', '__theme_txtd' ),
 				'redirectingToSetup' => esc_html__( 'Opening the Pixelgrade Care&reg; setup in a couple of seconds.', '__theme_txtd' ),
 				'folderAlreadyExists' => esc_html__( 'Plugin destination folder already exists.', '__theme_txtd' ),
-				'error' => esc_html__( 'Truly sorry 😢 Something went wrong. Please refresh the page 🙏 and try again...', '__theme_txtd' ),
+				'error' => esc_html__( 'We are truly sorry 😢 Something went wrong and we couldn\'t make sense of it and continue with the plugin setup.', '__theme_txtd' ),
 			),
 		) );
 	}
@@ -227,6 +234,55 @@ class PixelgradeCare_Install_Notice {
 	public function cleanup() {
 		// If the theme is about to be deactivated, we want to clear the notice dismissal so next time it is active, it will show.
 		set_theme_mod( 'pixcare_install_notice_dismissed', false );
+	}
+
+	/**
+	 * Get the relative theme path of a given absolute path. In case the given path is not absolute, it is returned as received.
+	 *
+	 * @param $path string An absolute path.
+	 *
+	 * @return string A path relative to the current theme directory, without ./ in front.
+	 */
+	protected function get_theme_relative_path( $path ) {
+		if ( empty( $path ) ) {
+			return '';
+		}
+
+		$path = str_replace( trailingslashit( get_template_directory() ), '', $path );
+
+		return trailingslashit( $path );
+	}
+
+	/**
+	 * Retrieves the URL of a file in the parent theme.
+	 *
+	 * It will use the new function in WP 4.7, but will fallback to the old way of doing things otherwise.
+	 *
+	 * @param string $file Optional. File to return the URL for in the template directory.
+	 * @return string The URL of the file.
+	 */
+	protected function get_parent_theme_file_uri( $file = '' ) {
+		if ( function_exists( 'get_parent_theme_file_uri' ) ) {
+			return get_parent_theme_file_uri( $file );
+		} else {
+			$file = ltrim( $file, '/' );
+
+			if ( empty( $file ) ) {
+				$url = get_template_directory_uri();
+			} else {
+				$url = get_template_directory_uri() . '/' . $file;
+			}
+
+			/**
+			 * Filters the URL to a file in the parent theme.
+			 *
+			 * @since 4.7.0
+			 *
+			 * @param string $url The file URL.
+			 * @param string $file The requested file to search for.
+			 */
+			return apply_filters( 'parent_theme_file_uri', $url, $file );
+		}
 	}
 
 	public static function init() {

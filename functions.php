@@ -225,6 +225,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/extras.php';
 
 /**
+ * Load the required plugins (TGMPA) logic.
+ */
+require get_template_directory() . '/inc/required-plugins.php';
+
+/**
  * Load the Hybrid Media Grabber class
  */
 require get_template_directory() . '/inc/hybrid-media-grabber.php';
