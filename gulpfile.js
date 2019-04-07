@@ -1,6 +1,7 @@
-var gulp = require('gulp-help')(require('gulp')),
+var gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')(),
-	del = require('del');
+	del = require('del'),
+	fs = require('fs');
 
 var u = plugins.util,
 	c = plugins.util.colors,
@@ -55,6 +56,12 @@ function stylesWatch() {
 	return gulp.watch('assets/scss/**/*.scss', stylesMain);
 }
 gulp.task('styles-watch', stylesWatch);
+
+function stylesSequence(cb) {
+	return gulp.series( 'styles-main', 'styles-rtl' )(cb);
+}
+stylesSequence.description = 'Compile the styles and generate RTL version.';
+gulp.task( 'styles', stylesSequence  );
 
 
 /*
@@ -119,6 +126,7 @@ function removeUnneededFiles(done) {
 		'config.rb',
 		'gulpfile.js',
 		'package.json',
+		'package-lock.json',
 		'pxg.json',
 		'build',
 		'css',
@@ -140,15 +148,21 @@ function removeUnneededFiles(done) {
 		'README.md',
 		'.labels',
 		'.circleci',
+		'.csscomb',
+		'.csscomb.json',
+		'.codeclimate.yml',
+		'tests',
+		'.jscsrc',
+		'.jshintignore',
+		'browserslist',
+		'babel.config.js'
 	];
 
 	files_to_remove.forEach(function (e, k) {
 		files_to_remove[k] = '../build/' + theme + '/' + e;
 	});
 
-	del.sync(files_to_remove, {force: true});
-
-	done();
+	return del(files_to_remove, {force: true});
 }
 gulp.task( 'remove-files', removeUnneededFiles );
 
@@ -180,9 +194,9 @@ function createZipFile(){
 
 	// Right now we create a zip without the version information in the name.
 	return gulp.src('./')
-		.pipe(exec('cd ./../; rm -rf' + theme[0].toUpperCase() + theme.slice(1) + '*.zip; cd ./build/; zip -r -X ./../' + theme[0] + theme.slice(1) + '.zip ./; cd ./../; rm -rf build'));
+		.pipe(plugins.exec('cd ./../; rm -rf ' + theme + '*.zip; cd ./build/; zip -r -X ./../' + theme + '.zip ./; cd ./../; rm -rf build'));
 	// return gulp.src('./')
-	// 	.pipe(exec('cd ./../; rm -rf' + theme[0].toUpperCase() + theme.slice(1) + '*.zip; cd ./build/; zip -r -X ./../' + theme[0] + theme.slice(1) + versionString + '.zip ./; cd ./../; rm -rf build'));
+	// 	.pipe(exec('cd ./../; rm -rf' + theme[0].toUpperCase() + theme.slice(1) + '*.zip; cd ./build/; zip -r -X ./../' + theme[0].toUpperCase() + theme.slice(1) + versionString + '.zip ./; cd ./../; rm -rf build'));
 
 }
 gulp.task( 'make-zip', createZipFile );
@@ -246,7 +260,7 @@ gulp.task('update-demo', updateDemoInstall);
 /**
  * Short commands help
  */
-function help() {
+function help(done) {
 
 	var $help = '\nCommands available : \n \n' +
 		'=== General Commands === \n' +
@@ -266,5 +280,6 @@ function help() {
 
 	console.log($help);
 
+	done();
 }
 gulp.task('help', help);
