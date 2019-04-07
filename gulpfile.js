@@ -37,7 +37,7 @@ function stylesMain() {
 		.pipe(plugins.autoprefixer())
 		.pipe(plugins.sourcemaps.write('.'))
 		.pipe(plugins.replace(/^@charset \"UTF-8\";\n/gm, ''))
-		.pipe(gulp.dest('.', {"mode": "0644"}))
+		.pipe(gulp.dest('./', {mode: "0644"}))
 }
 stylesMain.description = 'Compiles main css files (ie. style.css editor-style.css)';
 gulp.task('styles-main', stylesMain);
@@ -46,9 +46,9 @@ function stylesRTL() {
 	return gulp.src('style.css')
 		.pipe(plugins.rtlcss())
 		.pipe(plugins.rename('style-rtl.css'))
-		.pipe(gulp.dest('.', {"mode": "0644"}))
+		.pipe(gulp.dest('.', {mode: "0644"}))
 }
-stylesRTL.description = 'Generate rtl.css file based on style.css';
+stylesRTL.description = 'Generate style-rtl.css file based on style.css';
 gulp.task('styles-rtl', stylesRTL)
 
 function stylesWatch() {
@@ -167,6 +167,18 @@ function removeUnneededFiles(done) {
 gulp.task( 'remove-files', removeUnneededFiles );
 
 /**
+ * Copy theme folder outside in a build folder, recreate styles before that
+ */
+function maybeFixBuildPermissions() {
+	var dir = process.cwd();
+	return gulp.src( './*' )
+		// Make sure that file and directory permissions are right
+		.pipe(plugins.exec('find ./../build -type d -exec chmod 755 {} \\;'))
+		.pipe(plugins.exec(' find ./../build -type f -exec chmod 644 {} \\;'));
+}
+gulp.task( 'fix-build-permissions', maybeFixBuildPermissions );
+
+/**
  * Create a zip archive out of the cleaned folder and delete the folder
  */
 function createZipFile(){
@@ -208,7 +220,7 @@ buildSequence.description = 'Sets up the build folder';
 gulp.task( 'build', buildSequence );
 
 function zipSequence(cb) {
-	return gulp.series( 'build', 'make-zip' )(cb);
+	return gulp.series( 'build', 'fix-build-permissions', 'make-zip' )(cb);
 }
 zipSequence.description = 'Creates the zip file';
 gulp.task( 'zip', zipSequence  );
