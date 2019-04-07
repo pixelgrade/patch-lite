@@ -201,7 +201,7 @@ function patch_lite_scripts() {
 		'patch-lite-imagesloaded',
 		'patch-lite-velocity',
 		'patch-lite-magnificpopup',
-	), '1.3.4', true );
+	), $theme->get( 'Version' ), true );
 
 	$js_url = ( is_ssl() ) ? 'https://v0.wordpress.com/js/videopress.js' : 'http://s0.videopress.com/js/videopress.js';
 	wp_enqueue_script( 'videopress', $js_url, array( 'jquery', 'swfobject' ), '1.09' );
