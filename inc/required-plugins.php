@@ -35,7 +35,7 @@ function patch_lite_register_required_plugins() {
 	);
 
 	$config = array(
-		'domain'           => 'patch-lite', // Text domain - likely want to be the same as your theme.
+		'domain'           => '__theme_txtd', // Text domain - likely want to be the same as your theme.
 		'default_path'     => '', // Default absolute path to pre-packaged plugins
 		'menu'             => 'install-required-plugins', // Menu slug
 		'has_notices'      => true, // Show admin notices or not
