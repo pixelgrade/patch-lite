@@ -1,21 +1,17 @@
-var theme = 'patch-lite',
-	gulp 		= require('gulp'),
-	sass 		= require('gulp-sass'),
-	prefix 		= require('gulp-autoprefixer'),
-	exec 		= require('gulp-exec'),
-	replace 	= require('gulp-replace'),
-	del         = require('del'),
-	minify 		= require('gulp-minify-css'),
-	livereload 	= require('gulp-livereload'),
-	concat 		= require('gulp-concat'),
-	notify 		= require('gulp-notify'),
-	beautify 	= require('gulp-beautify'),
-	csscomb 	= require('gulp-csscomb'),
-	cmq 		= require('gulp-combine-media-queries'),
-	prompt		= require('gulp-prompt'),
-	fs          = require('fs');
+var gulp = require('gulp-help')(require('gulp')),
+	plugins = require('gulp-load-plugins')(),
+	del = require('del');
 
-jsFiles = [
+var u = plugins.util,
+	c = plugins.util.colors,
+	log = plugins.util.log
+
+function logError (err, res) {
+	log(c.red('Sass failed to compile'))
+	log(c.red('> ') + err.file.split('/')[err.file.split('/').length - 1] + ' ' + c.underline('line ' + err.line) + ': ' + err.message)
+}
+
+var jsFiles = [
 	'./assets/js/vendor/*.js',
 	'./assets/js/main/wrapper_start.js',
 	'./assets/js/main/shared_vars.js',
@@ -25,72 +21,96 @@ jsFiles = [
 	'./assets/js/main/wrapper_end.js'
 ];
 
-
-
 var theme_name = 'patch-lite',
+	theme = theme_name,
 	main_branch = 'self-hosted',
 	options = {
 		silent: true,
 		continueOnError: true // default: false
 	};
 
-gulp.task('styles', function () {
+function stylesMain() {
 	return gulp.src('assets/scss/**/*.scss')
-			.pipe(sass({'sourcemap=auto': true, style: 'expanded'}))
-			.pipe(prefix("last 1 version", "> 1%"))
-			//.pipe(cmq())
-			.pipe(csscomb())
-      .pipe( replace(/^@charset \'UTF-8\';\n/gm, '' ) )
-			.pipe(gulp.dest('./', {"mode": "0644"}));
-});
+		.pipe(plugins.sourcemaps.init())
+		.pipe(plugins.sass({'sourcemap=auto': true, style: 'expanded'}).on('error', logError))
+		.pipe(plugins.autoprefixer())
+		.pipe(plugins.sourcemaps.write('.'))
+		.pipe(plugins.replace(/^@charset \"UTF-8\";\n/gm, ''))
+		.pipe(gulp.dest('.', {"mode": "0644"}))
+}
+stylesMain.description = 'Compiles main css files (ie. style.css editor-style.css)';
+gulp.task('styles-main', stylesMain);
 
-gulp.task('styles-watch', function () {
-	livereload.listen();
-	return gulp.watch('assets/scss/**/*.scss', ['styles']);
-});
+function stylesRTL() {
+	return gulp.src('style.css')
+		.pipe(plugins.rtlcss())
+		.pipe(plugins.rename('style-rtl.css'))
+		.pipe(gulp.dest('.', {"mode": "0644"}))
+}
+stylesRTL.description = 'Generate rtl.css file based on style.css';
+gulp.task('styles-rtl', stylesRTL)
+
+function stylesWatch() {
+	plugins.livereload.listen();
+	return gulp.watch('assets/scss/**/*.scss', stylesMain);
+}
+gulp.task('styles-watch', stylesWatch);
 
 
-// javascript stuff
-gulp.task('scripts', function () {
+/*
+ * javascript stuff
+ */
+
+function scripts() {
 	return gulp.src(jsFiles)
-		.pipe(concat('main.js'))
-		.pipe(beautify({indentSize: 2}))
+		.pipe(plugins.concat('main.js'))
+		.pipe(plugins.beautify({indentSize: 2}))
 		.pipe(gulp.dest('./assets/js/', {"mode": "0644"}));
-});
+}
+gulp.task('scripts', scripts);
 
-gulp.task('scripts-watch', function () {
-	livereload.listen();
-	return gulp.watch('assets/js/**/*.js', ['scripts']);
-});
+function scriptsWatch() {
+	plugins.livereload.listen();
+	return gulp.watch('assets/js/**/*.js', scripts);
+}
+gulp.task('scripts-watch', scriptsWatch);
 
-gulp.task('watch', function () {
-	gulp.watch('assets/scss/**/*.scss', ['styles']);
-	gulp.watch('assets/js/**/*.js', ['scripts']);
-});
-
-// usually there is a default task for lazy people who just wanna type gulp
-gulp.task('start', ['styles', 'scripts'], function () {
-	// silence
-});
-
-gulp.task('server', ['styles', 'scripts'], function () {
-	console.log('The styles and scripts have been compiled for production! Go and clear the caches!');
-});
+function watch() {
+	gulp.watch('assets/scss/**/*.scss', stylesMain);
+	gulp.watch('assets/js/**/*.js', scripts);
+}
+gulp.task('watch', watch);
 
 
 /**
  * Copy theme folder outside in a build folder, recreate styles before that
  */
-gulp.task('copy-folder', function () {
-
-	return gulp.src('./')
-		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/' + theme + '; rsync -av --exclude="node_modules" ./* ./../build/' + theme + '/', options));
-});
+function copyFolder() {
+	var dir = process.cwd();
+	return gulp.src( './*' )
+		.pipe( plugins.exec( 'rm -Rf ./../build; mkdir -p ./../build/' + theme + ';', {
+			silent: true,
+			continueOnError: true // default: false
+		} ) )
+		.pipe( plugins.rsync({
+			root: dir,
+			destination: '../build/' + theme + '/',
+			// archive: true,
+			progress: false,
+			silent: false,
+			compress: false,
+			recursive: true,
+			emptyDirectories: true,
+			clean: true,
+			exclude: ['node_modules']
+		}));
+}
+gulp.task( 'copy-folder', copyFolder );
 
 /**
  * Clean the folder of unneeded files and folders
  */
-gulp.task('build', ['copy-folder'], function () {
+function removeUnneededFiles(done) {
 
 	// files that should not be present in build
 	files_to_remove = [
@@ -119,20 +139,23 @@ gulp.task('build', ['copy-folder'], function () {
 		'circle_scripts',
 		'README.md',
 		'.labels',
-        '.circleci',
+		'.circleci',
 	];
 
 	files_to_remove.forEach(function (e, k) {
 		files_to_remove[k] = '../build/' + theme + '/' + e;
 	});
 
-	return del.sync(files_to_remove, {force: true});
-});
+	del.sync(files_to_remove, {force: true});
+
+	done();
+}
+gulp.task( 'remove-files', removeUnneededFiles );
 
 /**
  * Create a zip archive out of the cleaned folder and delete the folder
  */
-gulp.task('zip', ['build'], function(){
+function createZipFile(){
 
 	var versionString = '';
 	//get theme version from styles.css
@@ -155,24 +178,34 @@ gulp.task('zip', ['build'], function(){
 	versionString = versionLine[0].replace(/^[Vv]ersion:/, '' ).trim();
 	versionString = '-' + versionString.replace(/\./g,'-');
 
+	// Right now we create a zip without the version information in the name.
 	return gulp.src('./')
 		.pipe(exec('cd ./../; rm -rf' + theme[0].toUpperCase() + theme.slice(1) + '*.zip; cd ./build/; zip -r -X ./../' + theme[0] + theme.slice(1) + '.zip ./; cd ./../; rm -rf build'));
+	// return gulp.src('./')
+	// 	.pipe(exec('cd ./../; rm -rf' + theme[0].toUpperCase() + theme.slice(1) + '*.zip; cd ./build/; zip -r -X ./../' + theme[0] + theme.slice(1) + versionString + '.zip ./; cd ./../; rm -rf build'));
 
-});
+}
+gulp.task( 'make-zip', createZipFile );
 
-// usually there is a default task  for lazy people who just wanna type gulp
-gulp.task('default', ['start'], function () {
-	// silence
-});
+function buildSequence(cb) {
+	return gulp.series( 'copy-folder', 'remove-files' )(cb);
+}
+buildSequence.description = 'Sets up the build folder';
+gulp.task( 'build', buildSequence );
 
+function zipSequence(cb) {
+	return gulp.series( 'build', 'make-zip' )(cb);
+}
+zipSequence.description = 'Creates the zip file';
+gulp.task( 'zip', zipSequence  );
 
-gulp.task('update-demo', function () {
+function updateDemoInstall() {
 
 	var run_exec = require('child_process').exec;
 
 	gulp.src('./')
-		.pipe(prompt.confirm( "This task will stash all your local changes without commiting them,\n Make sure you did all your commits and pushes to the main " + main_branch + " branch! \n Are you sure you want to continue?!? "))
-		.pipe(prompt.prompt({
+		.pipe(plugins.prompt.confirm( "This task will stash all your local changes without commiting them,\n Make sure you did all your commits and pushes to the main " + main_branch + " branch! \n Are you sure you want to continue?!? "))
+		.pipe(plugins.prompt.prompt({
 			type: 'list',
 			name: 'demo_update',
 			message: 'Which demo would you like to update?',
@@ -206,22 +239,24 @@ gulp.task('update-demo', function () {
 				return true;
 			}
 		}));
-});
+}
+gulp.task('update-demo', updateDemoInstall);
 
 
 /**
  * Short commands help
  */
-gulp.task('help', function () {
+function help() {
 
 	var $help = '\nCommands available : \n \n' +
 		'=== General Commands === \n' +
 		'start              (default)Compiles all styles and scripts and makes the theme ready to start \n' +
 		'zip               	Generate the zip archive \n' +
-		'build						  Generate the build directory with the cleaned theme \n' +
+		'build				Generate the build directory with the cleaned theme \n' +
 		'help               Print all commands \n' +
 		'=== Style === \n' +
-		'styles             Compiles styles in production mode\n' +
+		'styles-main        Compiles styles in production mode\n' +
+		'styles-rtl         Compiles RTL styles in production mode\n' +
 		'=== Scripts === \n' +
 		'scripts            Concatenate all js scripts \n' +
 		'=== Watchers === \n' +
@@ -231,4 +266,5 @@ gulp.task('help', function () {
 
 	console.log($help);
 
-});
+}
+gulp.task('help', help);
