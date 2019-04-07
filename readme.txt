@@ -3,12 +3,12 @@ Theme URI: https://pixelgrade.com/themes/patch-lite/
 Author: Pixelgrade
 Author URI: https://pixelgrade.com
 Description: An algorithmic design experiment that cleverly imagines the best layout for your content. Patch brings unity and balance to your beautiful crafted diversity.
-Version: 1.0.8
+Version: 1.1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tested up to: 5.1
+Tested up to: 5.1.1
 Tags: blog, custom-menu, editor-style, featured-images, one-column, rtl-language-support, sticky-post, threaded-comments, three-columns, translation-ready, two-columns
-Patch Lite WordPress Theme, Copyright 2018 by Pixelgrade
+Patch Lite WordPress Theme, Copyright 2018-2019 by Pixelgrade
 Patch Lite is distributed under the terms of the GNU General Public License v2
 
 == Description ==
@@ -22,6 +22,9 @@ Patch Lite is a free magazine WordPress theme for publishers who are keen to pre
 3. Click Activate to use your new theme right away.
 
 == Changelog ==
+
+= 1.1.0 =
+* Improved the overall onboarding experience with the theme and introduced a dedicated help tool.
 
 = 1.0.8 =
 * Fixed a security issue

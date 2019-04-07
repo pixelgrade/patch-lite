@@ -193,7 +193,7 @@
 			return;
 		} elseif ( empty( $dismiss_user ) || ( is_numeric( $dismiss_user ) && $dismiss_user < 2  ) ) {
 
-			$value = $dismiss_user + 1;
+			$value = absint($dismiss_user) + 1;
 			update_user_meta( get_current_user_id(), 'patch_lite_upgrade_dismissed_notice', $value );
 			return;
 		}

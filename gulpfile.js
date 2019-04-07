@@ -178,6 +178,17 @@ function maybeFixBuildPermissions() {
 }
 gulp.task( 'fix-build-permissions', maybeFixBuildPermissions );
 
+// -----------------------------------------------------------------------------
+// Replace the themes' text domain with the actual text domain (think variations)
+// -----------------------------------------------------------------------------
+function replaceThemeTextdomainPlaceholder() {
+
+	return gulp.src( '../build/' + theme + '/**/*.php' )
+		.pipe( plugins.replace( /['|"]__theme_txtd['|"]/g, '\'' + theme + '\'' ) )
+		.pipe( gulp.dest( '../build/' + theme ) );
+}
+gulp.task( 'txtdomain-replace', replaceThemeTextdomainPlaceholder);
+
 /**
  * Create a zip archive out of the cleaned folder and delete the folder
  */
@@ -214,13 +225,13 @@ function createZipFile(){
 gulp.task( 'make-zip', createZipFile );
 
 function buildSequence(cb) {
-	return gulp.series( 'copy-folder', 'remove-files' )(cb);
+	return gulp.series( 'copy-folder', 'remove-files', 'fix-build-permissions', 'txtdomain-replace' )(cb);
 }
 buildSequence.description = 'Sets up the build folder';
 gulp.task( 'build', buildSequence );
 
 function zipSequence(cb) {
-	return gulp.series( 'build', 'fix-build-permissions', 'make-zip' )(cb);
+	return gulp.series( 'build', 'make-zip' )(cb);
 }
 zipSequence.description = 'Creates the zip file';
 gulp.task( 'zip', zipSequence  );
