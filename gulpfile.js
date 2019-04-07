@@ -24,7 +24,7 @@ var jsFiles = [
 
 var theme_name = 'patch-lite',
 	theme = theme_name,
-	main_branch = 'self-hosted',
+	main_branch = 'master',
 	options = {
 		silent: true,
 		continueOnError: true // default: false
