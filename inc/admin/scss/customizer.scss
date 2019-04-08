@@ -6,7 +6,10 @@ $button-bg-color: #8E65C0;
 
 /* Label for Viw Pro Customizer Section */
 
-[id*="pro__section"] {
+[id*="pro__section"],
+[id*="patch_lite_colors"],
+[id*="patch_lite_fonts"],
+[id*="patch_lite_style_presets"] {
   .accordion-section-title:before {
     position: absolute;
     right: 30px;

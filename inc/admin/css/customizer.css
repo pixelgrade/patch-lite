@@ -1,5 +1,8 @@
 /* Label for Viw Pro Customizer Section */
-[id*="pro__section"] .accordion-section-title:before {
+[id*="pro__section"] .accordion-section-title:before,
+[id*="patch_lite_colors"] .accordion-section-title:before,
+[id*="patch_lite_fonts"] .accordion-section-title:before,
+[id*="patch_lite_style_presets"] .accordion-section-title:before {
   position: absolute;
   right: 30px;
   content: "pro";
