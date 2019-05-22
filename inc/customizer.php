@@ -31,6 +31,7 @@ function patch_lite_customize_register( $wp_customize ) {
 		'title'       => '' . esc_html__( 'View PRO Version', 'patch-lite' ),
 		'priority'    => 2,
 		'description' => sprintf(
+			/* translators: %s: The theme pro link. */
 			__( '<div class="upsell-container">
 					<h2>Need More? Go PRO</h2>
 					<p>Take it to the next level. See the features below:</p>
@@ -42,7 +43,7 @@ function patch_lite_customize_register( $wp_customize ) {
 
                             <li>
                             	<h4>Post Formats</h4>
-                            	<div class="description">Make room for a wide range of post formats to pack your engaging stories so that people will enjoy sharing. Text, image, video, audio—you name it, and you’re covered.</div>
+                            	<div class="description">Make room for a wide range of post formats to pack your engaging stories so that people will enjoy sharing. Text, image, video, audio—you name it, and you\'re covered.</div>
                             </li>
 
                             <li>

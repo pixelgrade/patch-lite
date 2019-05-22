@@ -157,18 +157,20 @@ if ( ! function_exists( 'patch_lite_comment' ) ) :
 		} ?>
 	<li <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
 		<article id="comment-<?php comment_ID() ?>" class="comment-article  media">
-			<span class="comment-number"><?php echo $comment_number ?></span>
+			<span class="comment-number"><?php echo esc_html( $comment_number ); ?></span>
 
 			<div class="media__body">
 				<header class="comment__meta comment-author">
 					<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
 					<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
-						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %1$s at %1$s', 'patch-lite' ), get_comment_date(), get_comment_time() ); ?> </a>
+						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php
+							/* translators: %1$s: The comment date, %2$s: The comment time.  */
+							printf( esc_html__( 'on %1$s at %2$s', 'patch-lite' ), esc_html( get_comment_date() ), esc_html( get_comment_time() ) ); ?> </a>
 					</time>
 					<div class="comment__links">
 						<?php
 						//we need some space before Edit
-						edit_comment_link( __( 'Edit', 'patch-lite' ) );
+						edit_comment_link( esc_html__( 'Edit', 'patch-lite' ) );
 
 						comment_reply_link( array_merge( $args, array(
 							'depth'     => $depth,
@@ -180,7 +182,7 @@ if ( ! function_exists( 'patch_lite_comment' ) ) :
 				<!-- .comment-meta -->
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<div class="alert info">
-						<p><?php _e( 'Your comment is awaiting moderation.', 'patch-lite' ) ?></p>
+						<p><?php esc_html_e( 'Your comment is awaiting moderation.', 'patch-lite' ) ?></p>
 					</div>
 				<?php endif; ?>
 				<section class="comment__content comment">

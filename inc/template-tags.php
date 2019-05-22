@@ -655,8 +655,8 @@ if ( ! function_exists( 'patch_lite_post_excerpt' ) ) :
 
 		// when we encounter a read more tag, we respect that and forget about doing anything automatic
 		if ( $has_more ) {
-			/* translators: %s: Name of current post */
 			the_content( sprintf(
+				/* translators: %s: Name of current post */
 				esc_html__( 'Continue reading %s', 'patch-lite' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );
@@ -691,8 +691,8 @@ function patch_lite_get_post_excerpt( $post_id = null ) {
 	$has_more = strpos( $post->post_content, '<!--more' );
 
 	if ( $has_more ) {
-		/* translators: %s: Name of current post */
 		$excerpt = get_the_content( sprintf(
+			/* translators: %s: Name of current post */
 			esc_html__( 'Continue reading %s', 'patch-lite' ),
 			the_title( '<span class="screen-reader-text">', '</span>', false )
 		) );
@@ -1033,6 +1033,7 @@ if ( ! function_exists( 'patch_lite_footer_get_copyright_content' ) ) {
 	 * @return bool|string
 	 */
 	function patch_lite_footer_get_copyright_content() {
+		/* translators: %year%: The current year, %site-title%: The site title. */
 		$copyright_text = pixelgrade_option( 'patch_footer_copyright_text', esc_html__( '&copy; %year% %site-title%.', 'patch-lite' ) );
 		if ( ! empty( $copyright_text ) ) {
 			// We need to parse some tags
