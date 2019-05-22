@@ -68,87 +68,8 @@ function patch_lite_customize_register( $wp_customize ) {
 		'section' => 'pro__section',
 		'type'    => 'hidden',
 	) );
-
-
-	// Style Presets
-	$wp_customize->add_section( 'patch_lite_style_presets', array(
-		'title'       => '&#x1f3ad; ' . esc_html__( 'Style Presets', 'patch-lite' ),
-		'priority'    => 29,
-		'description' => sprintf(
-			__( '<p>%s provides you hand-crafted style presets so that you never go out of trends and add some real value to the full package. You can instantly achieve a different visual approach and level up the users interest. </p><p> Our designer did his best to carefully match the colors and fonts so that you can easily refresh the overall style of your website.</p>', 'patch-lite' ),
-			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( patch_lite_get_pro_link() ), esc_html__( 'Patch Pro', 'patch-lite' ) )
-		),
-	) );
-
-	$wp_customize->add_setting( 'patch_lite_style_presets_desc', array(
-		'default'           => '',
-		'sanitize_callback' => 'patch_lite_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'patch_lite_style_presets_desc', array(
-		'section' => 'patch_lite_style_presets',
-		'type'    => 'hidden',
-	) );
-
-
-	// Colors
-	$wp_customize->add_section( 'patch_lite_colors', array(
-		'title'       => '&#x1f3a8; ' . esc_html__( 'Colors', 'patch-lite' ),
-		'priority'    => 30,
-		'description' => sprintf(
-			__( '<p>Play around with colors that fits your vision, your mood or both of them. You can smoothly make a design twist to quickly catch your wide preferences.</p><p>%s to switch colors and fonts in order to nurture your visual approach.</p>', 'patch-lite' ),
-			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( patch_lite_get_pro_link() ), esc_html__( 'Upgrade to Patch Pro', 'patch-lite' )
-			)
-		),
-	) );
-
-	$wp_customize->add_setting( 'patch_lite_colors_desc', array(
-		'default'           => '',
-		'sanitize_callback' => 'patch_lite_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'patch_lite_colors_desc', array(
-		'section' => 'patch_lite_colors',
-		'type'    => 'hidden',
-	) );
-
-	// Fonts
-	$wp_customize->add_section( 'patch_lite_fonts', array(
-		'title'       => '&#x1f4dd; ' . esc_html__( 'Fonts', 'patch-lite' ),
-		'priority'    => 31,
-		'description' => sprintf(
-			__( '<p>Typography can make it or break it. %s gives you a generous playground to match your needs in terms of fonts and sizes.</p><p>You have full-access to 600+ Google Fonts to mingle with for fine-tuning your style.', 'patch-lite' ),
-			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( patch_lite_get_pro_link() ), esc_html__( 'Patch Pro', 'patch-lite' )
-			)
-		),
-	) );
-
-
-	$wp_customize->add_setting( 'patch_lite_fonts_desc', array(
-		'default'           => '',
-		'sanitize_callback' => 'patch_lite_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'patch_lite_fonts_desc', array(
-		'section' => 'patch_lite_fonts',
-		'type'    => 'hidden',
-	) );
-
 }
-
 add_action( 'customize_register', 'patch_lite_customize_register', 15 );
-
-/**
- * Sanitize the checkbox.
- *
- * @param boolean $input .
- *
- * @return boolean true if is 1 or '1', false if anything else
- */
-function patch_lite_sanitize_checkbox( $input ) {
-	if ( 1 == $input ) {
-		return true;
-	} else {
-		return false;
-	}
-}
 
 /**
  * Sanitize the Site Title Outline value.
@@ -189,5 +110,4 @@ function patch_lite_add_customify_options( $config ) {
 
 	return $config;
 }
-
 add_filter( 'customify_filter_fields', 'patch_lite_add_customify_options' );

@@ -2,8 +2,7 @@
 /**
  * The template for displaying image attachments
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,12 +22,14 @@ get_header(); ?>
 
 			<?php get_template_part( 'content', 'attachment' ); ?>
 
-			<?php patch_the_image_navigation(); ?>
+			<?php patch_lite_the_image_navigation(); ?>
 
 			<div class="entry-content">
 				<nav class="nav-links">
 					<a href="<?php echo esc_url( get_permalink( wp_get_post_parent_id( get_the_ID() ) ) ); ?>">
-						<?php echo sprintf( _x( 'Posted in %s', 'attachment parent post', 'patch-lite' ), get_the_title( wp_get_post_parent_id( get_the_ID() ) ) ); ?>
+						<?php
+						/* translators: %s: The post title. */
+						echo sprintf( esc_html_x( 'Posted in %s', 'attachment parent post', 'patch-lite' ), esc_html( get_the_title( wp_get_post_parent_id( get_the_ID() ) ) ) ); ?>
 					</a>
 				</nav>
 			</div>

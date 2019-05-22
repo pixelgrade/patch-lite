@@ -7,8 +7,7 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

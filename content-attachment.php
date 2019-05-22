@@ -4,8 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -44,11 +43,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		the_content();
 
 		wp_link_pages( array(
-			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'patch-lite' ),
+			'before' => '<div class="page-links"><span class="pagination-title">' . esc_html__( 'Pages:', 'patch-lite' ),
 			'after'  => '</span></div>',
 			'link_before' => '<span>',
 			'link_after'  => '</span>',
-			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'patch-lite' ) . ' </span>%',
+			'pagelink'    => '<span class="screen-reader-text">' . esc_html__( 'Page', 'patch-lite' ) . ' </span>%',
 			'separator'   => '<span class="screen-reader-text">, </span>',
 		) );
 		?>
@@ -56,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<footer class="entry-footer">
 
-		<?php edit_post_link( __( 'Edit', 'patch-lite' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( esc_html__( 'Edit', 'patch-lite' ), '<span class="edit-link">', '</span>' ); ?>
 
 	</footer><!-- .entry-footer -->
 

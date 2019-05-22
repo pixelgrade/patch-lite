@@ -4,14 +4,11 @@
  *
  * Eventually, some of the functionality here could be replaced by core features
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 /**
  * Adds custom classes to the array of body classes.
- *
- * @since Patch 1.0
  *
  * @param array $classes Classes for the body element.
  * @return array
@@ -46,8 +43,6 @@ add_filter( 'body_class', 'patch_lite_body_classes' );
 /**
  * Extend the default WordPress post classes.
  *
- * @since Patch 1.0
- *
  * @param array $classes A list of existing post class values.
  * @return array The filtered post class list.
  */
@@ -63,7 +58,7 @@ function patch_lite_post_classes( $classes ) {
 			if ( is_singular() ) {
 				$classes[] = 'entry-image--landscape';
 			} else {
-				$classes[] = 'entry-card--' . patch_get_post_thumbnail_aspect_ratio_class();
+				$classes[] = 'entry-card--' . patch_lite_get_post_thumbnail_aspect_ratio_class();
 			}
 		}
 	} else {
@@ -98,8 +93,6 @@ if ( ! function_exists( 'patch_lite_fonts_url' ) ) :
 
 	/**
 	 * Register Google fonts for Patch.
-	 *
-	 * @since Patch 1.0
 	 *
 	 * @return string Google fonts URL for the theme.
 	 */
@@ -153,8 +146,6 @@ if ( ! function_exists( 'patch_lite_comment' ) ) :
 
 	/**
 	 * Display individual comment layout
-	 *
-	 * @since Patch 1.0
 	 */
 	function patch_lite_comment( $comment, $args, $depth ) {
 		static $comment_number;
@@ -206,8 +197,6 @@ endif;
 /**
  * Filter comment_form_defaults to remove the notes after the comment form textarea.
  *
- * @since Patch 1.0
- *
  * @param array $defaults
  * @return array
  */
@@ -220,8 +209,6 @@ add_filter( 'comment_form_defaults', 'patch_lite_comment_form_remove_notes_after
 
 /**
  * Filter wp_link_pages to wrap current page in span.
- *
- * @since Patch 1.0
  *
  * @param string $link
  * @return string
@@ -294,12 +281,12 @@ add_filter( 'mce_buttons_2', 'patch_lite_mce_editor_buttons' );
  */
 function patch_lite_mce_before_init( $settings ) {
 	$style_formats = array(
-		array( 'title' => __( 'Intro Text', 'patch-lite' ), 'selector' => 'p', 'classes' => 'intro' ),
-		array( 'title' => __( 'Dropcap', 'patch-lite' ), 'inline' => 'span', 'classes' => 'dropcap' ),
-		array( 'title' => __( 'Highlight', 'patch-lite' ), 'inline' => 'span', 'classes' => 'highlight' ),
-		array( 'title' => __( 'Pull Left', 'patch-lite' ), 'selector' => 'p', 'classes' => 'pull-left', 'wrapper' => true ),
-		array( 'title' => __( 'Pull Right', 'patch-lite' ), 'selector' => 'p', 'classes' => 'pull-right', 'wrapper' => true ),
-		array( 'title' => __( 'Two Columns', 'patch-lite' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
+		array( 'title' => esc_html__( 'Intro Text', 'patch-lite' ), 'selector' => 'p', 'classes' => 'intro' ),
+		array( 'title' => esc_html__( 'Dropcap', 'patch-lite' ), 'inline' => 'span', 'classes' => 'dropcap' ),
+		array( 'title' => esc_html__( 'Highlight', 'patch-lite' ), 'inline' => 'span', 'classes' => 'highlight' ),
+		array( 'title' => esc_html__( 'Pull Left', 'patch-lite' ), 'selector' => 'p', 'classes' => 'pull-left', 'wrapper' => true ),
+		array( 'title' => esc_html__( 'Pull Right', 'patch-lite' ), 'selector' => 'p', 'classes' => 'pull-right', 'wrapper' => true ),
+		array( 'title' => esc_html__( 'Two Columns', 'patch-lite' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
 	);
 
 	$settings['style_formats'] = json_encode( $style_formats );
@@ -639,7 +626,7 @@ function patch_lite_get_blog_class( $class = '' ) {
 	$classes[] = 'grid';
 
 	// items per row
-	$items_per_row = intval( pixelgrade_option( "blog_items_per_row", 4 ) );
+	$items_per_row = intval( pixelgrade_option( 'blog_items_per_row', 4 ) );
 	$items_per_row_at_desk = min( max($items_per_row - 1, 1), 4);
 	$items_per_row_at_lap = min( max($items_per_row - 2, 1), 3);
 	$items_per_row_class = "grid--" . $items_per_row . "col-@huge  grid--" . $items_per_row_at_desk . "col-@desk  grid--" . $items_per_row_at_lap . "col-@lap";
@@ -669,7 +656,7 @@ function patch_lite_get_blog_class( $class = '' ) {
  */
 function patch_lite_blog_class( $class = '' ) {
 	// Separates classes with a single space, collates classes
-	echo 'class="' . join( ' ', patch_lite_get_blog_class( $class ) ) . '"';
+	echo 'class="' . esc_attr( join( ' ', patch_lite_get_blog_class( $class ) ) ) . '"';
 }
 
 /**
@@ -679,7 +666,7 @@ function patch_lite_blog_class( $class = '' ) {
  *
  * @return array
  */
-function patch_wupdates_add_id_wporg( $ids = array() ) {
+function patch_lite_wupdates_add_id_wporg( $ids = array() ) {
 	// First get the theme directory name (unique)
 	$slug = basename( get_template_directory() );
 
@@ -690,4 +677,23 @@ function patch_wupdates_add_id_wporg( $ids = array() ) {
 	return $ids;
 }
 // The 5 priority is intentional to allow for pro to overwrite.
-add_filter( 'wupdates_gather_ids', 'patch_wupdates_add_id_wporg', 5, 1 );
+add_filter( 'wupdates_gather_ids', 'patch_lite_wupdates_add_id_wporg', 5, 1 );
+
+/**
+ * Fix skip link focus in IE11.
+ *
+ * This does not enqueue the script because it is tiny and because it is only for IE11,
+ * thus it does not warrant having an entire dedicated blocking script being loaded.
+ *
+ * @link https://git.io/vWdr2
+ */
+function patch_lite_skip_link_focus_fix() {
+	// The following is minified via `terser --compress --mangle -- js/skip-link-focus-fix.js`.
+	?>
+	<script>
+		/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+	</script>
+	<?php
+}
+// We will put this script inline since it is so small.
+add_action( 'wp_print_footer_scripts', 'patch_lite_skip_link_focus_fix' );

@@ -2,8 +2,7 @@
 /**
  * The sidebar containing the main widget area.
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

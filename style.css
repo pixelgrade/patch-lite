@@ -1,17 +1,16 @@
 /*
 Theme Name: Patch Lite
-Theme URI: https://demos.pixelgrade.com/patch-lite/
 Author: Pixelgrade
 Author URI: https://pixelgrade.com/
 Description: Patch Lite is a free magazine WordPress theme for publishers who are keen to present their ideas in style. The adaptive layout adjusts to a wide range of content types to highlight the attitude of the creator and bring out the best in the spotlight. An easy-to-use WordPress theme for anyone who loves writing stories and to drive engagement around them.
-Version: 1.1.1
+Version: 1.1.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: patch-lite
 Domain Path: /languages/
 Tags: blog, custom-menu, editor-style, featured-images, one-column, rtl-language-support, sticky-post, threaded-comments, three-columns, translation-ready, two-columns
 Requires at least: 4.9.9
-Tested up to: 5.1.1
+Tested up to: 5.2.1
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -462,6 +461,10 @@ a {
     font-size: 13px;
     text-transform: uppercase; }
 
+::-moz-selection {
+  background: #ffde00;
+  color: #000000; }
+
 ::selection {
   background: #ffde00;
   color: #000000; }
@@ -761,8 +764,10 @@ img {
 @media only screen and (min-width: 1000px) {
   .twocolumn {
     -webkit-column-count: 2;
+    -moz-column-count: 2;
     column-count: 2;
     -webkit-column-gap: 40px;
+    -moz-column-gap: 40px;
     column-gap: 40px; } }
 
 .dropcap {

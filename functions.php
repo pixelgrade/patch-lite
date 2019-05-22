@@ -51,7 +51,7 @@ if ( ! function_exists( 'patch_lite_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary' 	=> __( 'Primary Menu', 'patch-lite' ),
+			'primary' 	=> esc_html__( 'Primary Menu', 'patch-lite' ),
 		) );
 
 		/*
@@ -157,7 +157,7 @@ add_filter( 'wp_get_attachment_image_attributes', 'patch_lite_post_thumbnail_siz
  */
 function patch_lite_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'patch-lite' ),
+		'name'          => esc_html__( 'Sidebar', 'patch-lite' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -175,18 +175,15 @@ add_action( 'widgets_init', 'patch_lite_widgets_init' );
 function patch_lite_scripts() {
 	$theme = wp_get_theme( get_template() );
 
-	//FontAwesome Stylesheet
+	// FontAwesome Stylesheet
 	wp_register_style( 'patch-lite-font-awesome-style', get_template_directory_uri() . '/assets/css/font-awesome.css', array(), '4.3.0' );
 
-	//Main Stylesheet
+	// Main Stylesheet
 	wp_enqueue_style( 'patch-style', get_template_directory_uri() . '/style.css', array( 'patch-lite-font-awesome-style' ), $theme->get( 'Version' ) );
 	wp_style_add_data( 'patch-style', 'rtl', 'replace' );
 
-	//Default Fonts
+	// Default Fonts
 	wp_enqueue_style( 'patch-fonts', patch_lite_fonts_url(), array(), null );
-
-	//Register ImagesLoaded plugin
-	wp_register_script( 'patch-lite-imagesloaded', get_template_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
 
 	//Register Velocity.js plugin
 	wp_register_script( 'patch-lite-velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.2.2', true );
@@ -198,7 +195,7 @@ function patch_lite_scripts() {
 	wp_enqueue_script( 'patch-scripts', get_template_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'masonry',
-		'patch-lite-imagesloaded',
+		'imagesloaded',
 		'patch-lite-velocity',
 		'patch-lite-magnificpopup',
 	), $theme->get( 'Version' ), true );
@@ -226,11 +223,6 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
-
-/**
- * Load the required plugins (TGMPA) logic.
- */
-require get_template_directory() . '/inc/required-plugins.php';
 
 /**
  * Load the Hybrid Media Grabber class

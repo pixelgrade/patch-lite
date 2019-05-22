@@ -4,8 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,7 +20,7 @@ get_header(); ?>
 
 				<?php get_template_part( 'loop' ); ?>
 
-				<?php patch_paging_nav(); ?>
+				<?php patch_lite_paging_nav(); ?>
 
 			</main><!-- #main -->
 		</div><!-- #primary -->

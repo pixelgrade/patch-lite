@@ -2,8 +2,7 @@
 /**
  * The default template for displaying individual posts on archives
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,19 +15,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-		<div class="entry-meta"><?php patch_card_meta(); ?></div><!-- .entry-meta -->
+		<div class="entry-meta"><?php patch_lite_card_meta(); ?></div><!-- .entry-meta -->
 
 		<?php if ( has_post_thumbnail() ) : ?>
 
-			<a href="<?php the_permalink(); ?>" <?php patch_post_thumbnail_class( 'entry-image' ); ?>>
+			<a href="<?php the_permalink(); ?>" <?php patch_lite_post_thumbnail_class( 'entry-image' ); ?>>
 
 				<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
 					<span class="sticky-post"></span>
 				<?php endif; ?>
 
-				<span class="hover" role="presentation"><?php _e( 'Read More', 'patch-lite' ); ?></span>
+				<span class="hover" role="presentation"><?php esc_html_e( 'Read More', 'patch-lite' ); ?></span>
 				<div class="entry-image-wrapper">
-				<?php the_post_thumbnail( 'patch-masonry-image' ); ?>
+					<?php the_post_thumbnail( 'patch-masonry-image' ); ?>
 				</div>
 			</a>
 
@@ -40,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		if ( ! empty( $temp_title ) ) : ?>
 
-		<header <?php patch_post_title_class(); ?>>
+		<header <?php patch_lite_post_title_class(); ?>>
 
 			<?php if ( is_sticky() && ! has_post_thumbnail() && is_home() && ! is_paged() ) : ?>
 				<span class="sticky-post"></span>
@@ -52,16 +51,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php endif; ?>
 
-		<div <?php patch_post_excerpt_class(); ?>>
+		<div <?php patch_lite_post_excerpt_class(); ?>>
 
-			<?php patch_post_excerpt();
+			<?php patch_lite_post_excerpt();
 
 			wp_link_pages( array(
-				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'patch-lite' ),
+				'before' => '<div class="page-links"><span class="pagination-title">' . esc_html__( 'Pages:', 'patch-lite' ),
 				'after'  => '</span></div>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'patch-lite' ) . ' </span>%',
+				'pagelink'    => '<span class="screen-reader-text">' . esc_html__( 'Page', 'patch-lite' ) . ' </span>%',
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) ); ?>
 

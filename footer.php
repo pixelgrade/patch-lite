@@ -4,8 +4,7 @@
  *
  * Contains the closing of the #content div and all content after
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,14 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<?php pixelgrade_footer_the_copyright(); ?>
+		<?php patch_lite_footer_the_copyright(); ?>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
 <div class="mobile-header">
 	<div class="mobile-header-wrapper">
 		<button class="navigation__trigger  js-nav-trigger">
-			<i class="fa fa-bars"></i><span class="screen-reader-text"><?php _e( 'Menu', 'patch-lite' ); ?></span>
+			<i class="fa fa-bars"></i><span class="screen-reader-text"><?php esc_html_e( 'Menu', 'patch-lite' ); ?></span>
 		</button>
 	</div>
 </div>

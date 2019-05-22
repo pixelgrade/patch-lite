@@ -2,8 +2,7 @@
 /**
  * The template for displaying all single posts.
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

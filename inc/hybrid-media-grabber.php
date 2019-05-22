@@ -27,7 +27,7 @@
  */
 function hybrid_media_grabber( $args = array() ) {
 
-	$media = new Hybrid_Media_Grabber( $args );
+	$media = new PatchLite_Hybrid_Media_Grabber( $args );
 
 	return $media->get_media();
 }
@@ -39,7 +39,7 @@ function hybrid_media_grabber( $args = array() ) {
  * @access public
  * @return void
  */
-class Hybrid_Media_Grabber {
+class PatchLite_Hybrid_Media_Grabber {
 
 	/**
 	 * The HTML version of the media to return.

@@ -2,8 +2,7 @@
 /**
  * The template for displaying the header area (logo, site title, tagline, primary menu and social menu
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

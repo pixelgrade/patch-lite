@@ -2,8 +2,7 @@
 /**
  * The template for displaying the archives loop content.
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php get_template_part( 'content', 'header' ); ?>
 
-	<?php patch_the_secondary_page_title(); ?>
+	<?php patch_lite_the_secondary_page_title(); ?>
 
 	<?php
 	/* Start the Loop */

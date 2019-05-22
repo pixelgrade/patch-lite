@@ -2,8 +2,7 @@
 /**
  * The template for displaying the post content on single post view
  *
- * @package Patch
- * @since Patch 1.0
+ * @package Patch Lite
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 //get the post thumbnail aspect ratio specific class
 if ( has_post_thumbnail() ) {
-	$ar_class = patch_get_post_thumbnail_aspect_ratio_class();
+	$ar_class = patch_lite_get_post_thumbnail_aspect_ratio_class();
 } ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -30,11 +29,11 @@ if ( has_post_thumbnail() ) {
 	<header class="entry-header">
 		<div class="entry-meta">
 
-			<?php patch_cats_list(); ?>
+			<?php patch_lite_cats_list(); ?>
 
 			<div class="clearfix">
 
-				<?php patch_posted_on(); ?>
+				<?php patch_lite_posted_on(); ?>
 
 			</div>
 
@@ -60,7 +59,7 @@ if ( has_post_thumbnail() ) {
 
 		<?php
 		wp_link_pages( array(
-			'before' => '<div class="page-links">' . __( 'Pages:', 'patch-lite' ),
+			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'patch-lite' ),
 			'after'  => '</div>',
 		) ); ?>
 
