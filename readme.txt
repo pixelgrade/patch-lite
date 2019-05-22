@@ -69,24 +69,16 @@ Patch Lite is a free magazine WordPress theme for publishers who are keen to pre
 Unless otherwise specified, all the theme files, scripts and images are licensed under GNU General Public License.
 
 * VelocityJS: script by Julian Shapiro (http://julian.com/research/velocity/), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
-* imagesLoaded.js: script by David DeSandro (http://masonry.desandro.com), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
 * Magnific Popup: script by Dmitry Semenov (http://dimsemenov.com/plugins/magnific-popup/), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
+* jquery.debouncedresize.js: script by Louis-Remi Babe (https://github.com/louisremi/jquery-smartresize), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
+* FitText.js: script by Dave Rupert (https://github.com/davatron5000/FitText.js), licensed under the [WTFPL license](http://www.wtfpl.net/txt/copying/).
+* requestAnimationFrame polyfill: script by Erik Möller (https://gist.github.com/paulirish/1579671), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
 
 * Hybrid Media Grabber: script by Justin Tadlock (http://themehybrid.com/hybrid-core), licensed under [GPLv2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 
-* Font Awesome: font by Dave Gandy (http://fontawesome.io/), licensed under [SIL OFL 1.1](http://fontawesome.io/), CSS released under the [MIT License](http://opensource.org/licenses/mit-license.html).
+* Font Awesome: font by Fonticons, Inc. (https://fontawesome.com/), licensed under [SIL OFL 1.1](https://fontawesome.com/license/free), CSS released under the [MIT License](http://opensource.org/licenses/mit-license.html).
 
-* debouncedresize: script by Louis-Rémi Babé (https://github.com/louisremi/jquery-smartresize), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
-* FitText.js: script by Dave Rupert (https://github.com/davatron5000/FitText.js), licensed under the [WTFPL license](http://www.wtfpl.net/txt/copying/).
-
-* requestAnimationFrame polyfill: script by Erik Möller (https://gist.github.com/paulirish/1579671), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
-* nojquery-postmessage: script by Jeff Lee (https://github.com/cowboy/jquery-postmessage), licensed under [GPLv2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
-
-* Images: images by Nappy (https://www.pexels.com/@nappy) – [Source](https://www.pexels.com/photo/woman-wearing-pink-framed-aviator-sunglasses-935973/),
+* Images: screenshot images by Nappy (https://www.pexels.com/@nappy) – [Source](https://www.pexels.com/photo/woman-wearing-pink-framed-aviator-sunglasses-935973/),
 Stefan Stefancik (https://www.pexels.com/@stefanstefancik) – [Source](https://www.pexels.com/photo/man-young-happy-smiling-91227/),
 Chris Peeters (https://www.pexels.com/@krizz59) – [Source](https://www.pexels.com/photo/speed-racing-speedway-racing-car-12801/),
 Chris Peeters (https://www.pexels.com/@krizz59) – [Source](https://www.pexels.com/photo/racing-car-racing-speedway-race-track-12789/),
