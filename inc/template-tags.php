@@ -1018,7 +1018,7 @@ if ( ! function_exists( 'patch_lite_footer_the_copyright' ) ) {
 		$output .= '<a href="' . esc_url( __( 'https://wordpress.org/', 'patch-lite' ) ) . '">' . sprintf( esc_html__( 'Proudly powered by %s', 'patch-lite' ), 'WordPress' ) . '</a>' . "\n";
 		$output .= '<span class="sep"> | </span>';
 		/* translators: %1$s: The theme name, %2$s: The theme author name. */
-		$output .= '<span class="c-footer__credits">' . sprintf( esc_html__( 'Theme: %1$s by %2$s.', 'patch-lite' ), 'Patch Lite', '<a href="https://pixelgrade.com/" target="_blank">Pixelgrade</a>' ) . '</span>' . "\n";
+		$output .= '<span class="c-footer__credits">' . sprintf( esc_html__( 'Theme: %1$s by %2$s.', 'patch-lite' ), 'Patch Lite', '<a href="https://pixelgrade.com/?utm_source=patch-lite-clients&utm_medium=footer&utm_campaign=patch-lite" title="' . esc_html__( 'The Pixelgrade Website', '__theme_txtd' ) . '" rel="nofollow">Pixelgrade</a>' ) . '</span>' . "\n";
 		$output .= '</div>';
 
 		echo apply_filters( 'pixelgrade_footer_the_copyright', $output );

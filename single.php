@@ -24,9 +24,9 @@ get_header(); ?>
 				get_template_part( 'content-single', get_post_format() );
 
 				// If comments are open or we have at least one comment, load up the comment template
-				if ( comments_open() || get_comments_number() ) :
+				if ( comments_open() || get_comments_number() ) {
 					comments_template();
-				endif;
+				}
 
 			endwhile; // end of the loop. ?>
 

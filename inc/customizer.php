@@ -43,7 +43,7 @@ function patch_lite_customize_register( $wp_customize ) {
 
                             <li>
                             	<h4>Post Formats</h4>
-                            	<div class="description">Make room for a wide range of post formats to pack your engaging stories so that people will enjoy sharing. Text, image, video, audio - you name it, and you\'re covered.</div>
+                            	<div class="description">Make room for a wide range of post formats to pack your engaging stories so that people will enjoy sharing. Text, image, video, audio - you name it, you\'re all covered.</div>
                             </li>
 
                             <li>

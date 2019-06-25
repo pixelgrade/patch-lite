@@ -64,23 +64,6 @@ if ( ! function_exists( 'patch_lite_setup' ) ) :
 			'caption',
 		) );
 
-		if ( ! function_exists( 'the_custom_logo' ) ) {
-			//in case we are on a WP version older than 4.5, try to use Jetpack's Site Logo feature
-			/**
-			 * Add theme support for site logo
-			 *
-			 * First, it's the image size we want to use for the logo thumbnails
-			 * Second, the 2 classes we want to use for the "Display Header Text" Customizer logic
-			 */
-			add_theme_support( 'site-logo', array(
-				'size'        => 'patch-site-logo',
-				'header-text' => array(
-					'site-title',
-					'site-description-text',
-				)
-			) );
-		}
-
 		add_image_size( 'patch-site-logo', 1000, 500, false );
 
 		/*
@@ -185,13 +168,13 @@ function patch_lite_scripts() {
 	// Default Fonts
 	wp_enqueue_style( 'patch-fonts', patch_lite_fonts_url(), array(), null );
 
-	//Register Velocity.js plugin
+	// Register Velocity.js plugin
 	wp_register_script( 'patch-lite-velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.2.2', true );
 
-	//Register Magnific Popup plugin
+	// Register Magnific Popup plugin
 	wp_register_script( 'patch-lite-magnificpopup', get_template_directory_uri() . '/assets/js/magnificpopup.js', array(), '1.0.0', true );
 
-	//Enqueue Patch Custom Scripts
+	// Enqueue Patch Custom Scripts
 	wp_enqueue_script( 'patch-scripts', get_template_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'masonry',
@@ -233,8 +216,3 @@ require get_template_directory() . '/inc/hybrid-media-grabber.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Admin dashboard logic.
- */
-require get_template_directory() . '/inc/admin/admin.php';

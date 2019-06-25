@@ -37,7 +37,6 @@ function patch_lite_body_classes( $classes ) {
 
 	return $classes;
 }
-
 add_filter( 'body_class', 'patch_lite_body_classes' );
 
 /**
@@ -660,26 +659,6 @@ function patch_lite_blog_class( $class = '' ) {
 	// Separates classes with a single space, collates classes
 	echo 'class="' . esc_attr( join( ' ', patch_lite_get_blog_class( $class ) ) ) . '"';
 }
-
-/**
- * Handle the WUpdates theme identification.
- *
- * @param array $ids
- *
- * @return array
- */
-function patch_lite_wupdates_add_id_wporg( $ids = array() ) {
-	// First get the theme directory name (unique)
-	$slug = basename( get_template_directory() );
-
-	// Now add the predefined details about this product
-	// Do not tamper with these please!!!
-	$ids[ $slug ] = array( 'name' => 'Patch', 'slug' => 'patch', 'id' => 'JlplJ', 'type' => 'theme_wporg', 'digest' => '2cca7558817fabd57b2f24f853366b5a', );
-
-	return $ids;
-}
-// The 5 priority is intentional to allow for pro to overwrite.
-add_filter( 'wupdates_gather_ids', 'patch_lite_wupdates_add_id_wporg', 5, 1 );
 
 /**
  * Fix skip link focus in IE11.

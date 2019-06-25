@@ -11,24 +11,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-get_header(); ?>
+get_header();
 
-	<?php if ( have_posts() ) : ?>
+if ( have_posts() ) { ?>
 
-		<div id="primary" class="content-area">
-			<main id="main" class="site-main" role="main">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
-				<?php get_template_part( 'loop' ); ?>
+			<?php
+			get_template_part( 'loop' );
 
-				<?php patch_lite_paging_nav(); ?>
+			patch_lite_paging_nav(); ?>
 
-			</main><!-- #main -->
-		</div><!-- #primary -->
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
-	<?php else : ?>
+<?php } else {
+	get_template_part( 'content', 'none' );
+}
 
-		<?php get_template_part( 'content', 'none' ); ?>
-
-	<?php endif; ?>
-
-<?php get_footer();
+get_footer();
