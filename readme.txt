@@ -72,7 +72,7 @@ Unless otherwise specified, all the theme files, scripts and images are licensed
 
 * VelocityJS: script by Julian Shapiro (http://julian.com/research/velocity/), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
 * Magnific Popup: script by Dmitry Semenov (http://dimsemenov.com/plugins/magnific-popup/), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-* jquery.debouncedresize.js: script by Louis-Remi Babe (https://github.com/louisremi/jquery-smartresize), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
+* debouncedresize.js: script by Louis-Remi Babe (https://github.com/louisremi/jquery-smartresize), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
 * FitText.js: script by Dave Rupert (https://github.com/davatron5000/FitText.js), licensed under the [WTFPL license](http://www.wtfpl.net/txt/copying/).
 * requestAnimationFrame polyfill: script by Erik Möller (https://gist.github.com/paulirish/1579671), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
 
