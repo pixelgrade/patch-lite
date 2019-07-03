@@ -80,8 +80,9 @@ Unless otherwise specified, all the theme files, scripts and images are licensed
 
 * Font Awesome: font by Fonticons, Inc. (https://fontawesome.com/), licensed under [SIL OFL 1.1](https://fontawesome.com/license/free), CSS released under the [MIT License](http://opensource.org/licenses/mit-license.html).
 
-* Images: screenshot images by Nappy (https://www.pexels.com/@nappy) – [Source](https://www.pexels.com/photo/woman-wearing-pink-framed-aviator-sunglasses-935973/),
-Stefan Stefancik (https://www.pexels.com/@stefanstefancik) – [Source](https://www.pexels.com/photo/man-young-happy-smiling-91227/),
-Chris Peeters (https://www.pexels.com/@krizz59) – [Source](https://www.pexels.com/photo/speed-racing-speedway-racing-car-12801/),
-Chris Peeters (https://www.pexels.com/@krizz59) – [Source](https://www.pexels.com/photo/racing-car-racing-speedway-race-track-12789/),
-Tookapic (https://www.pexels.com/@tookapic) – [Source](https://www.pexels.com/photo/traffic-car-vehicle-speed-8775/)
+* Images: screenshot images by Nappy – [Source](https://www.dreamstime.com/woman-wearing-pink-framed-aviator-sunglasses-public-domain-image-free-114021361),
+Stefan Stefancik – [Source](https://pxhere.com/en/photo/913378),
+Chris Peeters – [Source](https://pxhere.com/en/photo/967313),
+Chris Peeters – [Source](https://pxhere.com/en/photo/641669),
+Tookapic (https://www.pexels.com/@tookapic) – 
+[Source](https://pxhere.com/en/photo/686593), licensed under CC0 Public Domain.
