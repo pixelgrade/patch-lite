@@ -156,10 +156,11 @@ if ( ! function_exists( 'patch_lite_get_post_format_link' ) ) :
 			return '';
 		}
 
+		/* translators: %s: The number of posts.  */
 		return '<span class="entry-format">
 				<a href="' . esc_url( get_post_format_link( $post_format ) ) .'" title="' . esc_attr( sprintf( esc_html__( 'All %s Posts', 'patch-lite' ), get_post_format_string( $post_format ) ) ) . '">' .
-					get_post_format_string( $post_format ) .
-				'</a>
+		       get_post_format_string( $post_format ) .
+		       '</a>
 			</span>';
 
 	} #function
@@ -287,8 +288,8 @@ function patch_lite_card_meta ( $post_id = NULL ) {
 
 	$meta['category_secondary'] = '<span class="byline">' . $meta['category'] . '</span>';
 	$meta['tag_secondary'] = '<span class="byline">' . $meta['tag'] . '</span>';
-	$meta['author_secondary'] = '<span class="byline">' . $meta['author'] . '</span>';
-	$meta['date_secondary'] = '<span class="byline">' . $meta['date'] . '</span>';
+	$meta['author_secondary'] = '<span class="byline">' . esc_html($meta['author'] ) . '</span>';
+	$meta['date_secondary'] = '<span class="byline">' . esc_html( $meta['date'] ) . '</span>';
 	$meta['comments_secondary'] = '<span class="byline">' . $meta['comments'] . '</span>';
 
 	$blog_items_secondary_meta = pixelgrade_option( 'blog_items_secondary_meta', 'date', false );
@@ -778,7 +779,9 @@ if ( ! function_exists( 'patch_secondary_page_title' ) ) :
 				<?php elseif ( is_search() ) : ?>
 
 					<header class="page-header entry-card">
-						<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'patch-lite' ), esc_html( get_search_query() ) ); ?></h1>
+						<h1 class="page-title"><?php
+                            /* translators: %s: The search query. */
+                            printf( esc_html__( 'Search Results for: %s', 'patch-lite' ), esc_html( get_search_query() ) ); ?></h1>
 					</header><!-- .page-header -->
 
 				<?php endif; ?>
@@ -922,7 +925,7 @@ if ( ! function_exists( 'patch_lite_get_post_format_link_url' ) ) :
 	function patch_lite_get_post_format_link_url() {
 		$has_url = get_url_in_content( get_the_content() );
 
-		return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
+		return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', esc_url( get_permalink() ) );
 	}
 
 endif;
@@ -966,7 +969,7 @@ if ( ! function_exists( 'patch_lite_paging_nav' ) ) :
 				}
 
 				// output the numbered page links
-				echo paginate_links( array(
+                the_posts_pagination( array(
 					'base'      => $pagenum_link,
 					'format'    => $format,
 					'total'     => $wp_query->max_num_pages,
@@ -975,7 +978,8 @@ if ( ! function_exists( 'patch_lite_paging_nav' ) ) :
 					'prev_text' => esc_html__( 'Previous', 'patch-lite' ),
 					'next_text' => esc_html__( 'Next', 'patch-lite' ),
 					'add_args'  => array_map( 'urlencode', $query_args ),
-				) );
+				    )
+                );
 
 				//output a disabled next "link" if on the last page
 				if ( $paged == $wp_query->max_num_pages ) {
