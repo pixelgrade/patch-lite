@@ -7,6 +7,8 @@
 	font-size: 0;
 	text-align: center;
 
+	max-width: 600px;
+
 	.infinite-scroll & {
 		display: none;
 	}
@@ -18,6 +20,12 @@
 	@include query-above($lap) {
 		padding-left: rem(160px);
 		padding-right: rem(160px);
+	}
+
+	@include query-below($small) {
+		.page-numbers:not(.prev):not(.next) {
+			display: none;
+		}
 	}
 
 	&:after {

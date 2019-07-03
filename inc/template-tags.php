@@ -904,18 +904,8 @@ if ( ! function_exists( 'patch_lite_paging_nav' ) ) :
 		$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
 
 		$format  = $wp_rewrite->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
-		$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%'; ?>
+		$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%';
 
-		<nav class="pagination" role="navigation">
-			<h1 class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'patch-lite' ); ?></h1>
-
-			<div class="nav-links">
-
-				<?php
-				//output a disabled previous "link" if on the fist page
-				if ( 1 == $paged ) {
-					echo '<span class="prev page-numbers disabled">' . esc_html__( 'Previous', 'patch-lite' ) . '</span>';
-				}
 
 				// output the numbered page links
                 the_posts_pagination( array(
@@ -929,16 +919,6 @@ if ( ! function_exists( 'patch_lite_paging_nav' ) ) :
 					'add_args'  => array_map( 'urlencode', $query_args ),
 				    )
                 );
-
-				//output a disabled next "link" if on the last page
-				if ( $paged == $wp_query->max_num_pages ) {
-					echo '<span class="next page-numbers disabled">' . esc_html__( 'Next', 'patch-lite' ) . '</span>';
-				} ?>
-
-			</div><!-- .nav-links -->
-
-		</nav><!-- .navigation -->
-	<?php
 	} #function
 
 endif;
