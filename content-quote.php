@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$content = get_the_content(
 				sprintf(
 					wp_kses(
-						__( 'Continue reading %s', 'patch' ),
+						__( 'Continue reading %s', 'patch-lite' ),
 						array(
 							'span' => array(
 								'class' => array(),
