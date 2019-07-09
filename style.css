@@ -2066,6 +2066,9 @@ button.mfp-arrow-right {
 .entry-card.format-image .entry-image img {
   display: block; }
 
+.entry-card.format-audio .entry-media {
+  padding-top: 0; }
+
 /**
  *   7.2 - Navigation
  */
