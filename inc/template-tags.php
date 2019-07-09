@@ -528,7 +528,7 @@ if ( ! function_exists( 'patch_lite_get_post_title_class' ) ) :
 		 * @param string $class   A comma-separated list of additional classes added to the post.
 		 * @param int    $post_id The post ID.
 		 */
-		$classes = apply_filters( 'patch_post_title_class', $classes, $class, $post->ID );
+		$classes = apply_filters( 'patch_lite_post_title_class', $classes, $class, $post->ID );
 
 		return array_unique( $classes );
 	} #function
@@ -598,7 +598,7 @@ if ( ! function_exists( 'patch_lite_get_post_excerpt_class' ) ) :
 		 * @param string $class   A comma-separated list of additional classes added to the post.
 		 * @param int    $post_id The post ID.
 		 */
-		$classes = apply_filters( 'patch_post_excerpt_class', $classes, $class, $post->ID );
+		$classes = apply_filters( 'patch_lite_post_excerpt_class', $classes, $class, $post->ID );
 
 		return array_unique( $classes );
 	} #function
