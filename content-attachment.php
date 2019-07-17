@@ -5,6 +5,7 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package Patch Lite
+ * @since Patch Lite 1.1.6
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

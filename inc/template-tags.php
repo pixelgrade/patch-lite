@@ -156,10 +156,11 @@ if ( ! function_exists( 'patch_lite_get_post_format_link' ) ) :
 			return '';
 		}
 
+		/* translators: %s: The number of posts.  */
 		return '<span class="entry-format">
 				<a href="' . esc_url( get_post_format_link( $post_format ) ) .'" title="' . esc_attr( sprintf( esc_html__( 'All %s Posts', 'patch-lite' ), get_post_format_string( $post_format ) ) ) . '">' .
-					get_post_format_string( $post_format ) .
-				'</a>
+		       get_post_format_string( $post_format ) .
+		       '</a>
 			</span>';
 
 	} #function
@@ -287,8 +288,8 @@ function patch_lite_card_meta ( $post_id = NULL ) {
 
 	$meta['category_secondary'] = '<span class="byline">' . $meta['category'] . '</span>';
 	$meta['tag_secondary'] = '<span class="byline">' . $meta['tag'] . '</span>';
-	$meta['author_secondary'] = '<span class="byline">' . $meta['author'] . '</span>';
-	$meta['date_secondary'] = '<span class="byline">' . $meta['date'] . '</span>';
+	$meta['author_secondary'] = '<span class="byline">' . esc_html($meta['author'] ) . '</span>';
+	$meta['date_secondary'] = '<span class="byline">' . esc_html( $meta['date'] ) . '</span>';
 	$meta['comments_secondary'] = '<span class="byline">' . $meta['comments'] . '</span>';
 
 	$blog_items_secondary_meta = pixelgrade_option( 'blog_items_secondary_meta', 'date', false );
@@ -527,7 +528,7 @@ if ( ! function_exists( 'patch_lite_get_post_title_class' ) ) :
 		 * @param string $class   A comma-separated list of additional classes added to the post.
 		 * @param int    $post_id The post ID.
 		 */
-		$classes = apply_filters( 'patch_post_title_class', $classes, $class, $post->ID );
+		$classes = apply_filters( 'patch_lite_post_title_class', $classes, $class, $post->ID );
 
 		return array_unique( $classes );
 	} #function
@@ -597,7 +598,7 @@ if ( ! function_exists( 'patch_lite_get_post_excerpt_class' ) ) :
 		 * @param string $class   A comma-separated list of additional classes added to the post.
 		 * @param int    $post_id The post ID.
 		 */
-		$classes = apply_filters( 'patch_post_excerpt_class', $classes, $class, $post->ID );
+		$classes = apply_filters( 'patch_lite_post_excerpt_class', $classes, $class, $post->ID );
 
 		return array_unique( $classes );
 	} #function
@@ -703,57 +704,6 @@ function patch_lite_get_post_excerpt( $post_id = null ) {
 	return $excerpt;
 } #function
 
-/**
- * Display the markup for the author bio links.
- * These are the links/websites added by one to it's Gravatar profile
- *
- * @param int|WP_Post $post_id Optional. Post ID or post object.
- */
-function patch_lite_author_bio_links( $post_id = null ) {
-	echo patch_lite_get_author_bio_links( $post_id );
-}
-
-if ( ! function_exists( 'patch_lite_get_author_bio_links' ) ) :
-
-	/**
-	 * Return the markup for the author bio links.
-	 * These are the links/websites added by one to it's Gravatar profile
-	 *
-	 * @param int|WP_Post $post_id Optional. Post ID or post object.
-	 * @return string The HTML markup of the author bio links list.
-	 */
-	function patch_lite_get_author_bio_links( $post_id = null ) {
-		$post = get_post( $post_id );
-
-		$markup = '';
-
-		if ( empty( $post ) ) {
-			return $markup;
-		}
-
-		$str = wp_remote_fopen( 'https://www.gravatar.com/' . md5( strtolower( trim( get_the_author_meta( 'user_email' ) ) ) ) . '.php' );
-
-		$profile = unserialize( $str );
-
-		if ( is_array( $profile ) && ! empty( $profile['entry'][0]['urls'] ) ) {
-			$markup .= '<ul class="author__social-links">' . "\n";
-
-			foreach ( $profile['entry'][0]['urls'] as $link ) {
-				if ( ! empty( $link['value'] ) && ! empty( $link['title'] ) ) {
-					$markup .= '<li class="author__social-links__list-item">' . "\n";
-					$markup .= '<a class="author__social-link" href="' . esc_url( $link['value'] ) . '" target="_blank">' . $link['title'] . '</a>' . "\n";
-					$markup .= '</li>' . "\n";
-				}
-			}
-
-			$markup .= '</ul>' . "\n";
-		}
-
-		return $markup;
-	} #function
-
-endif;
-
 if ( ! function_exists( 'patch_secondary_page_title' ) ) :
 
 	/**
@@ -778,7 +728,9 @@ if ( ! function_exists( 'patch_secondary_page_title' ) ) :
 				<?php elseif ( is_search() ) : ?>
 
 					<header class="page-header entry-card">
-						<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'patch-lite' ), esc_html( get_search_query() ) ); ?></h1>
+						<h1 class="page-title"><?php
+                            /* translators: %s: The search query. */
+                            printf( esc_html__( 'Search Results for: %s', 'patch-lite' ), esc_html( get_search_query() ) ); ?></h1>
 					</header><!-- .page-header -->
 
 				<?php endif; ?>
@@ -922,7 +874,7 @@ if ( ! function_exists( 'patch_lite_get_post_format_link_url' ) ) :
 	function patch_lite_get_post_format_link_url() {
 		$has_url = get_url_in_content( get_the_content() );
 
-		return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
+		return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', esc_url( get_permalink() ) );
 	}
 
 endif;
@@ -952,21 +904,11 @@ if ( ! function_exists( 'patch_lite_paging_nav' ) ) :
 		$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
 
 		$format  = $wp_rewrite->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
-		$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%'; ?>
+		$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%';
 
-		<nav class="pagination" role="navigation">
-			<h1 class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'patch-lite' ); ?></h1>
-
-			<div class="nav-links">
-
-				<?php
-				//output a disabled previous "link" if on the fist page
-				if ( 1 == $paged ) {
-					echo '<span class="prev page-numbers disabled">' . esc_html__( 'Previous', 'patch-lite' ) . '</span>';
-				}
 
 				// output the numbered page links
-				echo paginate_links( array(
+                the_posts_pagination( array(
 					'base'      => $pagenum_link,
 					'format'    => $format,
 					'total'     => $wp_query->max_num_pages,
@@ -975,17 +917,8 @@ if ( ! function_exists( 'patch_lite_paging_nav' ) ) :
 					'prev_text' => esc_html__( 'Previous', 'patch-lite' ),
 					'next_text' => esc_html__( 'Next', 'patch-lite' ),
 					'add_args'  => array_map( 'urlencode', $query_args ),
-				) );
-
-				//output a disabled next "link" if on the last page
-				if ( $paged == $wp_query->max_num_pages ) {
-					echo '<span class="next page-numbers disabled">' . esc_html__( 'Next', 'patch-lite' ) . '</span>';
-				} ?>
-
-			</div><!-- .nav-links -->
-
-		</nav><!-- .navigation -->
-	<?php
+				    )
+                );
 	} #function
 
 endif;
@@ -1018,7 +951,7 @@ if ( ! function_exists( 'patch_lite_footer_the_copyright' ) ) {
 		$output .= '<a href="' . esc_url( __( 'https://wordpress.org/', 'patch-lite' ) ) . '">' . sprintf( esc_html__( 'Proudly powered by %s', 'patch-lite' ), 'WordPress' ) . '</a>' . "\n";
 		$output .= '<span class="sep"> | </span>';
 		/* translators: %1$s: The theme name, %2$s: The theme author name. */
-		$output .= '<span class="c-footer__credits">' . sprintf( esc_html__( 'Theme: %1$s by %2$s.', 'patch-lite' ), 'Patch Lite', '<a href="https://pixelgrade.com/?utm_source=patch-lite-clients&utm_medium=footer&utm_campaign=patch-lite" title="' . esc_html__( 'The Pixelgrade Website', '__theme_txtd' ) . '" rel="nofollow">Pixelgrade</a>' ) . '</span>' . "\n";
+		$output .= '<span class="c-footer__credits">' . sprintf( esc_html__( 'Theme: %1$s by %2$s.', 'patch-lite' ), 'Patch Lite', '<a href="https://pixelgrade.com/?utm_source=patch-lite-clients&utm_medium=footer&utm_campaign=patch-lite" title="' . esc_html__( 'The Pixelgrade Website', 'patch-lite' ) . '" rel="nofollow">Pixelgrade</a>' ) . '</span>' . "\n";
 		$output .= '</div>';
 
 		echo apply_filters( 'pixelgrade_footer_the_copyright', $output );

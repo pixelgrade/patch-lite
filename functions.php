@@ -64,6 +64,20 @@ if ( ! function_exists( 'patch_lite_setup' ) ) :
 			'caption',
 		) );
 
+		/*
+		 * Enable support for Post Formats.
+		 * See http://codex.wordpress.org/Post_Formats
+		 */
+		add_theme_support( 'post-formats', array(
+			'aside',
+			'gallery',
+			'image',
+			'audio',
+			'video',
+			'quote',
+			'link',
+		) );
+
 		add_image_size( 'patch-site-logo', 1000, 500, false );
 
 		/*
