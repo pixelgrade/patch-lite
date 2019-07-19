@@ -2,7 +2,7 @@
 ### An algorithmic design experiment that cleverly imagines the best layout for your content. Patch brings unity and balance to your beautiful crafted diversity.
 ### Patch Lite is a free magazine WordPress theme for publishers who are keen to present their ideas in style. The adaptive layout adjusts to a wide range of content types to highlight the attitude of the creator and bring out the best in the spotlight. An easy-to-use WordPress theme for anyone who loves writing stories and to drive engagement around them.
 
-[Download for Free](https://downloads.wordpress.org/theme/patch-lite.latest-stable.zip) &nbsp;·&nbsp; [Demo Preview](https://demos.pixelgrade.com/patch-lite/) &nbsp;·&nbsp; [ Patch Pro](https://pixelgrade.com/themes/patch-pro/)
+[View Demo](https://demos.pixelgrade.com/patch-lite/) &nbsp;·&nbsp; [Documentation](https://pixelgrade.com/patch-lite-documentation/) &nbsp;·&nbsp; [Download for Free](https://downloads.wordpress.org/theme/patch-lite.latest-stable.zip) &nbsp;·&nbsp; [View Pro Version](https://pixelgrade.com/themes/patch-pro/)
 
 [![](https://img.shields.io/github/issues-closed/pixelgrade/patch-lite.svg?color=6cc644&label=Issues)](https://github.com/pixelgrade/patch-lite/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+) [![](https://img.shields.io/github/issues/pixelgrade/patch-lite.svg?color=4078c0&label=%20)](https://github.com/pixelgrade/patch-lite/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen)
 
