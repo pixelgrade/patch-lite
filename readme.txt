@@ -23,7 +23,7 @@ Patch Lite is a free magazine WordPress theme for publishers who are keen to pre
 == Changelog ==
 
 = 1.2.1 =
-*Fixed skip link focus.
+* Fixed skip link focus.
 
 = 1.2.0 =
 * Added Post Formats styles.
