@@ -24,6 +24,7 @@ Patch Lite is a free magazine WordPress theme for publishers who are keen to pre
 
 = 1.2.2 =
 * Added new wp_body_open hook.
+* Added Pixelgrade Assistant recommended plugin.
 
 = 1.2.1 =
 * Fixed skip link focus.
@@ -98,5 +99,5 @@ Unless otherwise specified, all the theme files, scripts and images are licensed
 Stefan Stefancik – [Source](https://pxhere.com/en/photo/913378),
 Chris Peeters – [Source](https://pxhere.com/en/photo/967313),
 Chris Peeters – [Source](https://pxhere.com/en/photo/641669),
-Tookapic (https://www.pexels.com/@tookapic) – 
+Tookapic (https://www.pexels.com/@tookapic) –
 [Source](https://pxhere.com/en/photo/686593), licensed under CC0 Public Domain.

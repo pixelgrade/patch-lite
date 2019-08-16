@@ -4,7 +4,7 @@ Theme URI: https://github.com/pixelgrade/patch-lite
 Author: Pixelgrade
 Author URI: https://pixelgrade.com/
 Description: Patch Lite is a free magazine WordPress theme for publishers who are keen to present their ideas in style. The adaptive layout adjusts to a wide range of content types to highlight the attitude of the creator and bring out the best in the spotlight. An easy-to-use WordPress theme for anyone who loves writing stories and to drive engagement around them.
-Version: 1.2.1
+Version: 1.2.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: patch-lite
@@ -347,7 +347,7 @@ body {
   line-height: 1.625;
   color: #3e3f40; }
 
-.screen-reader-text, .infinite-scroll .posts-navigation {
+.infinite-scroll .posts-navigation {
   display: none; }
 
 .hyphening {
@@ -652,11 +652,10 @@ img {
 
 .hide,
 .hidden,
-.assistive-text,
-.screen-reader-text,
 [hidden] {
   display: none; }
 
+.assistive-text,
 .inline {
   display: inline; }
 
@@ -2065,6 +2064,9 @@ button.mfp-arrow-right {
 
 .entry-card.format-image .entry-image img {
   display: block; }
+
+.entry-card.format-audio .entry-media {
+  padding-top: 0; }
 
 /**
  *   7.2 - Navigation
@@ -3522,7 +3524,8 @@ div#respond {
   padding-right: 0;
   border: none;
   font-size: 0;
-  text-align: center; }
+  text-align: center;
+  max-width: 600px; }
   .infinite-scroll .pagination {
     display: none; }
   @media not screen and (min-width: 900px) {
@@ -3532,6 +3535,9 @@ div#respond {
     .pagination {
       padding-right: 10rem;
       padding-left: 10rem; } }
+  @media not screen and (min-width: 740px) {
+    .pagination .page-numbers:not(.prev):not(.next) {
+      display: none; } }
   .pagination:after {
     content: none; }
   .pagination li {
@@ -4235,6 +4241,41 @@ div#jp-post-flair {
 /**
  * 10.0 - Overwrites
  */
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+  /* Many screen reader and browser combinations announce broken words as they would appear visually. */ }
+  .screen-reader-text:focus {
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    -webkit-clip-path: none;
+            clip-path: none;
+    color: #000000;
+    display: block;
+    font-weight: bold;
+    height: auto;
+    right: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+    /* Above WP toolbar. */ }
+
 .entry-card .entry-content, .single .entry-content, .page:not(.entry-card) .entry-content, .entry-title {
   -ms-word-break: break-word;
   -ms-word-wrap: break-word;
