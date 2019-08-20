@@ -85,6 +85,11 @@ if ( ! function_exists( 'patch_lite_setup' ) ) :
 		 * Also enqueue the custom Google Fonts also
 		 */
 		add_editor_style( array( 'editor-style.css', patch_lite_fonts_url() ) );
+
+		/**
+		 * Enable support for the Style Manager Customizer section (via Customify).
+		 */
+		add_theme_support( 'customizer_style_manager' );
 	}
 endif;
 add_action( 'after_setup_theme', 'patch_lite_setup' );
@@ -229,6 +234,11 @@ require get_template_directory() . '/inc/hybrid-media-grabber.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Load various plugin integrations
+ */
+require get_template_directory() . '/inc/integrations.php';
 
 /**
  * Admin dashboard related logic.

@@ -98,12 +98,3 @@ add_action( 'customize_controls_enqueue_scripts', 'patch_lite_customizer_assets'
 function patch_lite_get_pro_link() {
 	return 'https://pixelgrade.com/themes/blogging/patch-lite?utm_source=patch-lite-clients&utm_medium=customizer&utm_campaign=patch-lite#pro';
 }
-
-function patch_lite_add_customify_options( $config ) {
-
-	$config['sections'] = array();
-	$config['panels']   = array();
-
-	return $config;
-}
-add_filter( 'customify_filter_fields', 'patch_lite_add_customify_options' );
