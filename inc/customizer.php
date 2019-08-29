@@ -68,29 +68,21 @@ function patch_lite_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'patch_lite_customize_register', 15 );
 
 /**
- * Sanitize the Site Title Outline value.
- *
- * @param string $outline Outline thickness.
- *
- * @return string Filtered outline (0|1|2|3).
- */
-function patch_lite_sanitize_site_title_outline( $outline ) {
-	if ( ! in_array( $outline, array( '0', '1.2', '3', '5', '10' ) ) ) {
-		$outline = '3';
-	}
-
-	return $outline;
-}
-
-/**
  * Assets that will be loaded for the customizer sidebar
  */
 function patch_lite_customizer_assets() {
 	wp_enqueue_style( 'patch_lite-customizer-style', get_template_directory_uri() . '/inc/admin/css/customizer.css', null, '1.1.1', false );
-
-	wp_enqueue_script( 'patch_lite-customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'jquery' ), '1.1.1', false );
 }
 add_action( 'customize_controls_enqueue_scripts', 'patch_lite_customizer_assets' );
+
+/**
+ * JavaScript that handles the Customizer AJAX logic
+ * This will be added in the preview part
+ */
+function patch_lite_customizer_preview_assets() {
+	wp_enqueue_script( 'patch_lite_customizer_preview', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview' ), '1.3.0', true );
+}
+add_action( 'customize_preview_init', 'patch_lite_customizer_preview_assets' );
 
 /**
  * Generate a link to the Patch Lite info page.

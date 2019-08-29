@@ -168,7 +168,6 @@ function patch_lite_widgets_init() {
 		'after_title'   => '</h4>',
 	) );
 }
-
 add_action( 'widgets_init', 'patch_lite_widgets_init' );
 
 /**
@@ -202,8 +201,6 @@ function patch_lite_scripts() {
 		'patch-lite-magnificpopup',
 	), $theme->get( 'Version' ), true );
 
-	wp_enqueue_script( 'skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -213,32 +210,32 @@ add_action( 'wp_enqueue_scripts', 'patch_lite_scripts' );
 /**
  * MB string functions for when the MB library is not available
  */
-require get_template_directory() . '/inc/mb_compat.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/mb_compat.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/template-tags.php';
 
 /**
  * Custom functions that act independently of the theme templates.
  */
-require get_template_directory() . '/inc/extras.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/extras.php';
 
 /**
  * Load the Hybrid Media Grabber class
  */
-require get_template_directory() . '/inc/hybrid-media-grabber.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/hybrid-media-grabber.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/customizer.php';
 
 /**
  * Load various plugin integrations
  */
-require get_template_directory() . '/inc/integrations.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/integrations.php';
 
 /**
  * Admin dashboard related logic.
