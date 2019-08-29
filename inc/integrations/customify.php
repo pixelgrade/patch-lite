@@ -130,7 +130,11 @@ function patch_lite_add_customify_style_manager_section( $options ) {
 	);
 
 	// The section might be already defined, thus we merge, not replace the entire section config.
-	$options['sections']['style_manager_section'] = Customify_Array::array_merge_recursive_distinct( $options['sections']['style_manager_section'], $new_config );
+	if ( class_exists( 'Customify_Array' ) && method_exists( 'Customify_Array', 'array_merge_recursive_distinct' ) ) {
+		$options['sections']['style_manager_section'] = Customify_Array::array_merge_recursive_distinct( $options['sections']['style_manager_section'], $new_config );
+	} else {
+		$options['sections']['style_manager_section'] = array_merge_recursive( $options['sections']['style_manager_section'], $new_config );
+	}
 
 	return $options;
 }
@@ -258,7 +262,10 @@ function patch_lite_fill_customify_options( $options ) {
                                 .comments-area:after, 
                                 .comment-number.comment-number--dark, 
                                 .comment-reply-title:before, 
-                                .add-comment .add-comment__button',
+                                .add-comment .add-comment__button,
+                                :first-child:not(input) ~ .form-submit #submit:hover,
+                                .comments_add-comment:hover,
+                                .entry-card:hover .cat-links a',
 							'property' => 'color',
 						),
 						array(
@@ -291,7 +298,7 @@ function patch_lite_fill_customify_options( $options ) {
 					'css'     => array(
 						array(
 							'property' => 'color',
-							'selector' => 'a',
+							'selector' => 'a, .recentcomments a',
 						),
 					),
 				),
@@ -512,7 +519,11 @@ function patch_lite_fill_customify_options( $options ) {
 		),
 	);
 
-	$options['sections'] = Customify_Array::array_merge_recursive_distinct( $options['sections'], $new_config );
+	if ( class_exists( 'Customify_Array' ) && method_exists( 'Customify_Array', 'array_merge_recursive_distinct' ) ) {
+		$options['sections'] = Customify_Array::array_merge_recursive_distinct( $options['sections'], $new_config );
+	} else {
+		$options['sections'] = array_merge_recursive( $options['sections'], $new_config );
+	}
 
 	return $options;
 }

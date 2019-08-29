@@ -216,7 +216,7 @@ function patch_lite_first_category( $post_ID = null ) {
 	}
 
 	//now intersect them so that we are left with e descending ordered array of the post's categories
-	$categories = array_uintersect( $all_categories, $categories, 'patch_compare_categories' );
+	$categories = array_uintersect( $all_categories, $categories, 'patch_lite_compare_categories' );
 
 	if ( ! empty ( $categories ) ) {
 		$category = array_shift( $categories );
@@ -292,14 +292,14 @@ function patch_lite_card_meta ( $post_id = NULL ) {
 	$meta['date_secondary'] = '<span class="byline">' . esc_html( $meta['date'] ) . '</span>';
 	$meta['comments_secondary'] = '<span class="byline">' . $meta['comments'] . '</span>';
 
-	$blog_items_secondary_meta = pixelgrade_option( 'blog_items_secondary_meta', 'date', false );
+	$blog_items_secondary_meta = pixelgrade_option( 'blog_items_secondary_meta', 'date_secondary', false );
 
 	if ( $blog_items_secondary_meta !== 'none' && ! empty( $meta[ $blog_items_secondary_meta ] ) ) {
 		echo $meta[ $blog_items_secondary_meta ]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
-function patch_compare_categories( $a1, $a2 ) {
+function patch_lite_compare_categories( $a1, $a2 ) {
 	if ( $a1->term_id == $a2->term_id ) {
 		return 0; //we are only interested by equality but PHP wants the whole thing
 	}
@@ -310,23 +310,23 @@ function patch_compare_categories( $a1, $a2 ) {
 	return -1;
 }
 
-if ( ! function_exists( 'patch_entry_footer' ) ) :
+if ( ! function_exists( 'patch_lite_entry_footer' ) ) :
 
 	/**
 	 * Prints HTML with meta information for posts on archives.
 	 */
-	function patch_entry_footer() {
-		edit_post_link( __( 'Edit', 'patch-lite' ), '<span class="edit-link">', '</span>' );
+	function patch_lite_entry_footer() {
+		edit_post_link( esc_html__( 'Edit', 'patch-lite' ), '<span class="edit-link">', '</span>' );
 	}
 
 endif;
 
-if ( ! function_exists( 'patch_single_entry_footer' ) ) :
+if ( ! function_exists( 'patch_lite_single_entry_footer' ) ) :
 
 	/**
 	 * Prints HTML with meta information for the categories, tags, Jetpack likes, shares, related, and comments.
 	 */
-	function patch_single_entry_footer() {
+	function patch_lite_single_entry_footer() {
 		//only show tags and author bio for posts, not pages and what have you
 		if ( 'post' == get_post_type() ) {
 

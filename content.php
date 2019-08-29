@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) ); ?>
 
-			<?php patch_entry_footer(); ?>
+			<?php patch_lite_entry_footer(); ?>
 
 		</div><!-- .entry-content -->
 

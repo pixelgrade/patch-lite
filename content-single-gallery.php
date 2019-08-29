@@ -61,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<footer class="entry-footer">
 
-		<?php patch_single_entry_footer(); ?>
+		<?php patch_lite_single_entry_footer(); ?>
 
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

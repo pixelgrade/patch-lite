@@ -55,7 +55,7 @@ $media   = patch_lite_audio_attachment();
 
 		<footer class="entry-footer">
 
-			<?php patch_entry_footer(); ?>
+			<?php patch_lite_entry_footer(); ?>
 
 		</footer><!-- .entry-footer -->
 
