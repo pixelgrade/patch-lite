@@ -78,6 +78,19 @@ if ( ! function_exists( 'patch_lite_setup' ) ) :
 			'link',
 		) );
 
+		/*
+		 * Enable support for custom logo.
+		 */
+		add_theme_support( 'custom-logo', array(
+			'height'      => 500,
+			'width'       => 1000,
+			'flex-height' => true,
+			'header-text' => array(
+				'site-title',
+				'site-description-text',
+			)
+		) );
+
 		add_image_size( 'patch-site-logo', 1000, 500, false );
 
 		/*
