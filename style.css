@@ -2352,6 +2352,12 @@ button.mfp-arrow-right {
     .nav--main ul {
       background: transparent !important; } }
 
+.main-navigation .menu-item-has-children.is-focused > ul {
+  pointer-events: auto;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1; }
+
 @media not screen and (min-width: 900px) {
   .main-navigation {
     position: fixed;

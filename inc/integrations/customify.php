@@ -230,11 +230,23 @@ function patch_lite_fill_customify_options( $options ) {
 					'css'     => array(
 						array(
 							'property' => 'color',
-							'selector' => 'body',
+							'selector' => 'body,
+							               .pagination a, 
+							               .pagination span,
+							               .pagination span.current,
+							               .pagination a:hover,
+							               .page-numbers.prev, 
+							               .page-numbers.next',
 						),
 						array(
 							'property' => 'background-color',
 							'selector' => '.entry-card .entry-image',
+						),
+
+						array(
+							'property' => 'border-color',
+							'selector' => '.pagination span.current,
+							               .pagination a:hover',
 						),
 					),
 				),
@@ -265,7 +277,8 @@ function patch_lite_fill_customify_options( $options ) {
                                 .add-comment .add-comment__button,
                                 :first-child:not(input) ~ .form-submit #submit:hover,
                                 .comments_add-comment:hover,
-                                .entry-card:hover .cat-links a',
+                                .entry-card:hover .cat-links a,
+                                .cat-links a',
 							'property' => 'color',
 						),
 						array(

@@ -214,7 +214,7 @@
 			}
 		}
 
-		li:hover {
+		li:hover{
 
 			> ul {
 				pointer-events: auto;
@@ -228,6 +228,19 @@
 	@include query-below($lap) {
 		ul {
 			background: transparent !important;
+		}
+	}
+}
+
+.main-navigation {
+	.menu-item-has-children {
+		&.is-focused {
+			> ul {
+				pointer-events: auto;
+				// display: inline-block;
+				transform: scale(1);
+				opacity: 1;
+			}
 		}
 	}
 }
