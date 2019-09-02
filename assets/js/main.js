@@ -511,7 +511,6 @@ if (!Date.now)
                 // initialize the logic behind the main navigation
                 // $nav.ariaNavigation();
                 mobileNav();
-                navigationFocus();
             },
 
             mobileNav = function() {
@@ -594,18 +593,6 @@ if (!Date.now)
                 });
 
             };
-
-        navigationFocus = function() {
-            var $menuItemWithChildren = $('.menu-item-has-children');
-
-            $menuItemWithChildren.on('focusin', function() {
-                $(this).addClass('is-focused');
-            });
-
-            $menuItemWithChildren.on('focusout', function() {
-                $(this).removeClass('is-focused');
-            });
-        };
 
         return {
             init: init

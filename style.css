@@ -2343,7 +2343,8 @@ button.mfp-arrow-right {
           margin-left: 0;
           top: -12px;
           left: 100%; }
-      .nav--main li:hover > ul {
+      .nav--main li:hover > ul,
+      .nav--main li:focus-within > ul {
         pointer-events: auto;
         -webkit-transform: scale(1);
                 transform: scale(1);
@@ -2351,12 +2352,6 @@ button.mfp-arrow-right {
   @media not screen and (min-width: 900px) {
     .nav--main ul {
       background: transparent !important; } }
-
-.main-navigation .menu-item-has-children.is-focused > ul {
-  pointer-events: auto;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  opacity: 1; }
 
 @media not screen and (min-width: 900px) {
   .main-navigation {
