@@ -678,3 +678,13 @@ function patch_lite_skip_link_focus_fix() {
 }
 // We will put this script inline since it is so small.
 add_action( 'wp_print_footer_scripts', 'patch_lite_skip_link_focus_fix' );
+
+/**
+ * Wrap embedded videos in a class, to fix responsive issues on issues
+ */
+
+function wrap_embed_with_div($html, $url, $attr) {
+	return '<div class="responsive-container">' . $html . '</div>';
+}
+
+add_filter('embed_oembed_html', 'wrap_embed_with_div', 10, 3);

@@ -4362,4 +4362,25 @@ div#jp-post-flair {
   position: absolute !important;
   right: 0; }
 
+.wp-block-embed:not(.wp-block-embed-instagram) .responsive-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 0;
+  height: 0;
+  overflow: hidden; }
+  .wp-block-embed:not(.wp-block-embed-instagram) .responsive-container iframe,
+  .wp-block-embed:not(.wp-block-embed-instagram) .responsive-container object,
+  .wp-block-embed:not(.wp-block-embed-instagram) .responsive-container video,
+  .wp-block-embed:not(.wp-block-embed-instagram) .responsive-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+.wp-block-embed {
+  margin-left: 0;
+  margin-right: 0; }
+
 /*# sourceMappingURL=style.css.map */
