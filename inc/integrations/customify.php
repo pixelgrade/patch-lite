@@ -652,18 +652,24 @@ add_action( 'customize_preview_init', 'patch_links_box_shadow_cb_customizer_prev
 
 // https://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black-depending-on-background-color
 if ( ! function_exists( 'patch_color_contrast' ) ) {
-	function patch_color_contrast( $value, $selector, $property, $unit ) {
+	function patch_color_contrast( $hex, $selector, $property, $unit ) {
 
 		// Get our color
-		if( empty($value) || ! preg_match('/^#[a-f0-9]{6}$/i', $value)) {
+		if( empty($hex) || ! preg_match('/^#[a-f0-9]{6}$/i', $hex)) {
 			return '';
 		}
 
-		$color = $value;
-		// Calculate straight from RGB
-		$r = hexdec( $color[0].$color[1] );
-		$g = hexdec( $color[2].$color[3] );
-		$b = hexdec( $color[4].$color[5] );
+		// Format the hex color string.
+		$hex = str_replace( '#', '', $hex );
+
+		if ( 3 == strlen( $hex ) ) {
+			$hex = str_repeat( substr( $hex, 0, 1 ), 2 ) . str_repeat( substr( $hex, 1, 1 ), 2 ) . str_repeat( substr( $hex, 2, 1 ), 2 );
+		}
+
+		// Get decimal values.
+		$r = hexdec( substr( $hex, 0, 2 ) );
+		$g = hexdec( substr( $hex, 2, 2 ) );
+		$b = hexdec( substr( $hex, 4, 2 ) );
 
 		$uicolors = array( $r / 255, $g / 255, $b / 255 );
 
@@ -675,12 +681,12 @@ if ( ! function_exists( 'patch_color_contrast' ) ) {
         }, $uicolors );
 
 		$L = ( 0.2126 * $c[0] ) + ( 0.7152 * $c[1] ) + ( 0.0722 * $c[2] );
+		// if it is not a dark color, just go for the default way
         $color = ( $L > 0.179 ) ? '#000' : '#FFF';
 
-		// if it is not a dark color, just go for the default way
 		$output = $selector . ' {
 			  color: ' . $color .';
-			  background-color: ' . $value . ';
+			  background-color: ' . $hex . ';
         }';
 
 		return $output;
