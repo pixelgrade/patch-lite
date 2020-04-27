@@ -7,7 +7,7 @@ Version: 1.3.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9.9
-Tested up to: 5.3
+Tested up to: 5.4.0
 Tags: blog, custom-menu, editor-style, featured-images, one-column, rtl-language-support, sticky-post, threaded-comments, three-columns, translation-ready, two-columns, post-formats, custom-logo, custom-colors
 
 == Description ==
