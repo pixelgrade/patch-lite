@@ -1,9 +1,6 @@
-
 // GUTENBERG EDITOR-ONLY STYLES
 // ----------------------------------
-
 @import "settings";
-
 @import "tools/functions";
 @import "tools/mixins";
 @import "tools/queries";
@@ -11,45 +8,44 @@
 @import "tools/aliases";
 
 .edit-post-visual-editor {
-    @import "trumps/bass";
-    @import "base/type";
-    @import "base/gutenberg";
+  @import "trumps/bass";
+  @import "base/type";
+  @import "base/gutenberg";
 
-    .editor-post-title__input {
-        @extend %h1;
-        font-size: 3.5rem;
+  .editor-post-title__input {
+    @extend %h1;
+    font-size: 3.5rem;
+  }
+
+  &.editor-styles-wrapper {
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+  }
+
+  .intro {
+    font-size: rem(18px);
+    font-weight: 500;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+
+    @include query-below($lap) {
+      font-size: 1.2em;
+      color: #000000;
     }
+  }
 
-    &.editor-styles-wrapper {
-        .wp-block-paragraph {
-            @extend %alpha;
-        }
-    }
+  .wp-block-preformatted pre,
+  .wp-block-verse pre,
+  pre.wp-block-verse {
+    color: inherit;
+  }
 
-    .intro {
-        font-size: rem(18px);
-        font-weight: 500;
-        line-height: 1.75;
-        -webkit-font-smoothing: antialiased;
+  .wp-block-quote:not(.is-large):not(.is-style-large) {
+    border-left: 0;
+    padding-left: 0;
+  }
 
-        @include query-below($lap) {
-            font-size: 1.2em;
-            color: #000000;
-        }
-    }
-
-    .wp-block-preformatted pre,
-    .wp-block-verse pre,
-    pre.wp-block-verse {
-        color: inherit;
-    }
-
-    .wp-block-quote:not(.is-large):not(.is-style-large) {
-        border-left: 0;
-        padding-left: 0;
-    }
-
-    blockquote p {
-        font: inherit;
-    }
+  blockquote p {
+    font: inherit;
+  }
 }

@@ -224,17 +224,6 @@ function patch_lite_gutenberg_styles() {
 	wp_enqueue_style( 'patch-lite-gutenberg', get_theme_file_uri( '/editor.css' ), false );
 
 	wp_enqueue_style( 'patch-lite-google-fonts', patch_lite_fonts_url() );
-
-	$width = pixelgrade_option( 'content_width' );
-
-	$style = '
-	    .edit-post-visual-editor[class] .editor-block-list__block,
-        .edit-post-visual-editor[class] .editor-post-title__block {
-            max-width: ' . $width . 'px;
-        }
-    }';
-	wp_add_inline_style( 'patch-lite-gutenberg', $style );
-
 }
 
 add_action( 'enqueue_block_editor_assets', 'patch_lite_gutenberg_styles' );

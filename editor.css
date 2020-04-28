@@ -80,7 +80,7 @@ body {
     pointer-events: auto; }
   .edit-post-visual-editor .pointer-none {
     pointer-events: none; }
-  .edit-post-visual-editor body, .edit-post-visual-editor h5, .edit-post-visual-editor.editor-styles-wrapper .wp-block-paragraph {
+  .edit-post-visual-editor body, .edit-post-visual-editor h5 {
     font-family: Roboto, sans-serif; }
   .edit-post-visual-editor h1, .edit-post-visual-editor .site-title, .edit-post-visual-editor .editor-post-title__input, .edit-post-visual-editor h2, .edit-post-visual-editor h3, .edit-post-visual-editor h4, .edit-link .edit-post-visual-editor a, .edit-post-visual-editor blockquote {
     font-family: Oswald, sans-serif; }
@@ -362,6 +362,9 @@ body {
       height: 100%; }
   .edit-post-visual-editor .editor-post-title__input {
     font-size: 3.5rem; }
+  .edit-post-visual-editor.editor-styles-wrapper {
+    font-family: Roboto, sans-serif;
+    font-weight: 300; }
   .edit-post-visual-editor .intro {
     font-size: 1.125rem;
     font-weight: 500;
