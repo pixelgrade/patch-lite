@@ -920,7 +920,7 @@ if (!Date.now)
 
     // /* ====== ON WINDOW LOAD ====== */
 
-    $window.load(function() {
+    $window.on('load', function() {
         browserSize();
         Sidebar.init();
         navigation.init();
@@ -957,6 +957,7 @@ if (!Date.now)
         latestKnownScrollY = window.scrollY;
         requestTick();
     });
+
     /* ====== HELPER FUNCTIONS ====== */
 
 
